@@ -1,16 +1,5 @@
 # Drone Warfare
 
-Играбельный прототип браузерной idle-стратегии на **Godot 4.7**: производство модульных дронов, нарисованные игроком маршруты и адаптивная оборона противника.
-
-## Дизайн
-
-[Дизайн-документ Drone Warfare](GAME_DESIGN.md) — концепция браузерной idle-стратегии, правила экономики и конструктора, адаптация ПВО и объём первого прототипа.
-
-## Blender → Godot: деревянный шар
-
-В `scenes/previews/asset_preview.tscn` лежит экземпляр `WoodenSpherePreview/WoodenSphere` из `models/wooden_sphere/wooden_sphere.glb`. Чтобы увидеть модель в редакторе, открой **3D**, выдели этот узел и нажми **F**. Исходник Blender: `art_source/wooden_sphere/wooden_sphere.blend`.
-
-[Полный пайплайн: подключение Blender MCP, создание модели, запекание текстур, экспорт GLB и импорт в Godot](docs/BLENDER_GODOT_PIPELINE.md).
 
 ## Запуск
 
