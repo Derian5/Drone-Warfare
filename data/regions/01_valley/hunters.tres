@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="HunterData" format=3]
+[gd_resource type="Resource" script_class="HunterData" format=3 uid="uid://crmnopkenx7yu"]
 
-[ext_resource type="Script" path="res://scripts/data/hunter_data.gd" id="1_155hq"]
+[ext_resource type="Script" uid="uid://ggq8ma4j3qua" path="res://scripts/data/hunter_data.gd" id="1_155hq"]
 
 [resource]
 script = ExtResource("1_155hq")
@@ -8,4 +8,3 @@ first_wave_after = 45.0
 wave_interval = 35.0
 hp = 48.0
 speed = 8.0
-drones_per_wave = 1

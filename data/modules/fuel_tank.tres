@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://e8b41gxthub3"]
 
-[ext_resource type="Texture2D" path="res://ui/icons/modules/fuel_tank.png" id="1_328gt"]
+[ext_resource type="Texture2D" uid="uid://bnrbk2hqercu0" path="res://ui/icons/modules/fuel_tank.png" id="1_328gt"]
 [ext_resource type="PackedScene" path="res://models/modules/fuel_tank.tscn" id="2_ikxgq"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_bkl1u"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="3_bkl1u"]
 
 [resource]
 script = ExtResource("3_bkl1u")

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://yplf52fsipgw"]
 
 [ext_resource type="Resource" path="res://data/counters/precision_tracking.tres" id="1_so0rq"]
-[ext_resource type="Texture2D" path="res://ui/icons/modules/maneuver.png" id="2_oc42b"]
+[ext_resource type="Texture2D" uid="uid://dn5y4m66naqtj" path="res://ui/icons/modules/maneuver.png" id="2_oc42b"]
 [ext_resource type="PackedScene" path="res://models/modules/maneuver.tscn" id="3_12onm"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_ccmj7"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="4_ccmj7"]
 
 [resource]
 script = ExtResource("4_ccmj7")

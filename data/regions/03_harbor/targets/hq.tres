@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="TargetData" format=3]
+[gd_resource type="Resource" script_class="TargetData" format=3 uid="uid://curget0yeianq"]
 
-[ext_resource type="Texture2D" path="res://ui/icons/sites/enemy_hq.png" id="1_6somj"]
+[ext_resource type="Texture2D" uid="uid://ccsd8vyc8424u" path="res://ui/icons/sites/enemy_hq.png" id="1_6somj"]
 [ext_resource type="Resource" path="res://data/air_defense/hq_point_defense.tres" id="1_fpifp"]
-[ext_resource type="Script" path="res://scripts/data/target_data.gd" id="2_fpifp"]
+[ext_resource type="Script" uid="uid://bnivbfsvc45kn" path="res://scripts/data/target_data.gd" id="2_fpifp"]
 
 [resource]
 script = ExtResource("2_fpifp")

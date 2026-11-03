@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="RegionData" format=3]
+[gd_resource type="Resource" script_class="RegionData" format=3 uid="uid://da3sajhe2u1r6"]
 
-[ext_resource type="Resource" path="res://data/regions/01_valley/hunters.tres" id="1_mbea3"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_tfy6s"]
+[ext_resource type="Resource" uid="uid://crmnopkenx7yu" path="res://data/regions/01_valley/hunters.tres" id="1_mbea3"]
+[ext_resource type="Script" uid="uid://bbh04c5cy4be7" path="res://scripts/data/frame_data.gd" id="2_1pds5"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="2_tfy6s"]
 [ext_resource type="PackedScene" path="res://scenes/regions/01_valley.tscn" id="3_1pds5"]
-[ext_resource type="Texture2D" path="res://textures/regions/01_valley/preview.png" id="3_tfy6s"]
-[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="4_ledr6"]
+[ext_resource type="Texture2D" uid="uid://biwvln00pear8" path="res://textures/regions/01_valley/preview.png" id="3_tfy6s"]
+[ext_resource type="Script" uid="uid://bng72qy7dpu6t" path="res://scripts/data/region_data.gd" id="4_ledr6"]
 
 [resource]
 script = ExtResource("4_ledr6")

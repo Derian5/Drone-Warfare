@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="RegionData" format=3]
+[gd_resource type="Resource" script_class="RegionData" format=3 uid="uid://c7jx26jqc8j01"]
 
-[ext_resource type="Resource" path="res://data/regions/03_harbor/hunters.tres" id="1_83icy"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_2cods"]
-[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="2_aol5e"]
-[ext_resource type="Resource" path="res://data/modules/ew_pod.tres" id="3_jtncp"]
+[ext_resource type="Resource" uid="uid://caesvbqn118r2" path="res://data/regions/03_harbor/hunters.tres" id="1_83icy"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="2_2cods"]
+[ext_resource type="Script" uid="uid://bbh04c5cy4be7" path="res://scripts/data/frame_data.gd" id="2_aol5e"]
+[ext_resource type="Resource" uid="uid://bdq8hcxpwby7n" path="res://data/modules/ew_pod.tres" id="3_jtncp"]
 [ext_resource type="Resource" path="res://data/frames/hexa.tres" id="3_y3e58"]
-[ext_resource type="Texture2D" path="res://textures/regions/03_harbor/preview.png" id="4_2cods"]
+[ext_resource type="Texture2D" uid="uid://mixti1tqbyxr" path="res://textures/regions/03_harbor/preview.png" id="4_2cods"]
 [ext_resource type="PackedScene" path="res://scenes/regions/03_harbor.tscn" id="4_cp5sx"]
-[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="5_e505v"]
+[ext_resource type="Script" uid="uid://bng72qy7dpu6t" path="res://scripts/data/region_data.gd" id="5_e505v"]
 [ext_resource type="Resource" path="res://data/modules/heavy_armor.tres" id="5_w7xxp"]
-[ext_resource type="Resource" path="res://data/modules/cluster.tres" id="6_hrnps"]
+[ext_resource type="Resource" uid="uid://xuotjknp67j0" path="res://data/modules/cluster.tres" id="6_hrnps"]
 
 [resource]
 script = ExtResource("5_e505v")

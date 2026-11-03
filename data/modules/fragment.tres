@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://bvy21mm8eyw4l"]
 
-[ext_resource type="Texture2D" path="res://ui/icons/modules/fragment.png" id="1_yo2yp"]
+[ext_resource type="Texture2D" uid="uid://c2mgl2xojuwgs" path="res://ui/icons/modules/fragment.png" id="1_yo2yp"]
 [ext_resource type="PackedScene" path="res://models/modules/fragment.tscn" id="2_maisx"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_3dol2"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="3_3dol2"]
 
 [resource]
 script = ExtResource("3_3dol2")

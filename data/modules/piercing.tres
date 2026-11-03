@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://cmkqh40me3f7f"]
 
-[ext_resource type="Texture2D" path="res://ui/icons/modules/piercing.png" id="1_6idph"]
+[ext_resource type="Texture2D" uid="uid://bemj7p6gh2j5q" path="res://ui/icons/modules/piercing.png" id="1_6idph"]
 [ext_resource type="PackedScene" path="res://models/modules/piercing.tscn" id="2_8yton"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_yv8q5"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="3_yv8q5"]
 
 [resource]
 script = ExtResource("3_yv8q5")

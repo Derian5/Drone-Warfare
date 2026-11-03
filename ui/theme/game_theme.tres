@@ -1,4 +1,4 @@
-[gd_resource type="Theme" format=3]
+[gd_resource type="Theme" format=3 uid="uid://tnjg88qhllsg"]
 
 [ext_resource type="FontVariation" path="res://ui/fonts/title.tres" id="1_dtkdr"]
 [ext_resource type="FontVariation" path="res://ui/fonts/bold.tres" id="2_tgo0r"]
@@ -333,6 +333,15 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_excl"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.15, 0.82, 0.85, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njr1s"]
 content_margin_left = 8.0
@@ -1352,15 +1361,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_excl"]
-content_margin_left = 2.0
-content_margin_right = 2.0
-bg_color = Color(0.15, 0.82, 0.85, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [resource]
 default_font = ExtResource("3_h7gvb")
 default_font_size = 13
@@ -1489,41 +1489,25 @@ DeltaGood/font_sizes/font_size = 11
 DeltaGood/fonts/font = ExtResource("2_tgo0r")
 DragPreview/base_type = &"PanelContainer"
 DragPreview/styles/panel = SubResource("StyleBoxFlat_5nonf")
+EffectBad/base_type = &"Label"
+EffectBad/colors/font_color = Color(1, 0.48, 0.42, 1)
+EffectBad/font_sizes/font_size = 13
+EffectGood/base_type = &"Label"
+EffectGood/colors/font_color = Color(0.45, 0.85, 0.55, 1)
+EffectGood/font_sizes/font_size = 13
 ErrorText/base_type = &"Label"
 ErrorText/colors/font_color = Color(0.9490196, 0.654902, 0.105882354, 1)
 ErrorText/font_sizes/font_size = 11
+ExclusiveTag/base_type = &"Label"
+ExclusiveTag/colors/font_color = Color(0.03, 0.12, 0.14, 1)
+ExclusiveTag/font_sizes/font_size = 9
+ExclusiveTag/styles/normal = SubResource("StyleBoxFlat_excl")
 FloaterText/base_type = &"Label"
 FloaterText/colors/font_color = Color(1, 0.827451, 0.3019608, 1)
 FloaterText/colors/font_outline_color = Color(0, 0, 0, 0.55)
 FloaterText/constants/outline_size = 4
 FloaterText/font_sizes/font_size = 17
 FloaterText/fonts/font = ExtResource("2_tgo0r")
-LineStatus/base_type = &"Label"
-LineStatus/colors/font_color = Color(0.45, 0.85, 0.55, 1)
-LineStatus/font_sizes/font_size = 11
-SummaryText/base_type = &"Label"
-SummaryText/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
-SummaryText/font_sizes/font_size = 14
-ExclusiveTag/base_type = &"Label"
-ExclusiveTag/colors/font_color = Color(0.03, 0.12, 0.14, 1)
-ExclusiveTag/font_sizes/font_size = 9
-ExclusiveTag/styles/normal = SubResource("StyleBoxFlat_excl")
-InfoName/base_type = &"Label"
-InfoName/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
-InfoName/font_sizes/font_size = 17
-InfoName/fonts/font = ExtResource("1_dtkdr")
-EffectGood/base_type = &"Label"
-EffectGood/colors/font_color = Color(0.45, 0.85, 0.55, 1)
-EffectGood/font_sizes/font_size = 13
-EffectBad/base_type = &"Label"
-EffectBad/colors/font_color = Color(1, 0.48, 0.42, 1)
-EffectBad/font_sizes/font_size = 13
-HunterTag/base_type = &"Label"
-HunterTag/colors/font_color = Color(1, 0.45, 0.38, 1)
-HunterTag/colors/font_outline_color = Color(0, 0, 0, 0.75)
-HunterTag/constants/outline_size = 5
-HunterTag/font_sizes/font_size = 14
-HunterTag/fonts/font = ExtResource("2_tgo0r")
 FrameInfo/base_type = &"Label"
 FrameInfo/colors/font_color = Color(0.23529412, 0.76862746, 0.41568628, 1)
 FrameInfo/font_sizes/font_size = 12
@@ -1556,6 +1540,12 @@ HintText/font_sizes/font_size = 11
 HpBar/base_type = &"ProgressBar"
 HpBar/styles/background = SubResource("StyleBoxFlat_21xn2")
 HpBar/styles/fill = SubResource("StyleBoxFlat_do7a8")
+HunterTag/base_type = &"Label"
+HunterTag/colors/font_color = Color(1, 0.45, 0.38, 1)
+HunterTag/colors/font_outline_color = Color(0, 0, 0, 0.75)
+HunterTag/constants/outline_size = 5
+HunterTag/font_sizes/font_size = 14
+HunterTag/fonts/font = ExtResource("2_tgo0r")
 IconButton/base_type = &"Button"
 IconButton/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
 IconButton/colors/font_focus_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
@@ -1569,6 +1559,10 @@ IconButton/styles/focus = SubResource("StyleBoxEmpty_b7kss")
 IconButton/styles/hover = SubResource("StyleBoxFlat_s2gb3")
 IconButton/styles/normal = SubResource("StyleBoxFlat_jcajb")
 IconButton/styles/pressed = SubResource("StyleBoxFlat_8hdcf")
+InfoName/base_type = &"Label"
+InfoName/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
+InfoName/font_sizes/font_size = 17
+InfoName/fonts/font = ExtResource("1_dtkdr")
 Label/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
 LineEdit/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
 LineEdit/styles/focus = SubResource("StyleBoxFlat_i0tvp")
@@ -1577,6 +1571,9 @@ LineRow/base_type = &"PanelContainer"
 LineRow/styles/panel = SubResource("StyleBoxFlat_ngng5")
 LineRowSelected/base_type = &"PanelContainer"
 LineRowSelected/styles/panel = SubResource("StyleBoxFlat_vndpu")
+LineStatus/base_type = &"Label"
+LineStatus/colors/font_color = Color(0.45, 0.85, 0.55, 1)
+LineStatus/font_sizes/font_size = 11
 LockText/base_type = &"Label"
 LockText/colors/font_color = Color(0.9490196, 0.654902, 0.105882354, 1)
 LockText/font_sizes/font_size = 11
@@ -1795,6 +1792,9 @@ StrongSmall/base_type = &"Label"
 StrongSmall/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
 StrongSmall/font_sizes/font_size = 12
 StrongSmall/fonts/font = ExtResource("2_tgo0r")
+SummaryText/base_type = &"Label"
+SummaryText/colors/font_color = Color(0.9137255, 0.92941177, 0.9411765, 1)
+SummaryText/font_sizes/font_size = 14
 TealBar/base_type = &"ProgressBar"
 TealBar/styles/background = SubResource("StyleBoxFlat_c7dlc")
 TealBar/styles/fill = SubResource("StyleBoxFlat_4utv8")

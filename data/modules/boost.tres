@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://cwkn6sgc6cqkv"]
 
 [ext_resource type="Resource" path="res://data/counters/fast_tracking.tres" id="1_ef1os"]
-[ext_resource type="Texture2D" path="res://ui/icons/modules/boost.png" id="1_xyjrc"]
+[ext_resource type="Texture2D" uid="uid://dmf2mctj6rua4" path="res://ui/icons/modules/boost.png" id="1_xyjrc"]
 [ext_resource type="PackedScene" path="res://models/modules/boost.tscn" id="2_ef1os"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_jjjfm"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="3_jjjfm"]
 
 [resource]
 script = ExtResource("3_jjjfm")

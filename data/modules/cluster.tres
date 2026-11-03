@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://xuotjknp67j0"]
 
-[ext_resource type="Texture2D" path="res://ui/icons/modules/cluster.png" id="1_ig2io"]
+[ext_resource type="Texture2D" uid="uid://bgpefthns1iqk" path="res://ui/icons/modules/cluster.png" id="1_ig2io"]
 [ext_resource type="PackedScene" path="res://models/modules/cluster.tscn" id="2_2jmk3"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_0gc6c"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="3_0gc6c"]
 
 [resource]
 script = ExtResource("3_0gc6c")

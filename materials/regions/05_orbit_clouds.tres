@@ -1,11 +1,11 @@
-[gd_resource type="ShaderMaterial" format=3]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dmxxx1sd4ew7a"]
 
-[ext_resource type="Shader" path="res://shaders/planet_clouds.gdshader" id="1_mv7ej"]
-[ext_resource type="Texture2D" path="res://textures/regions/05_orbit/clouds.png" id="2_obj1l"]
+[ext_resource type="Shader" uid="uid://mcf7sr5srrt2" path="res://shaders/planet_clouds.gdshader" id="1_mv7ej"]
+[ext_resource type="Texture2D" uid="uid://bddokics6tmwj" path="res://textures/regions/05_orbit/clouds.png" id="2_obj1l"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_mv7ej")
 shader_parameter/clouds = ExtResource("2_obj1l")
 shader_parameter/opacity = 0.3
-shader_parameter/cloud_color = null
+shader_parameter/cloud_color = Color(1, 1, 1, 1)

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://c7hxsyt6kr56"]
 
 [ext_resource type="Resource" path="res://data/counters/flare_discrimination.tres" id="1_o7m2m"]
-[ext_resource type="Texture2D" path="res://ui/icons/modules/decoy_flares.png" id="2_1dp0t"]
+[ext_resource type="Texture2D" uid="uid://dwifjewxw2sf2" path="res://ui/icons/modules/decoy_flares.png" id="2_1dp0t"]
 [ext_resource type="PackedScene" path="res://models/modules/decoy_flares.tscn" id="3_adj6f"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_2s3su"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="4_2s3su"]
 
 [resource]
 script = ExtResource("4_2s3su")

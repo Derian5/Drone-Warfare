@@ -1,11 +1,11 @@
-[gd_resource type="ShaderMaterial" format=3]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cvolvie1fd1c2"]
 
-[ext_resource type="Shader" path="res://shaders/terrain_map.gdshader" id="1_6e06f"]
-[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/forest.png" id="2_xm4lt"]
-[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/height.png" id="3_56xa8"]
-[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/roads.png" id="4_kd8nc"]
-[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/towns.png" id="5_phuqv"]
-[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/water.png" id="6_n472u"]
+[ext_resource type="Shader" uid="uid://b5r7tmvxat25w" path="res://shaders/terrain_map.gdshader" id="1_6e06f"]
+[ext_resource type="Texture2D" uid="uid://dfcdtkf6p11a8" path="res://textures/regions/02_highlands/forest.png" id="2_xm4lt"]
+[ext_resource type="Texture2D" uid="uid://l67402adhp6h" path="res://textures/regions/02_highlands/height.png" id="3_56xa8"]
+[ext_resource type="Texture2D" uid="uid://c5hcjyunikc26" path="res://textures/regions/02_highlands/roads.png" id="4_kd8nc"]
+[ext_resource type="Texture2D" uid="uid://bkil5e0n35f8v" path="res://textures/regions/02_highlands/towns.png" id="5_phuqv"]
+[ext_resource type="Texture2D" uid="uid://dcrhohqyamx1b" path="res://textures/regions/02_highlands/water.png" id="6_n472u"]
 
 [resource]
 render_priority = 0
@@ -15,40 +15,44 @@ shader_parameter/water_mask = ExtResource("6_n472u")
 shader_parameter/road_mask = ExtResource("4_kd8nc")
 shader_parameter/town_mask = ExtResource("5_phuqv")
 shader_parameter/forest_mask = ExtResource("2_xm4lt")
-shader_parameter/lowland_color = null
-shader_parameter/midland_color = null
-shader_parameter/highland_color = null
-shader_parameter/forest_color = null
-shader_parameter/forest_strength = null
-shader_parameter/midland_range = Vector2(0.600, 2.700)
-shader_parameter/highland_range = Vector2(2.700, 5.700)
-shader_parameter/albedo_gain = null
-shader_parameter/relief_exaggeration = null
-shader_parameter/light_direction = null
-shader_parameter/shadow_tint = null
-shader_parameter/shade_min = null
-shader_parameter/shade_max = null
+shader_parameter/lowland_color = Color(0.85, 0.82, 0.63, 1)
+shader_parameter/midland_color = Color(0.77, 0.75, 0.55, 1)
+shader_parameter/highland_color = Color(0.64, 0.65, 0.46, 1)
+shader_parameter/forest_color = Color(0.63, 0.66, 0.42, 1)
+shader_parameter/forest_strength = 0.35
+shader_parameter/midland_range = Vector2(0.6, 2.7)
+shader_parameter/highland_range = Vector2(2.7, 5.7)
+shader_parameter/albedo_gain = 0.86
+shader_parameter/relief_exaggeration = 4.0
+shader_parameter/light_direction = Vector3(-0.7, 0.9, -0.6)
+shader_parameter/shadow_tint = Color(0.78, 0.84, 0.7, 1)
+shader_parameter/shade_min = 0.66
+shader_parameter/shade_max = 1.08
 shader_parameter/contour_interval = 0.375
-shader_parameter/index_every = null
-shader_parameter/contour_color = null
-shader_parameter/index_contour_color = null
-shader_parameter/contour_px = null
-shader_parameter/index_contour_px = null
-shader_parameter/road_color = null
-shader_parameter/road_casing_color = null
-shader_parameter/road_fill_threshold = null
-shader_parameter/road_casing_threshold = null
-shader_parameter/water_color = null
-shader_parameter/town_color = null
+shader_parameter/index_every = 4
+shader_parameter/contour_color = Color(0.5, 0.46, 0.28, 0.38)
+shader_parameter/index_contour_color = Color(0.45, 0.4, 0.24, 0.45)
+shader_parameter/contour_px = 0.8
+shader_parameter/index_contour_px = 1.3
+shader_parameter/road_color = Color(0.88, 0.62, 0.3, 1)
+shader_parameter/road_casing_color = Color(0.66, 0.42, 0.2, 1)
+shader_parameter/road_fill_threshold = 0.6
+shader_parameter/road_casing_threshold = 0.22
+shader_parameter/water_color = Color(0.2, 0.4, 0.68, 1)
+shader_parameter/town_color = Color(0.42, 0.38, 0.32, 1)
 shader_parameter/town_block_scale = 3.25
 shader_parameter/grid_spacing = 10.0
-shader_parameter/grid_color = null
-shader_parameter/grid_px = null
-shader_parameter/play_area_size = null
-shader_parameter/outside_darken = null
-shader_parameter/height_scale = null
-shader_parameter/texel = null
-shader_parameter/world_step = null
-shader_parameter/world_origin = null
-shader_parameter/world_size = null
-shader_parameter/captured_rect = Vector4(-20.8, 46.4, 40, 27.2)
+shader_parameter/grid_color = Color(0.22, 0.23, 0.19, 0.38)
+shader_parameter/grid_px = 1.0
+shader_parameter/play_area_size = Vector2(100, 68)
+shader_parameter/outside_darken = 0.25
+shader_parameter/captured_rect = Vector4(0, 0, 0, 0)
+shader_parameter/captured_tint = Color(0.22, 0.52, 0.95, 0.16)
+shader_parameter/captured_border = Color(0.16, 0.42, 0.9, 0.95)
+shader_parameter/captured_border_px = 2.5
+shader_parameter/captured_dash = 2.0
+shader_parameter/height_scale = 9.0
+shader_parameter/texel = Vector2(0.002118644, 0.002688172)
+shader_parameter/world_step = 0.3983050847457627
+shader_parameter/world_origin = Vector2(-44, -40)
+shader_parameter/world_size = Vector2(188, 148)

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://bdq8hcxpwby7n"]
 
 [ext_resource type="Resource" path="res://data/counters/home_on_jam.tres" id="1_3kpv5"]
-[ext_resource type="Texture2D" path="res://ui/icons/modules/ew_pod.png" id="2_1v6lo"]
+[ext_resource type="Texture2D" uid="uid://bv4kskrvthyec" path="res://ui/icons/modules/ew_pod.png" id="2_1v6lo"]
 [ext_resource type="PackedScene" path="res://models/modules/ew_pod.tscn" id="3_ya0kv"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_fmbns"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="4_fmbns"]
 
 [resource]
 script = ExtResource("4_fmbns")

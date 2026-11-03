@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ModuleData" format=3]
+[gd_resource type="Resource" script_class="ModuleData" format=3 uid="uid://b0ia1gnr3vn2m"]
 
 [ext_resource type="Resource" path="res://data/counters/fortified_hq.tres" id="1_k36s4"]
-[ext_resource type="Texture2D" path="res://ui/icons/modules/payload.png" id="2_vbp74"]
+[ext_resource type="Texture2D" uid="uid://dm6b8187qrh52" path="res://ui/icons/modules/payload.png" id="2_vbp74"]
 [ext_resource type="PackedScene" path="res://models/modules/payload.tscn" id="3_guncq"]
-[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_67gxj"]
+[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="4_67gxj"]
 
 [resource]
 script = ExtResource("4_67gxj")
