@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_1fmes"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_68nd3"]
+
+[resource]
+script = ExtResource("2_68nd3")
+id = "vault_protocol"
+display_name = "Vault Protocol"
+description = "Hunters steal half as much; 150 cr are always safe."
+icon = ExtResource("1_1fmes")
+cost = 2
+hunter_steal = 0.5
+extra_reserve_protection = 150

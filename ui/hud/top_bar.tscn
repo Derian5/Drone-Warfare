@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/top_bar.gd" id="1_rs3n5"]
+[ext_resource type="Texture2D" path="res://ui/icons/sound_on.svg" id="2_byo6w"]
+[ext_resource type="Texture2D" path="res://ui/icons/sound_off.svg" id="3_2mltc"]
+[ext_resource type="Texture2D" path="res://ui/icons/logo.svg" id="4_2gwas"]
+[ext_resource type="Texture2D" path="res://ui/icons/objective.svg" id="5_lnxwj"]
+[ext_resource type="Texture2D" path="res://ui/icons/coin.svg" id="6_u6pt8"]
+[ext_resource type="Texture2D" path="res://ui/icons/net.svg" id="7_kcojg"]
+[ext_resource type="Texture2D" path="res://ui/icons/campaign.svg" id="8_byo6w"]
+[ext_resource type="Texture2D" path="res://ui/icons/help.svg" id="8_t14ur"]
+[ext_resource type="Texture2D" path="res://ui/icons/reset.svg" id="9_j8ja2"]
+
+[node name="TopBar" type="PanelContainer" unique_id=786643483]
+custom_minimum_size = Vector2(0, 46)
+theme_type_variation = &"TopBarPanel"
+script = ExtResource("1_rs3n5")
+sound_on_icon = ExtResource("2_byo6w")
+sound_off_icon = ExtResource("3_2mltc")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=661807569]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Logo" type="TextureRect" parent="Row" unique_id=1077016132]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("4_2gwas")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GameTitle" type="Label" parent="Row" unique_id=966879828]
+layout_mode = 2
+theme_type_variation = &"GameTitle"
+text = "DRONE WARFARE"
+
+[node name="RegionLabel" type="Label" parent="Row" unique_id=1671203959]
+tooltip_text = "Current region. Open CAMPAIGN to switch."
+mouse_filter = 1
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"RegionTag"
+text = "01 · KALVARA VALLEY"
+
+[node name="Spacer" type="Control" parent="Row" unique_id=864712089]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ObjectiveRow" type="HBoxContainer" parent="Row" unique_id=214794609]
+tooltip_text = "Current objective"
+mouse_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/separation = 7
+
+[node name="ObjectiveIcon" type="TextureRect" parent="Row/ObjectiveRow" unique_id=540646563]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("5_lnxwj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Objective" type="Label" parent="Row/ObjectiveRow" unique_id=1289337955]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Objective"
+text = "Destroy the Enemy HQ"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="@Control@2" type="Control" parent="Row" unique_id=499900356]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CoinIcon" type="TextureRect" parent="Row" unique_id=1888888880]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("6_u6pt8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Credits" type="Label" parent="Row" unique_id=1842442009]
+tooltip_text = "Credits. Earned by hitting targets, spent on drones, upgrades and slots."
+mouse_filter = 1
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_type_variation = &"Credits"
+text = "500"
+
+[node name="NetIcon" type="TextureRect" parent="Row" unique_id=1907178166]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("7_kcojg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Net" type="Label" parent="Row" unique_id=89739597]
+tooltip_text = "Credits gained minus spent over the last minute"
+mouse_filter = 1
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+theme_type_variation = &"TopValue"
+text = "Net +0/min"
+
+[node name="CampaignButton" type="Button" parent="Row" unique_id=1610252813]
+tooltip_text = "Campaign map: regions, stars and technologies"
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"AccentButton"
+text = "CAMPAIGN"
+icon = ExtResource("8_byo6w")
+
+[node name="SoundButton" type="Button" parent="Row" unique_id=1894793864]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Sound on/off"
+focus_mode = 0
+theme_type_variation = &"IconButton"
+icon = ExtResource("2_byo6w")
+icon_alignment = 1
+
+[node name="HelpButton" type="Button" parent="Row" unique_id=1801824207]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "How to play"
+focus_mode = 0
+theme_type_variation = &"IconButton"
+icon = ExtResource("8_t14ur")
+icon_alignment = 1
+
+[node name="ResetButton" type="Button" parent="Row" unique_id=2118385501]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Restart the prototype"
+focus_mode = 0
+theme_type_variation = &"IconButton"
+icon = ExtResource("9_j8ja2")
+icon_alignment = 1
+
+[node name="PauseButton" type="Button" parent="Row" unique_id=227422324]
+tooltip_text = "Pause / resume the game (Space)"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(74, 26)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"PillButton"
+text = "Pause"

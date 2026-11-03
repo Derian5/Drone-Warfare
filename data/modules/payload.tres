@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/fortified_hq.tres" id="1_k36s4"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/payload.png" id="2_vbp74"]
+[ext_resource type="PackedScene" path="res://models/modules/payload.tscn" id="3_guncq"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_67gxj"]
+
+[resource]
+script = ExtResource("4_67gxj")
+id = "payload"
+display_name = "Extra Payload"
+short_name = "PAYLOAD"
+category = 4
+description = "Damage +28, speed −3. More income per hit."
+purpose = "+28 damage per hit: kills the HQ much faster once drones get through. Heavier and slower."
+frames = PackedStringArray()
+icon = ExtResource("2_vbp74")
+part_scene = ExtResource("3_guncq")
+slot = "SlotPayload"
+callout = "PAYLOAD"
+unlock_cost = 180
+cost_per_drone = 5
+mass = 3
+damage = 28.0
+speed = -3.0
+counter = ExtResource("1_k36s4")

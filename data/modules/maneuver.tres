@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/precision_tracking.tres" id="1_so0rq"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/maneuver.png" id="2_oc42b"]
+[ext_resource type="PackedScene" path="res://models/modules/maneuver.tscn" id="3_12onm"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_ccmj7"]
+
+[resource]
+script = ExtResource("4_ccmj7")
+id = "maneuver"
+display_name = "Maneuver Fins"
+short_name = "FINS"
+category = 2
+description = "Agility +38. Air defense misses more often."
+purpose = "Dodges gunfire: guns and missiles hit much less often. Best against flak guns."
+frames = PackedStringArray()
+icon = ExtResource("2_oc42b")
+part_scene = ExtResource("3_12onm")
+slot = "SlotFins"
+callout = "FINS"
+unlock_cost = 130
+cost_per_drone = 3
+mass = 2
+agility = 38.0
+counter = ExtResource("1_so0rq")

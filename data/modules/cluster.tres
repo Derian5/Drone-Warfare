@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/cluster.png" id="1_ig2io"]
+[ext_resource type="PackedScene" path="res://models/modules/cluster.tscn" id="2_2jmk3"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_0gc6c"]
+
+[resource]
+script = ExtResource("3_0gc6c")
+id = "cluster"
+display_name = "Cluster Warhead"
+short_name = "CLUSTER"
+kind = 0
+category = 0
+description = "×1.8 damage against air-defense sites, but weak against armor."
+purpose = "Wrecks air-defense sites (×1.8 damage): clear the guns that guard your route first. Poor against the armored HQ."
+frames = PackedStringArray("hexa")
+icon = ExtResource("1_ig2io")
+part_scene = ExtResource("2_2jmk3")
+slot = "SlotWarhead"
+callout = "CLUSTER"
+unlock_cost = 170
+cost_per_drone = 4
+mass = 3
+damage = 6.0
+anti_air_multiplier = 1.8
+armor_penalty = 40.0

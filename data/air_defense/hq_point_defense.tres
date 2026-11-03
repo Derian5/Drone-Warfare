@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AirDefenseData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/enemy_hq.png" id="1_u8age"]
+[ext_resource type="Script" path="res://scripts/data/air_defense_data.gd" id="2_d5v2w"]
+
+[resource]
+script = ExtResource("2_d5v2w")
+display_name = "HQ Point Defense"
+description = "Close-in guns around the HQ. Every attack has to survive the final approach."
+icon = ExtResource("1_u8age")
+radius = 11.0
+accuracy = 40.0
+damage = 14.0
+interval = 0.8
+targets_per_volley = 2
+needs_line_of_sight = false

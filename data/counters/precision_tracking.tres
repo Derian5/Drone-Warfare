@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CounterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/counter_data.gd" id="1_7twk7"]
+
+[resource]
+script = ExtResource("1_7twk7")
+id = "precision_tracking"
+display_name = "Precision Tracking"
+description = "Air-defense accuracy rises sharply. Maneuver fins lose value."
+affects = PackedStringArray("gun", "missile")
+accuracy_multiplier = 1.8

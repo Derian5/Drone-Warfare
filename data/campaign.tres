@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CampaignData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="1_g85pn"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/region.tres" id="2_ywtih"]
+[ext_resource type="Resource" path="res://data/regions/02_highlands/region.tres" id="3_f5uj3"]
+[ext_resource type="Resource" path="res://data/regions/03_harbor/region.tres" id="4_4757c"]
+[ext_resource type="Resource" path="res://data/regions/04_continent/region.tres" id="5_klqy2"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/region.tres" id="6_swcue"]
+[ext_resource type="Script" path="res://scripts/data/campaign_data.gd" id="7_a4p2s"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="8_36b18"]
+[ext_resource type="Resource" path="res://data/techs/reinforced_airframes.tres" id="9_aib6v"]
+[ext_resource type="Resource" path="res://data/techs/lean_assembly.tres" id="10_lj5uk"]
+[ext_resource type="Resource" path="res://data/techs/extended_tanks.tres" id="11_r50rh"]
+[ext_resource type="Resource" path="res://data/techs/precision_fuzes.tres" id="12_1pfus"]
+[ext_resource type="Resource" path="res://data/techs/agile_avionics.tres" id="13_0ut44"]
+[ext_resource type="Resource" path="res://data/techs/bulk_contracts.tres" id="14_aqc2n"]
+[ext_resource type="Resource" path="res://data/techs/vault_protocol.tres" id="15_rhlp7"]
+[ext_resource type="Resource" path="res://data/techs/hardened_guns.tres" id="16_y2rpw"]
+[ext_resource type="Resource" path="res://data/techs/war_economy.tres" id="17_v2pp1"]
+
+[resource]
+script = ExtResource("7_a4p2s")
+regions = Array[ExtResource("1_g85pn")]([ExtResource("2_ywtih"), ExtResource("3_f5uj3"), ExtResource("4_4757c"), ExtResource("5_klqy2"), ExtResource("6_swcue")])
+techs = Array[ExtResource("8_36b18")]([ExtResource("9_aib6v"), ExtResource("10_lj5uk"), ExtResource("11_r50rh"), ExtResource("12_1pfus"), ExtResource("13_0ut44"), ExtResource("14_aqc2n"), ExtResource("15_rhlp7"), ExtResource("16_y2rpw"), ExtResource("17_v2pp1")])

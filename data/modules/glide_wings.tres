@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/glide_wings.png" id="1_cda0c"]
+[ext_resource type="PackedScene" path="res://models/modules/glide_wings.tscn" id="2_yopfm"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_837tn"]
+
+[resource]
+script = ExtResource("3_837tn")
+id = "glide_wings"
+display_name = "Glide Wings"
+short_name = "GLIDE"
+category = 2
+description = "Range +120, speed +3, agility −4."
+purpose = "Long gliding wings: huge range for wide detours or far targets."
+frames = PackedStringArray("wing")
+icon = ExtResource("1_cda0c")
+part_scene = ExtResource("2_yopfm")
+slot = "SlotFins"
+callout = "GLIDE"
+unlock_cost = 140
+cost_per_drone = 2
+speed = 3.0
+agility = -4.0
+flight_range = 120.0

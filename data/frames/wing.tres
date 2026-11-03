@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FrameData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/drones/drone_wing.tscn" id="1_doy3f"]
+[ext_resource type="Texture2D" path="res://ui/icons/frames/drone_wing.png" id="2_tntbs"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="3_f23ss"]
+
+[resource]
+script = ExtResource("3_f23ss")
+id = "wing"
+display_name = "Fixed-Wing Striker"
+short_name = "WING"
+role = "Fast, long range, fragile"
+description = "A small plane. Flies fast and far, so it can take wide detours around air defense, but it breaks easily. Only it can carry fuel tanks and glide wings."
+icon = ExtResource("2_tntbs")
+drone_scene = ExtResource("1_doy3f")
+hp = 20.0
+speed = 27.0
+agility = 12.0
+flight_range = 280.0
+accuracy = 0.9
+max_mass = 7
+cost = 12
+build_time = 4.0

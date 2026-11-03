@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_6dq8u"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_jiotp"]
+[ext_resource type="Resource" path="res://data/techs/bulk_contracts.tres" id="3_ktlu7"]
+
+[resource]
+script = ExtResource("2_jiotp")
+id = "war_economy"
+display_name = "War Economy"
+description = "+15% income from damage."
+icon = ExtResource("1_6dq8u")
+cost = 3
+requires = Array[ExtResource("2_jiotp")]([ExtResource("3_ktlu7")])
+income = 1.15

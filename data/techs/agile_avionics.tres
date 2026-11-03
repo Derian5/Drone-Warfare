@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_x5eo1"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_s5vwh"]
+[ext_resource type="Resource" path="res://data/techs/reinforced_airframes.tres" id="3_qqohe"]
+
+[resource]
+script = ExtResource("2_s5vwh")
+id = "agile_avionics"
+display_name = "Agile Avionics"
+description = "+8 agility for every drone."
+icon = ExtResource("1_x5eo1")
+cost = 2
+requires = Array[ExtResource("2_s5vwh")]([ExtResource("3_qqohe")])
+extra_agility = 8.0

@@ -1,0 +1,124 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/intel_line_page.gd" id="1_87exn"]
+[ext_resource type="PackedScene" path="res://ui/hud/stat_row.tscn" id="2_8g3t2"]
+[ext_resource type="Script" path="res://scripts/ui/stat_row.gd" id="3_kwvl8"]
+
+[node name="IntelLinePage" type="VBoxContainer" unique_id=1829332694]
+theme_override_constants/separation = 8
+script = ExtResource("1_87exn")
+
+[node name="Name" type="Label" parent="." unique_id=988908954]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitle"
+text = "L1 · STRIKER"
+
+[node name="Parts" type="Label" parent="." unique_id=1498886911]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+autowrap_mode = 3
+
+[node name="RoutePicker" type="OptionButton" parent="." unique_id=1202122787]
+tooltip_text = "Which route this line flies"
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+
+[node name="Status" type="Label" parent="." unique_id=1115610054]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatusText"
+autowrap_mode = 3
+
+[node name="Cost" parent="." unique_id=1174628339 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Price of one drone"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Cost per drone"
+value_variation = &"StatValueAmber"
+
+[node name="BuildTime" parent="." unique_id=988486851 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Seconds to build one drone"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Build time"
+
+[node name="Range" type="HBoxContainer" parent="." unique_id=1622485954 instance=ExtResource("2_8g3t2")]
+tooltip_text = "How far this drone can fly. Longer routes need a fuel tank or a forward pad."
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_kwvl8")
+caption = "Range"
+
+[node name="Launched" parent="." unique_id=748018122 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Drones launched by this line"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Launched"
+
+[node name="Hits" parent="." unique_id=1095262591 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Drones that hit the target"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Hits"
+value_variation = &"StatValueGood"
+
+[node name="Losses" parent="." unique_id=252474864 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Drones shot down"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Shot down"
+value_variation = &"StatValueBad"
+
+[node name="Misses" parent="." unique_id=1084637652 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Drones that arrived but missed"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Missed target"
+
+[node name="Income" parent="." unique_id=1136051154 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Credits this line earned"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Income"
+value_variation = &"StatValueAmber"
+
+[node name="Spent" parent="." unique_id=156133169 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Credits this line spent"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Spent"
+value_variation = &"StatValueBad"
+
+[node name="Net" parent="." unique_id=1730047788 instance=ExtResource("2_8g3t2")]
+tooltip_text = "Income minus spending. Negative = the line costs more than it earns."
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Net profit"
+
+[node name="LostBy" type="Label" parent="." unique_id=401208421]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="." unique_id=2135220205]
+layout_mode = 2
+
+[node name="Toggle" type="Button" parent="Actions" unique_id=883785504]
+tooltip_text = "Start or pause this line"
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "START LINE"
+
+[node name="Edit" type="Button" parent="Actions" unique_id=877675093]
+tooltip_text = "Change the drone build (warhead and modules)"
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "EDIT BUILD"

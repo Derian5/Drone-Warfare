@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://bumlmr2cvg0tc" path="res://models/Rocket.blend" id="1_rocket"]
+[ext_resource type="PackedScene" path="res://models/wooden_sphere/wooden_sphere.glb" id="2_wood"]
+
+[node name="AssetPreview" type="Node3D"]
+
+[node name="Rocket" parent="." instance=ExtResource("1_rocket")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25352478, 0, 2.1778526)
+
+[node name="WoodenSpherePreview" type="Node3D" parent="."]
+position = Vector3(-3.3, 0, 2.2)
+
+[node name="WoodenSphere" parent="WoodenSpherePreview" instance=ExtResource("2_wood")]
+
+[node name="KeyLight" type="OmniLight3D" parent="WoodenSpherePreview"]
+position = Vector3(2.5, 3, 3)
+light_color = Color(1, 0.94, 0.84, 1)
+light_energy = 3.0
+omni_range = 8.0
+
+[node name="FillLight" type="OmniLight3D" parent="WoodenSpherePreview"]
+position = Vector3(-2, 2, -1)
+light_color = Color(0.8, 0.88, 1, 1)
+light_energy = 0.8
+omni_range = 5.0

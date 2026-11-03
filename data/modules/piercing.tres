@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/piercing.png" id="1_6idph"]
+[ext_resource type="PackedScene" path="res://models/modules/piercing.tscn" id="2_8yton"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_yv8q5"]
+
+[resource]
+script = ExtResource("3_yv8q5")
+id = "piercing"
+display_name = "Piercing Warhead"
+short_name = "AP"
+kind = 0
+category = 0
+description = "Penetration +50, damage −4. Made for fortified HQs."
+purpose = "Take it against fortified HQs (armor 40+): it ignores most armor. Slightly weaker otherwise."
+frames = PackedStringArray()
+icon = ExtResource("1_6idph")
+part_scene = ExtResource("2_8yton")
+slot = "SlotWarhead"
+callout = "AP WARHEAD"
+unlock_cost = 160
+cost_per_drone = 3
+mass = 3
+damage = -4.0
+penetration = 50.0

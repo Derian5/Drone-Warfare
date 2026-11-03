@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/floater.gd" id="1_svjdq"]
+
+[node name="Floater" type="Label" unique_id=278364062]
+theme_type_variation = &"FloaterText"
+text = "+42"
+script = ExtResource("1_svjdq")

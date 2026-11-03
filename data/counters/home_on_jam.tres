@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CounterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/counter_data.gd" id="1_5k64t"]
+
+[resource]
+script = ExtResource("1_5k64t")
+id = "home_on_jam"
+display_name = "Home-on-Jam Missiles"
+description = "Missiles lock onto EW emissions and gain an extra target per volley."
+affects = PackedStringArray("missile")
+accuracy_multiplier = 1.5
+capacity_bonus = 1

@@ -1,0 +1,142 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/intel_target_page.gd" id="1_s6tq5"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_tile.tscn" id="2_2pq8t"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/armor.png" id="4_60rs5"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/supply_depot.png" id="5_koxwn"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/radar.png" id="6_j28u4"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/maneuver.png" id="7_oy4lc"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/drone_free.png" id="8_7bwe5"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/fragment.png" id="9_0ig3c"]
+
+[node name="IntelTargetPage" type="VBoxContainer" unique_id=1387827659]
+theme_override_constants/separation = 8
+script = ExtResource("1_s6tq5")
+
+[node name="Name" type="Label" parent="." unique_id=1096855485]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitle"
+text = "ENEMY HQ"
+
+[node name="HpRow" type="HBoxContainer" parent="." unique_id=908269591]
+layout_mode = 2
+
+[node name="HpCaption" type="Label" parent="HpRow" unique_id=1860408465]
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "HP"
+
+[node name="Spacer" type="Control" parent="HpRow" unique_id=1418977703]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="HpValue" type="Label" parent="HpRow" unique_id=1693393928]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "2200 / 2200"
+
+[node name="HpBar" type="ProgressBar" parent="." unique_id=186247648]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HpBar"
+value = 100.0
+show_percentage = false
+
+[node name="Summary" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SummaryText"
+text = "Key facts"
+autowrap_mode = 3
+
+[node name="Tiles" type="GridContainer" parent="." unique_id=536068941]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="ArmorTile" parent="Tiles" unique_id=2019881953 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Armor: reduces damage of every hit. Penetration modules ignore armor."
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("4_60rs5")
+caption = "ARMOR"
+
+[node name="PayoutTile" parent="Tiles" unique_id=847432878 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Credits earned per point of damage dealt to this target"
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("5_koxwn")
+caption = "PAYOUT"
+
+[node name="AaTile" parent="Tiles" unique_id=416683671 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Enemy air-defense sites currently active in the region"
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("6_j28u4")
+caption = "AA SITES"
+
+[node name="DetailsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Show or hide the full intelligence report"
+focus_mode = 0
+theme_type_variation = &"GhostButton"
+text = "MORE DETAILS..."
+alignment = 0
+
+[node name="Details" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MoreTiles" type="GridContainer" parent="Details"]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="AdaptTile" parent="Details/MoreTiles" unique_id=1159549354 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Adaptations used / allowed. Each time the enemy adapts to your favourite build or route."
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("7_oy4lc")
+caption = "ADAPT"
+
+[node name="RoutesTile" parent="Details/MoreTiles" unique_id=1629021637 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Your routes that end at this target"
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("8_7bwe5")
+caption = "ROUTES"
+
+[node name="HitsTile" parent="Details/MoreTiles" unique_id=2059633874 instance=ExtResource("2_2pq8t")]
+tooltip_text = "Total hits on enemy targets"
+unique_name_in_owner = true
+layout_mode = 2
+picture = ExtResource("9_0ig3c")
+caption = "HITS"
+
+[node name="Info" type="Label" parent="Details" unique_id=1248015388]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+autowrap_mode = 3
+
+[node name="AaInfo" type="Label" parent="Details" unique_id=1251517305]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatusText"
+autowrap_mode = 3
+
+[node name="DrawHint" type="Label" parent="." unique_id=2031509839]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HintText"
+autowrap_mode = 3

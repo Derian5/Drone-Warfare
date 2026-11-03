@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/intel_route_page.gd" id="1_abl5r"]
+[ext_resource type="PackedScene" path="res://ui/hud/attached_line.tscn" id="2_40nv5"]
+[ext_resource type="PackedScene" path="res://ui/hud/stat_row.tscn" id="3_pdhqd"]
+[ext_resource type="Script" path="res://scripts/ui/stat_row.gd" id="4_ajiye"]
+
+[node name="IntelRoutePage" type="VBoxContainer" unique_id=1417089427]
+theme_override_constants/separation = 8
+script = ExtResource("1_abl5r")
+attached_row_scene = ExtResource("2_40nv5")
+
+[node name="Heading" type="Label" parent="." unique_id=13976895]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitle"
+text = "R1 > ENEMY HQ"
+autowrap_mode = 3
+
+[node name="Length" parent="." unique_id=1174628339 instance=ExtResource("3_pdhqd")]
+tooltip_text = "Route length"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Length"
+
+[node name="Exposure" parent="." unique_id=650804184 instance=ExtResource("3_pdhqd")]
+tooltip_text = "Distance flown inside enemy air-defense rings, by air-defense type. Less is better."
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Under AA fire"
+
+[node name="FlightTime" parent="." unique_id=1673144109 instance=ExtResource("3_pdhqd")]
+tooltip_text = "Flight time at standard drone speed"
+unique_name_in_owner = true
+layout_mode = 2
+caption = "Flight time (base drone)"
+
+[node name="Range" type="HBoxContainer" parent="." unique_id=181223877 instance=ExtResource("3_pdhqd")]
+tooltip_text = "Range of a standard drone. Routes longer than this are out of reach."
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_ajiye")
+caption = "Drone range (base frame)"
+
+[node name="AttachedCaption" type="Label" parent="." unique_id=830654226]
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "ATTACHED LINES"
+
+[node name="Attached" type="VBoxContainer" parent="." unique_id=1152933402]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EmptyHint" type="Label" parent="." unique_id=1817082902]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+text = "Drag a line from the ASSEMBLY LINES panel onto this arrow."
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="." unique_id=880643041]
+layout_mode = 2
+
+[node name="Redraw" type="Button" parent="Actions" unique_id=1679758406]
+tooltip_text = "Draw this route again from your base; lines on it stay assigned"
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "REDRAW"
+
+[node name="Delete" type="Button" parent="Actions" unique_id=957000138]
+tooltip_text = "Delete the route. Lines on it stop until you assign a new route."
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "DELETE"
+
+[node name="Note" type="Label" parent="." unique_id=1704058229]
+layout_mode = 2
+theme_type_variation = &"Muted"
+text = "Drones already in flight keep their original path when you redraw or delete."
+autowrap_mode = 3

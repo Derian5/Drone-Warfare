@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/stat_bar.gd" id="1_0fuqc"]
+
+[node name="StatBar" type="VBoxContainer" unique_id=267717607]
+theme_override_constants/separation = 0
+script = ExtResource("1_0fuqc")
+
+[node name="Caption" type="Label" parent="." unique_id=1251921641]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "DAMAGE"
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=1510699397]
+layout_mode = 2
+
+[node name="Number" type="Label" parent="Row" unique_id=1980220884]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+theme_type_variation = &"StatNumber"
+text = "30"
+
+[node name="Bars" type="Control" parent="Row" unique_id=1299416535]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Delta" type="Label" parent="Row" unique_id=973139664]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_type_variation = &"DeltaGood"

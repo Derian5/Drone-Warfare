@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="RegionData" format=3]
+
+[ext_resource type="Resource" path="res://data/regions/04_continent/hunters.tres" id="1_oxjxl"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_3faxh"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="2_sxe7m"]
+[ext_resource type="Resource" path="res://data/frames/jet.tres" id="3_rj18v"]
+[ext_resource type="PackedScene" path="res://scenes/regions/04_continent.tscn" id="4_0aoa0"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/preview.png" id="4_3faxh"]
+[ext_resource type="Resource" path="res://data/modules/afterburner.tres" id="5_8ywwn"]
+[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="5_sxe7m"]
+[ext_resource type="Resource" path="res://data/modules/smart_seeker.tres" id="6_cx0vr"]
+
+[resource]
+script = ExtResource("5_sxe7m")
+id = "04_continent"
+display_name = "Eastern Front"
+subtitle = "Continent · 200 km grid · coast captured"
+briefing = "Huge distances: fast long-range frames or forward pads. Missiles and jammers layered across the front. New frame: Jet Interceptor."
+preview = ExtResource("4_3faxh")
+scene = ExtResource("4_0aoa0")
+aa_damage_multiplier = 1.35
+adaptation_budget = 4
+hunters = ExtResource("1_oxjxl")
+capture_reward = 900
+star_time = 780.0
+star_max_losses = 26
+new_modules = Array[ExtResource("2_3faxh")]([ExtResource("5_8ywwn"), ExtResource("6_cx0vr")])
+new_frames = Array[ExtResource("2_sxe7m")]([ExtResource("3_rj18v")])

@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/heavy_armor.glb" id="1_glb"]
+
+[node name="HeavyArmor" type="Node3D"]
+
+[node name="Model" type="Node3D" parent="." instance=ExtResource("1_glb")]

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TargetData" format=3]
+
+[ext_resource type="Resource" path="res://data/air_defense/hq_point_defense.tres" id="1_fx1x5"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/enemy_hq.png" id="1_lvckj"]
+[ext_resource type="Script" path="res://scripts/data/target_data.gd" id="2_fx1x5"]
+
+[resource]
+script = ExtResource("2_fx1x5")
+id = "hq"
+display_name = "Enemy HQ"
+intel_text = "Destroy it to capture the region (+{reward} cr). Repairs {regen}% HP every second — keep up the pressure with several lines.
+Adaptations: {defense}."
+icon = ExtResource("1_lvckj")
+max_hp = 3000.0
+armor = 50.0
+respawn_time = 0.0
+is_main_target = true
+regen_percent_per_second = 1.0
+air_defense = ExtResource("1_fx1x5")

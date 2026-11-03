@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/drone_view.gd" id="1_toiih"]
+[ext_resource type="PackedScene" path="res://models/drones/hunter.glb" id="2_8xf7i"]
+
+[node name="Hunter" type="Node3D" unique_id=179355160]
+script = ExtResource("1_toiih")
+
+[node name="Model" type="Node3D" parent="." unique_id=1646989945 instance=ExtResource("2_8xf7i")]

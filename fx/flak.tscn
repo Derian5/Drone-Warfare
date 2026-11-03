@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://textures/fx/burst.png" id="1_nfmbm"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="2_2qrs4"]
+
+[node name="Flak" type="Sprite3D" unique_id=485831763]
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.95)
+pixel_size = 0.012
+billboard = 1
+texture = ExtResource("1_nfmbm")
+script = ExtResource("2_2qrs4")
+life = 0.3
+size_from = 0.012
+size_to = 0.035

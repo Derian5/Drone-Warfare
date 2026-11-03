@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_081hn"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_fyd4n"]
+[ext_resource type="Resource" path="res://data/techs/vault_protocol.tres" id="3_rfnyu"]
+
+[resource]
+script = ExtResource("2_fyd4n")
+id = "hardened_guns"
+display_name = "Hardened Base Guns"
+description = "Base air defense deals +50% damage."
+icon = ExtResource("1_081hn")
+requires = Array[ExtResource("2_fyd4n")]([ExtResource("3_rfnyu")])
+base_defense_damage = 1.5

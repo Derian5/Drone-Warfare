@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AirDefenseData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/jammer_site.png" id="1_ykw0c"]
+[ext_resource type="Script" path="res://scripts/data/air_defense_data.gd" id="2_cor5o"]
+
+[resource]
+script = ExtResource("2_cor5o")
+kind = 2
+display_name = "EW Jammer"
+description = "Slows drones and spoils warhead guidance. EW pods are immune."
+icon = ExtResource("1_ykw0c")
+radius = 16.0
+accuracy = 0.0
+damage = 0.0
+interval = 1.0
+targets_per_volley = 0
+needs_line_of_sight = false
+projectile_speed = 35.0
+jam_speed = 0.55
+jam_accuracy = 0.65

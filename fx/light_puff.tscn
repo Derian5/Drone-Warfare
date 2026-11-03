@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://textures/fx/smoke.png" id="1_d1v47"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="2_8hpep"]
+
+[node name="Dust" type="Sprite3D" unique_id=1761620204]
+cast_shadow = 0
+modulate = Color(0.92, 0.9, 0.86, 0.45)
+pixel_size = 0.03
+billboard = 1
+texture = ExtResource("1_d1v47")
+script = ExtResource("2_8hpep")
+life = 0.8
+size_from = 0.03
+velocity = Vector3(0, 0.8, 0)

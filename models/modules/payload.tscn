@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/payload.glb" id="1_hb302"]
+
+[node name="Payload" type="Node3D" unique_id=1966547998]
+
+[node name="Model" type="Node3D" parent="." unique_id=40130534 instance=ExtResource("1_hb302")]

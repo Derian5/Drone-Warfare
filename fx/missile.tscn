@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://textures/fx/glow.png" id="1_h1ekv"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="2_k32dm"]
+
+[node name="Missile" type="Sprite3D" unique_id=1976097293]
+cast_shadow = 0
+modulate = Color(1, 0.6, 0.3, 1)
+pixel_size = 0.03
+billboard = 1
+texture = ExtResource("1_h1ekv")
+script = ExtResource("2_k32dm")
+life = 0.6
+size_from = 0.03
+size_to = 0.03

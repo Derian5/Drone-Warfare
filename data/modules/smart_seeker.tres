@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/smart_seeker.png" id="1_8qg62"]
+[ext_resource type="PackedScene" path="res://models/modules/smart_seeker.tscn" id="2_cbyr0"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_11qkp"]
+
+[resource]
+script = ExtResource("3_11qkp")
+id = "smart_seeker"
+display_name = "Smart Seeker"
+short_name = "SEEKER"
+category = 3
+description = "Warhead accuracy +7%, damage +4."
+purpose = "Fewer misses at the target, even after jammers — every drone that arrives counts."
+frames = PackedStringArray("jet")
+icon = ExtResource("1_8qg62")
+part_scene = ExtResource("2_cbyr0")
+slot = "SlotFins"
+callout = "SEEKER"
+unlock_cost = 180
+cost_per_drone = 4
+damage = 4.0
+accuracy = 0.07

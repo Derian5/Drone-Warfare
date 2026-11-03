@@ -1,0 +1,382 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/battlefield.gd" id="1_oc8r0"]
+[ext_resource type="PackedScene" path="res://models/drones/drone_free.tscn" id="2_u5w21"]
+[ext_resource type="PackedScene" path="res://models/drones/drone_modular.tscn" id="3_5jovh"]
+[ext_resource type="PackedScene" path="res://models/drones/hunter.tscn" id="4_2f8fl"]
+[ext_resource type="PackedScene" path="res://fx/explosion.tscn" id="5_4i0wk"]
+[ext_resource type="PackedScene" path="res://fx/small_explosion.tscn" id="6_jnttf"]
+[ext_resource type="PackedScene" path="res://fx/flak.tscn" id="7_p0gao"]
+[ext_resource type="PackedScene" path="res://fx/tracer.tscn" id="8_i4oxh"]
+[ext_resource type="PackedScene" path="res://fx/missile.tscn" id="9_uwa5l"]
+[ext_resource type="PackedScene" path="res://fx/damage_smoke.tscn" id="10_dtou1"]
+[ext_resource type="PackedScene" path="res://fx/light_puff.tscn" id="11_xp7na"]
+[ext_resource type="PackedScene" path="res://fx/booster_trail.tscn" id="12_kt0of"]
+[ext_resource type="PackedScene" path="res://fx/deploy.tscn" id="13_i4x4e"]
+[ext_resource type="Texture2D" path="res://textures/fx/drone_shadow.png" id="14_p32f4"]
+[ext_resource type="Environment" path="res://materials/regions/01_valley_environment.tres" id="15_m0xhj"]
+[ext_resource type="Material" path="res://materials/regions/01_valley_terrain.tres" id="16_ul70p"]
+[ext_resource type="Script" path="res://scripts/world/terrain.gd" id="17_uiw4t"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/height.png" id="18_bqoer"]
+[ext_resource type="PackedScene" path="res://models/buildings/forward_base.tscn" id="19_pcyik"]
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="20_cdvrr"]
+[ext_resource type="PackedScene" path="res://models/buildings/enemy_hq.tscn" id="21_cr4q3"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/hq.tres" id="22_wm0mp"]
+[ext_resource type="PackedScene" path="res://models/buildings/supply_depot.tscn" id="23_qtfcy"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/depot.tres" id="24_68kbq"]
+[ext_resource type="PackedScene" path="res://models/buildings/air_defense_node.tscn" id="25_28yfc"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_a.tres" id="26_7to2k"]
+[ext_resource type="PackedScene" path="res://models/buildings/sam_site.tscn" id="27_5pqd8"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/sam_a.tres" id="28_uo1og"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_r1.tres" id="29_thqop"]
+[ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_r2.tres" id="30_ggesq"]
+[ext_resource type="PackedScene" path="res://models/buildings/build_pad.tscn" id="31_5o1n7"]
+
+[node name="KalvaraValley" type="Node3D" unique_id=499890377]
+script = ExtResource("1_oc8r0")
+free_drone_scene = ExtResource("2_u5w21")
+modular_drone_scene = ExtResource("3_5jovh")
+hunter_scene = ExtResource("4_2f8fl")
+explosion_scene = ExtResource("5_4i0wk")
+small_explosion_scene = ExtResource("6_jnttf")
+flak_scene = ExtResource("7_p0gao")
+tracer_scene = ExtResource("8_i4oxh")
+missile_scene = ExtResource("9_uwa5l")
+smoke_scene = ExtResource("10_dtou1")
+launch_dust_scene = ExtResource("11_xp7na")
+booster_trail_scene = ExtResource("12_kt0of")
+deploy_scene = ExtResource("13_i4x4e")
+drone_shadow_texture = ExtResource("14_p32f4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=42911719]
+environment = ExtResource("15_m0xhj")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=2137622189]
+transform = Transform3D(-0.70710677, 0.5572077, -0.4353384, 0, 0.6156615, 0.7880107, 0.70710677, 0.5572077, -0.4353384, 0, 0, 0)
+light_color = Color(1, 0.9529412, 0.8627451, 1)
+light_energy = 0.72
+shadow_enabled = true
+shadow_opacity = 0.55
+directional_shadow_mode = 0
+directional_shadow_max_distance = 260.0
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1840250596]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.8660253, 0, -0.8660253, 0.5, 50, 138.56406, 115.5)
+keep_aspect = 0
+projection = 1
+current = true
+size = 104.0
+far = 600.0
+
+[node name="Terrain" type="MeshInstance3D" parent="." unique_id=1321914979]
+material_override = ExtResource("16_ul70p")
+script = ExtResource("17_uiw4t")
+height_map = ExtResource("18_bqoer")
+
+[node name="Sites" type="Node3D" parent="." unique_id=1291333656]
+
+[node name="ForwardBase" type="Node3D" parent="Sites" unique_id=197827057 instance=ExtResource("19_pcyik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 45)
+script = ExtResource("20_cdvrr")
+is_player_base = true
+upgrade_node = NodePath("BaseDefense")
+outline_angle = -8.0
+outline_color = Color(0.48, 0.16, 0.14, 0.85)
+
+[node name="EnemyHQ" type="Node3D" parent="Sites" unique_id=1051204756 instance=ExtResource("21_cr4q3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0, 14)
+script = ExtResource("20_cdvrr")
+data = ExtResource("22_wm0mp")
+outline_angle = 10.0
+
+[node name="SupplyDepot" type="Node3D" parent="Sites" unique_id=827775493 instance=ExtResource("23_qtfcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 17)
+script = ExtResource("20_cdvrr")
+data = ExtResource("24_68kbq")
+outline_size = Vector2(13, 10)
+outline_angle = -5.0
+outline_color = Color(0.65, 0.14, 0.15, 0.85)
+
+[node name="GunA" type="Node3D" parent="Sites" unique_id=1293897556 instance=ExtResource("25_28yfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 34)
+script = ExtResource("20_cdvrr")
+data = ExtResource("26_7to2k")
+outline_size = Vector2(9, 9)
+outline_color = Color(0, 0, 0, 0)
+idle_rotate_node = NodePath("Model/Model/Turret")
+
+[node name="SamA" type="Node3D" parent="Sites" unique_id=331115857 instance=ExtResource("27_5pqd8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 30)
+script = ExtResource("20_cdvrr")
+data = ExtResource("28_uo1og")
+outline_size = Vector2(10, 9)
+outline_color = Color(0.85, 0.45, 0.1, 0.85)
+idle_rotate_node = NodePath("Model/Model/Turret")
+
+[node name="ReserveGunR1" type="Node3D" parent="Sites" unique_id=2053524418 instance=ExtResource("25_28yfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 24)
+script = ExtResource("20_cdvrr")
+data = ExtResource("29_thqop")
+is_reserve = true
+outline_size = Vector2(9, 9)
+outline_color = Color(0, 0, 0, 0)
+idle_rotate_node = NodePath("Model/Model/Turret")
+
+[node name="ReserveGunR2" type="Node3D" parent="Sites" unique_id=1284533787 instance=ExtResource("25_28yfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 52)
+script = ExtResource("20_cdvrr")
+data = ExtResource("30_ggesq")
+is_reserve = true
+outline_size = Vector2(9, 9)
+outline_color = Color(0, 0, 0, 0)
+idle_rotate_node = NodePath("Model/Model/Turret")
+
+[node name="PadA" type="Node3D" parent="Sites" unique_id=1762836115 instance=ExtResource("31_5o1n7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 42)
+script = ExtResource("20_cdvrr")
+is_build_pad = true
+build_id = "pad_a"
+build_price = 300
+built_node = NodePath("LaunchPad")
+outline_size = Vector2(9, 7)
+outline_color = Color(0.12, 0.74, 0.8, 0.8)
+
+[node name="FreeRouteWaypoint" type="Marker3D" parent="Sites" unique_id=1265323190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 30)
+gizmo_extents = 2.0
+
+[node name="MapLabels" type="Node3D" parent="." unique_id=1118415090]
+
+[node name="Places" type="Node3D" parent="MapLabels" unique_id=1235361907]
+
+[node name="Kalvara" type="Label3D" parent="MapLabels/Places" unique_id=1626324114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1.2, 25.5)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.23529412, 0.22745098, 0.17254902, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "Kalvara"
+font_size = 15
+outline_size = 5
+
+[node name="DomaKol" type="Label3D" parent="MapLabels/Places" unique_id=335864048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 1.2, 59)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.23529412, 0.22745098, 0.17254902, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "Doma Kol"
+font_size = 15
+outline_size = 5
+
+[node name="Verhny" type="Label3D" parent="MapLabels/Places" unique_id=1412399060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 1.2, 26)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.23529412, 0.22745098, 0.17254902, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "Verhny"
+font_size = 15
+outline_size = 5
+
+[node name="Rechnoe" type="Label3D" parent="MapLabels/Places" unique_id=1306936003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 1.2, 52)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.23529412, 0.22745098, 0.17254902, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "Rechnoe"
+font_size = 15
+outline_size = 5
+
+[node name="GridNumbers" type="Node3D" parent="MapLabels" unique_id=1486555004]
+
+[node name="X10" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1196456040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "40"
+font_size = 15
+outline_size = 5
+
+[node name="X20" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1313996086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "50"
+font_size = 15
+outline_size = 5
+
+[node name="X30" type="Label3D" parent="MapLabels/GridNumbers" unique_id=289136910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "60"
+font_size = 15
+outline_size = 5
+
+[node name="X40" type="Label3D" parent="MapLabels/GridNumbers" unique_id=878611314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "70"
+font_size = 15
+outline_size = 5
+
+[node name="X50" type="Label3D" parent="MapLabels/GridNumbers" unique_id=165040487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "80"
+font_size = 15
+outline_size = 5
+
+[node name="X60" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1849308047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "90"
+font_size = 15
+outline_size = 5
+
+[node name="X70" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1170068519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "100"
+font_size = 15
+outline_size = 5
+
+[node name="X80" type="Label3D" parent="MapLabels/GridNumbers" unique_id=646368346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "110"
+font_size = 15
+outline_size = 5
+
+[node name="X90" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1316409844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.8, 1, 1.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "120"
+font_size = 15
+outline_size = 5
+
+[node name="Z10" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1413253674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 9.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "30"
+font_size = 15
+outline_size = 5
+
+[node name="Z20" type="Label3D" parent="MapLabels/GridNumbers" unique_id=171405799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 19.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "40"
+font_size = 15
+outline_size = 5
+
+[node name="Z30" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1537112430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 29.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "50"
+font_size = 15
+outline_size = 5
+
+[node name="Z40" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1603495354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 39.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "60"
+font_size = 15
+outline_size = 5
+
+[node name="Z50" type="Label3D" parent="MapLabels/GridNumbers" unique_id=681031506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 49.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "70"
+font_size = 15
+outline_size = 5
+
+[node name="Z60" type="Label3D" parent="MapLabels/GridNumbers" unique_id=1333501595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1, 59.2)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "80"
+font_size = 15
+outline_size = 5
+
+[node name="ScaleBar" type="Label3D" parent="MapLabels" unique_id=1070874074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 1, 66)
+pixel_size = 0.05
+billboard = 1
+no_depth_test = true
+modulate = Color(0.24705882, 0.26666668, 0.2, 1)
+outline_modulate = Color(0.9, 0.87, 0.68, 0.75)
+text = "10 km"
+font_size = 13
+outline_size = 5
+
+[node name="Layers" type="Node3D" parent="." unique_id=1951666044]
+
+[node name="Routes" type="Node3D" parent="Layers" unique_id=1056424816]
+
+[node name="Draft" type="Node3D" parent="Layers" unique_id=1982185383]
+
+[node name="Drones" type="Node3D" parent="Layers" unique_id=1578681008]
+
+[node name="Fx" type="Node3D" parent="Layers" unique_id=1838763682]

@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/site_chip.gd" id="1_6ro7g"]
+
+[node name="SiteChip" type="PanelContainer" unique_id=895250052]
+mouse_filter = 2
+theme_type_variation = &"SiteChipEnemy"
+script = ExtResource("1_6ro7g")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1757015288]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="Content" unique_id=226380242]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ChipTitle"
+text = "ENEMY HQ"
+
+[node name="Bar" type="ProgressBar" parent="Content" unique_id=1016985511]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 4)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"ChipBar"
+value = 70.0
+show_percentage = false
+
+[node name="Status" type="Label" parent="Content" unique_id=683357079]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ChipStatus"
+text = "REPAIR 10s"

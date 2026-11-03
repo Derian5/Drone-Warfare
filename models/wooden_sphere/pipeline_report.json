@@ -1,0 +1,17 @@
+{
+  "blender": "5.2.3 LTS",
+  "scene": "WoodenSphere_Studio",
+  "object": "WoodenSphere",
+  "vertices": 1986,
+  "triangles": 3968,
+  "uv_map": "UVMap",
+  "radius_m": 1.0,
+  "material": "Wood_Baked_PBR",
+  "textures": [
+    "C:\\Users\\derian\\Documents\\Drone Warfare\\models\\wooden_sphere\\textures\\wood_basecolor.png",
+    "C:\\Users\\derian\\Documents\\Drone Warfare\\models\\wooden_sphere\\textures\\wood_normal.png"
+  ],
+  "blend": "C:\\Users\\derian\\Documents\\Drone Warfare\\art_source\\wooden_sphere\\wooden_sphere.blend",
+  "glb": "C:\\Users\\derian\\Documents\\Drone Warfare\\models\\wooden_sphere\\wooden_sphere.glb",
+  "glb_bytes": 2534092
+}

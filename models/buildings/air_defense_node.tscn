@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="1_31est"]
+[ext_resource type="PackedScene" path="res://models/buildings/air_defense_node.glb" id="3_ah36r"]
+
+[node name="AirDefenseNode" type="Node3D" unique_id=1293897556]
+script = ExtResource("1_31est")
+outline_size = Vector2(9, 9)
+outline_color = Color(0, 0, 0, 0)
+idle_rotate_node = NodePath("Model/Model/Turret")
+
+[node name="Model" type="Node3D" parent="." unique_id=991403017 instance=ExtResource("3_ah36r")]

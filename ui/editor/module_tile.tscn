@@ -1,0 +1,80 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/module_tile.gd" id="1_blpq0"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/fragment.png" id="2_ti7yh"]
+[ext_resource type="Texture2D" path="res://ui/icons/check.svg" id="3_00jfg"]
+
+[node name="ModuleTile" type="Button" unique_id=195742060]
+tooltip_text = "Click to install or remove. Locked modules are unlocked once for credits."
+custom_minimum_size = Vector2(88, 100)
+focus_mode = 0
+theme_type_variation = &"ModuleTile"
+script = ExtResource("1_blpq0")
+
+[node name="Picture" type="TextureRect" parent="." unique_id=689100777]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 83.0
+offset_bottom = 67.0
+mouse_filter = 2
+texture = ExtResource("2_ti7yh")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Lock" type="ColorRect" parent="." unique_id=780744788]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 83.0
+offset_bottom = 67.0
+mouse_filter = 2
+color = Color(0.05, 0.06, 0.08, 0.6)
+
+[node name="LockText" type="Label" parent="Lock" unique_id=540881784]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 78.0
+offset_bottom = 62.0
+theme_type_variation = &"LockText"
+text = "UNLOCK
+160 cr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Badge" type="TextureRect" parent="." unique_id=107507209]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 24.0
+mouse_filter = 2
+texture = ExtResource("3_00jfg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Caption" type="Label" parent="." unique_id=640771257]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 84.0
+offset_bottom = 98.0
+theme_type_variation = &"TileText"
+theme_override_constants/line_spacing = -3
+text = "Fragmentation Warhead"
+autowrap_mode = 3
+
+[node name="Tag" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 19.0
+mouse_filter = 2
+theme_type_variation = &"ExclusiveTag"
+text = "HEXA"

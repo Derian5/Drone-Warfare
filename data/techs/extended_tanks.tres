@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_rfxlu"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_avfxg"]
+
+[resource]
+script = ExtResource("2_avfxg")
+id = "extended_tanks"
+display_name = "Extended Tanks"
+description = "+30 km range for every drone."
+icon = ExtResource("1_rfxlu")
+extra_range = 30.0

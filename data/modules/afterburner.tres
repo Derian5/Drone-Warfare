@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/afterburner.png" id="1_8a5vr"]
+[ext_resource type="PackedScene" path="res://models/modules/afterburner.tscn" id="2_ii4ek"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_yy2iq"]
+
+[resource]
+script = ExtResource("3_yy2iq")
+id = "afterburner"
+display_name = "Afterburner"
+short_name = "BURNER"
+category = 2
+description = "Speed +14, agility +10, range −80."
+purpose = "Dash through air-defense rings before they can aim. Burns fuel: less range."
+frames = PackedStringArray("jet")
+icon = ExtResource("1_8a5vr")
+part_scene = ExtResource("2_ii4ek")
+slot = "SlotBooster"
+callout = "BURNER"
+unlock_cost = 200
+cost_per_drone = 5
+mass = 2
+speed = 14.0
+agility = 10.0
+flight_range = -80.0

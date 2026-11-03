@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/ew_pod.glb" id="1_4x020"]
+
+[node name="EwPod" type="Node3D" unique_id=1269491215]
+
+[node name="Model" type="Node3D" parent="." unique_id=418455638 instance=ExtResource("1_4x020")]

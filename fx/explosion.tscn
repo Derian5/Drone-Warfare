@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/fx_effect.gd" id="1_ac0uo"]
+[ext_resource type="Texture2D" path="res://textures/fx/burst.png" id="2_ajmqr"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="3_dltw3"]
+[ext_resource type="Texture2D" path="res://textures/fx/glow.png" id="4_wkxew"]
+[ext_resource type="Texture2D" path="res://textures/fx/smoke.png" id="5_wgdgq"]
+
+[node name="Explosion" type="Node3D" unique_id=1536050290]
+script = ExtResource("1_ac0uo")
+
+[node name="Burst" type="Sprite3D" parent="." unique_id=2096163048]
+cast_shadow = 0
+pixel_size = 0.028
+billboard = 1
+texture = ExtResource("2_ajmqr")
+script = ExtResource("3_dltw3")
+life = 0.38
+size_from = 0.028
+size_to = 0.098
+
+[node name="Glow" type="Sprite3D" parent="." unique_id=360396018]
+cast_shadow = 0
+modulate = Color(1, 0.75, 0.3, 0.9)
+pixel_size = 0.07
+billboard = 1
+texture = ExtResource("4_wkxew")
+script = ExtResource("3_dltw3")
+life = 0.3
+size_from = 0.07
+size_to = 0.168
+
+[node name="Smoke1" type="Sprite3D" parent="." unique_id=1826225818]
+cast_shadow = 0
+modulate = Color(0.3, 0.27, 0.25, 0.6)
+pixel_size = 0.056
+billboard = 1
+texture = ExtResource("5_wgdgq")
+script = ExtResource("3_dltw3")
+life = 1.4
+size_from = 0.056
+size_to = 0.154
+velocity = Vector3(0, 1.2, 0)
+velocity_jitter = Vector3(0.4, 0.2, 0.4)
+
+[node name="Smoke2" type="Sprite3D" parent="." unique_id=8868496]
+cast_shadow = 0
+modulate = Color(0.3, 0.27, 0.25, 0.6)
+pixel_size = 0.056
+billboard = 1
+texture = ExtResource("5_wgdgq")
+script = ExtResource("3_dltw3")
+life = 1.4
+size_from = 0.056
+size_to = 0.154
+velocity = Vector3(0, 1.2, 0)
+velocity_jitter = Vector3(0.4, 0.2, 0.4)
+
+[node name="Smoke3" type="Sprite3D" parent="." unique_id=383129439]
+cast_shadow = 0
+modulate = Color(0.3, 0.27, 0.25, 0.6)
+pixel_size = 0.056
+billboard = 1
+texture = ExtResource("5_wgdgq")
+script = ExtResource("3_dltw3")
+life = 1.4
+size_from = 0.056
+size_to = 0.154
+velocity = Vector3(0, 1.2, 0)
+velocity_jitter = Vector3(0.4, 0.2, 0.4)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_3ak52"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_4frxx"]
+[ext_resource type="Resource" path="res://data/techs/reinforced_airframes.tres" id="3_043en"]
+
+[resource]
+script = ExtResource("2_4frxx")
+id = "precision_fuzes"
+display_name = "Precision Fuzes"
+description = "+12% drone damage."
+icon = ExtResource("1_3ak52")
+cost = 2
+requires = Array[ExtResource("2_4frxx")]([ExtResource("3_043en")])
+drone_damage = 1.12

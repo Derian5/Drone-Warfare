@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/planet_surface.gdshader" id="1_070ov"]
+[ext_resource type="Texture2D" path="res://textures/regions/05_orbit/city_lights.png" id="2_b1ess"]
+[ext_resource type="Texture2D" path="res://textures/regions/05_orbit/surface.png" id="3_0qu7q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_070ov")
+shader_parameter/surface = ExtResource("3_0qu7q")
+shader_parameter/city_lights = ExtResource("2_b1ess")
+shader_parameter/light_color = null
+shader_parameter/lights_strength = null
+shader_parameter/ocean_gloss = null
+shader_parameter/grid_lines = null
+shader_parameter/grid_color = null
+shader_parameter/brightness = null

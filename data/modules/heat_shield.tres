@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/heat_shield.png" id="1_sf6nx"]
+[ext_resource type="PackedScene" path="res://models/modules/heat_shield.tscn" id="2_ovyly"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_bkg5j"]
+
+[resource]
+script = ExtResource("3_bkg5j")
+id = "heat_shield"
+display_name = "Heat Shield"
+short_name = "SHIELD"
+description = "HP +34, enemy accuracy −15%, speed −2."
+purpose = "Re-entry shield: more HP and harder to lock on during the long orbital approach."
+frames = PackedStringArray("glider")
+icon = ExtResource("1_sf6nx")
+part_scene = ExtResource("2_ovyly")
+slot = "SlotArmor"
+callout = "SHIELD"
+unlock_cost = 220
+cost_per_drone = 6
+mass = 3
+hp = 34.0
+speed = -2.0
+enemy_accuracy = 0.85

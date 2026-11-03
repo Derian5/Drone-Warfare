@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/home_on_jam.tres" id="1_3kpv5"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/ew_pod.png" id="2_1v6lo"]
+[ext_resource type="PackedScene" path="res://models/modules/ew_pod.tscn" id="3_ya0kv"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_fmbns"]
+
+[resource]
+script = ExtResource("4_fmbns")
+id = "ew_pod"
+display_name = "EW Pod"
+short_name = "EW"
+category = 3
+description = "Immune to jammers; enemy accuracy against this drone −25%."
+purpose = "Immune to jammers and enemy accuracy −25%. A must where jammers slow and blind your drones."
+frames = PackedStringArray()
+icon = ExtResource("2_1v6lo")
+part_scene = ExtResource("3_ya0kv")
+slot = "SlotFins"
+callout = "EW POD"
+unlock_cost = 200
+cost_per_drone = 5
+mass = 2
+ew_pod = true
+counter = ExtResource("1_3kpv5")

@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/fragment.glb" id="1_1nviu"]
+
+[node name="Fragment" type="Node3D" unique_id=1183716315]
+
+[node name="Model" type="Node3D" parent="." unique_id=2081538814 instance=ExtResource("1_1nviu")]

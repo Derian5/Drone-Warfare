@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/fx_effect.gd" id="1_i4vda"]
+[ext_resource type="Texture2D" path="res://textures/fx/burst.png" id="2_o0guy"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="3_qiie5"]
+[ext_resource type="Texture2D" path="res://textures/fx/glow.png" id="4_swybw"]
+[ext_resource type="Texture2D" path="res://textures/fx/smoke.png" id="5_sarbb"]
+
+[node name="SmallExplosion" type="Node3D" unique_id=722622170]
+script = ExtResource("1_i4vda")
+
+[node name="Burst" type="Sprite3D" parent="." unique_id=1796935754]
+cast_shadow = 0
+pixel_size = 0.018
+billboard = 1
+texture = ExtResource("2_o0guy")
+script = ExtResource("3_qiie5")
+life = 0.38
+size_from = 0.018
+size_to = 0.063
+
+[node name="Glow" type="Sprite3D" parent="." unique_id=1600205818]
+cast_shadow = 0
+modulate = Color(1, 0.75, 0.3, 0.9)
+pixel_size = 0.045
+billboard = 1
+texture = ExtResource("4_swybw")
+script = ExtResource("3_qiie5")
+life = 0.3
+size_from = 0.045
+size_to = 0.108
+
+[node name="Smoke" type="Sprite3D" parent="." unique_id=385443745]
+cast_shadow = 0
+modulate = Color(0.3, 0.27, 0.25, 0.6)
+pixel_size = 0.036
+billboard = 1
+texture = ExtResource("5_sarbb")
+script = ExtResource("3_qiie5")
+life = 1.2
+size_from = 0.036
+size_to = 0.1
+velocity = Vector3(0, 1, 0)
+velocity_jitter = Vector3(0.4, 0.2, 0.4)

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/heavy_armor.png" id="1_h7flx"]
+[ext_resource type="PackedScene" path="res://models/modules/heavy_armor.tscn" id="2_a52f0"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_31500"]
+
+[resource]
+script = ExtResource("3_31500")
+id = "heavy_armor"
+display_name = "Heavy Armor"
+short_name = "HEAVY"
+description = "HP +60, speed −4."
+purpose = "Turns the hexacopter into a flying tank that survives several gun hits."
+frames = PackedStringArray("hexa")
+icon = ExtResource("1_h7flx")
+part_scene = ExtResource("2_a52f0")
+slot = "SlotArmor"
+callout = "HEAVY"
+unlock_cost = 180
+cost_per_drone = 5
+mass = 4
+hp = 60.0
+speed = -4.0

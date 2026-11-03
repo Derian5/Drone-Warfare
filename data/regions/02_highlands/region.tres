@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="RegionData" format=3]
+
+[ext_resource type="Resource" path="res://data/regions/02_highlands/hunters.tres" id="1_lusif"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="2_kw16s"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_wcckd"]
+[ext_resource type="Resource" path="res://data/modules/decoy_flares.tres" id="3_252ka"]
+[ext_resource type="Resource" path="res://data/frames/wing.tres" id="3_akde1"]
+[ext_resource type="PackedScene" path="res://scenes/regions/02_highlands.tscn" id="5_kw16s"]
+[ext_resource type="Resource" path="res://data/modules/fuel_tank.tres" id="5_su84h"]
+[ext_resource type="Texture2D" path="res://textures/regions/02_highlands/preview.png" id="5_wcckd"]
+[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="6_akde1"]
+[ext_resource type="Resource" path="res://data/modules/glide_wings.tres" id="6_ohics"]
+
+[resource]
+script = ExtResource("6_akde1")
+id = "02_highlands"
+display_name = "Highland Pass"
+subtitle = "Mountains · 25 km grid · valley captured"
+briefing = "The front moves out of the valley. Ridges block radar: fly low through the passes. New frame: Fixed-Wing Striker."
+preview = ExtResource("5_wcckd")
+scene = ExtResource("5_kw16s")
+aa_damage_multiplier = 1.3
+hunters = ExtResource("1_lusif")
+capture_reward = 550
+star_time = 600.0
+star_max_losses = 18
+new_modules = Array[ExtResource("2_wcckd")]([ExtResource("5_su84h"), ExtResource("6_ohics"), ExtResource("3_252ka")])
+new_frames = Array[ExtResource("2_kw16s")]([ExtResource("3_akde1")])

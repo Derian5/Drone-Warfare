@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="RegionData" format=3]
+
+[ext_resource type="Resource" path="res://data/regions/03_harbor/hunters.tres" id="1_83icy"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_2cods"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="2_aol5e"]
+[ext_resource type="Resource" path="res://data/modules/ew_pod.tres" id="3_jtncp"]
+[ext_resource type="Resource" path="res://data/frames/hexa.tres" id="3_y3e58"]
+[ext_resource type="Texture2D" path="res://textures/regions/03_harbor/preview.png" id="4_2cods"]
+[ext_resource type="PackedScene" path="res://scenes/regions/03_harbor.tscn" id="4_cp5sx"]
+[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="5_e505v"]
+[ext_resource type="Resource" path="res://data/modules/heavy_armor.tres" id="5_w7xxp"]
+[ext_resource type="Resource" path="res://data/modules/cluster.tres" id="6_hrnps"]
+
+[resource]
+script = ExtResource("5_e505v")
+id = "03_harbor"
+display_name = "Harbor City"
+subtitle = "Coast · 50 km grid · highlands captured"
+briefing = "A fortified port. Jammers in the city slow your drones and spoil their aim — EW pods help. New frame: Heavy Hexacopter."
+preview = ExtResource("4_2cods")
+scene = ExtResource("4_cp5sx")
+adaptation_budget = 4
+hunters = ExtResource("1_83icy")
+capture_reward = 700
+star_time = 660.0
+star_max_losses = 22
+new_modules = Array[ExtResource("2_2cods")]([ExtResource("5_w7xxp"), ExtResource("6_hrnps"), ExtResource("3_jtncp")])
+new_frames = Array[ExtResource("2_aol5e")]([ExtResource("3_y3e58")])

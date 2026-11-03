@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AirDefenseData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/sam_site.png" id="1_m2gcj"]
+[ext_resource type="Script" path="res://scripts/data/air_defense_data.gd" id="2_u4kcm"]
+
+[resource]
+script = ExtResource("2_u4kcm")
+kind = 1
+display_name = "SAM Launcher"
+description = "Long-range missiles: slow to reload but hit hard. Maneuver fins and decoys beat it."
+icon = ExtResource("1_m2gcj")
+radius = 22.0
+accuracy = 55.0
+damage = 34.0
+interval = 2.6
+targets_per_volley = 2
+projectile_speed = 35.0

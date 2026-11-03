@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://textures/fx/smoke.png" id="1_cn6w0"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="2_4yq17"]
+
+[node name="Smoke" type="Sprite3D" unique_id=395274484]
+cast_shadow = 0
+modulate = Color(0.22, 0.2, 0.19, 0.55)
+pixel_size = 0.05
+billboard = 1
+texture = ExtResource("1_cn6w0")
+script = ExtResource("2_4yq17")
+life = 2.6
+size_from = 0.05
+size_to = 0.16
+velocity = Vector3(0.6, 1.6, -0.3)

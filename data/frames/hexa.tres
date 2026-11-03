@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FrameData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/drones/drone_hexa.tscn" id="1_7jfqy"]
+[ext_resource type="Texture2D" path="res://ui/icons/frames/drone_hexa.png" id="2_qnoct"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="3_0yf66"]
+
+[resource]
+script = ExtResource("3_0yf66")
+id = "hexa"
+display_name = "Heavy Hexacopter"
+short_name = "HEXA"
+role = "Armored, 4 slots, slow"
+description = "Six rotors and a thick hull: lots of HP and four module slots, but slow and short-ranged. Carries heavy armor and cluster bombs that wreck air-defense sites."
+icon = ExtResource("2_qnoct")
+drone_scene = ExtResource("1_7jfqy")
+map_scale = 0.95
+hp = 46.0
+speed = 15.0
+agility = 10.0
+flight_range = 160.0
+damage_bonus = 6.0
+slots = 4
+max_mass = 14
+cost = 14
+build_time = 4.5

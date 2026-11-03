@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="1_3eaje"]
+[ext_resource type="PackedScene" path="res://models/buildings/supply_depot.glb" id="3_3epie"]
+
+[node name="SupplyDepot" type="Node3D" unique_id=827775493]
+script = ExtResource("1_3eaje")
+outline_size = Vector2(13, 10)
+outline_angle = -5.0
+outline_color = Color(0.65, 0.14, 0.15, 0.85)
+
+[node name="Model" type="Node3D" parent="." unique_id=679649634 instance=ExtResource("3_3epie")]

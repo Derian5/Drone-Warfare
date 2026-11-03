@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CounterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/counter_data.gd" id="1_jxdc2"]
+
+[resource]
+script = ExtResource("1_jxdc2")
+id = "flare_discrimination"
+display_name = "Flare Discrimination"
+description = "Faster volleys and one more target per volley burn through decoys."
+affects = PackedStringArray("gun", "missile")
+interval_multiplier = 0.8
+capacity_bonus = 1

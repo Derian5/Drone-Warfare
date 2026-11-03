@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/toast.gd" id="1_8fmpi"]
+[ext_resource type="Texture2D" path="res://ui/icons/warning.svg" id="2_aqu2y"]
+[ext_resource type="Texture2D" path="res://ui/icons/info.svg" id="3_s1mg5"]
+
+[node name="Toast" type="PanelContainer" unique_id=1712573297]
+mouse_filter = 2
+theme_type_variation = &"Toast"
+script = ExtResource("1_8fmpi")
+warning_icon = ExtResource("2_aqu2y")
+info_icon = ExtResource("3_s1mg5")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=751913223]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="Row" unique_id=562063705]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_s1mg5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texts" type="VBoxContainer" parent="Row" unique_id=1032119608]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Row/Texts" unique_id=632329081]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ToastTitle"
+text = "COMMAND"
+
+[node name="Body" type="Label" parent="Row/Texts" unique_id=1749245541]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_type_variation = &"ToastBody"
+text = "Message"
+autowrap_mode = 3

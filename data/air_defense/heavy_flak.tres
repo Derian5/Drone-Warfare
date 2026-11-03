@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AirDefenseData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/air_defense_node.png" id="1_tailh"]
+[ext_resource type="Script" path="res://scripts/data/air_defense_data.gd" id="2_ykoyp"]
+
+[resource]
+script = ExtResource("2_ykoyp")
+display_name = "Twin Flak"
+description = "Twin cannon that engages two drones per volley."
+icon = ExtResource("1_tailh")
+accuracy = 38.0
+damage = 16.0
+interval = 1.0
+targets_per_volley = 2
+projectile_speed = 90.0

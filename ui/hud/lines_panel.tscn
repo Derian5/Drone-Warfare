@@ -1,0 +1,106 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/lines_panel.gd" id="1_aau3p"]
+[ext_resource type="PackedScene" path="res://ui/hud/line_row.tscn" id="2_d8p7a"]
+
+[node name="LinesPanel" type="PanelContainer" unique_id=1872048483]
+theme_type_variation = &"SidebarPanel"
+script = ExtResource("1_aau3p")
+row_scene = ExtResource("2_d8p7a")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1882997125]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Header" type="HBoxContainer" parent="Content" unique_id=1181237305]
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="Content/Header" unique_id=676258529]
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "ASSEMBLY LINES"
+
+[node name="Spacer" type="Control" parent="Content/Header" unique_id=1800609217]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Count" type="Label" parent="Content/Header" unique_id=925792748]
+tooltip_text = "Modular lines in use / line slots you own"
+mouse_filter = 1
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+text = "0 / 3 modular"
+
+[node name="Rows" type="VBoxContainer" parent="Content" unique_id=247859557]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ReserveRow" type="HBoxContainer" parent="Content" unique_id=1753452241]
+tooltip_text = "Reserve: credits the lines will never spend, so you can save for upgrades. Lines wait when credits drop to the reserve."
+mouse_filter = 1
+layout_mode = 2
+tooltip_text = "Paid lines never spend below this amount."
+
+[node name="ReserveCaption" type="Label" parent="Content/ReserveRow" unique_id=208748005]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "RESERVE"
+
+[node name="ReserveBar" type="ProgressBar" parent="Content/ReserveRow" unique_id=1736060766]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_type_variation = &"TealBar"
+show_percentage = false
+
+[node name="ReserveDown" type="Button" parent="Content/ReserveRow" unique_id=1578511636]
+tooltip_text = "Lower the reserve: lines may spend more of your credits"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"SmallButton"
+text = "−"
+
+[node name="ReserveValue" type="Label" parent="Content/ReserveRow" unique_id=1273197054]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "100"
+horizontal_alignment = 2
+
+[node name="ReserveUp" type="Button" parent="Content/ReserveRow" unique_id=73345745]
+tooltip_text = "Raise the reserve: lines never spend below this amount"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"SmallButton"
+text = "+"
+
+[node name="AddLine" type="Button" parent="Content" unique_id=221967311]
+tooltip_text = "Create a modular assembly line: design a drone, then drag the line onto a route"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"OutlineButton"
+text = "+  NEW ASSEMBLY LINE"
+
+[node name="SlotButton" type="Button" parent="Content" unique_id=1302572949]
+tooltip_text = "Buy one more slot for a modular assembly line"
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"OutlineButton"
+text = "OPEN LINE SLOT"

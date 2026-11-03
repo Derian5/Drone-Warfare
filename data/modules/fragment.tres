@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/fragment.png" id="1_yo2yp"]
+[ext_resource type="PackedScene" path="res://models/modules/fragment.tscn" id="2_maisx"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_3dol2"]
+
+[resource]
+script = ExtResource("3_3dol2")
+id = "fragment"
+display_name = "Fragmentation Warhead"
+short_name = "FRAG"
+kind = 0
+category = 0
+description = "Standard warhead. Cheap and light. Weak against armor."
+purpose = "Default warhead. Good against everything that is not heavily armored."
+frames = PackedStringArray()
+icon = ExtResource("1_yo2yp")
+part_scene = ExtResource("2_maisx")
+slot = "SlotWarhead"
+callout = "WARHEAD"
+mass = 2

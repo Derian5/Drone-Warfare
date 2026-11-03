@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CounterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/counter_data.gd" id="1_6ojq8"]
+
+[resource]
+script = ExtResource("1_6ojq8")
+id = "forward_battery"
+display_name = "Forward Battery"
+description = "The enemy deploys a new air-defense site on your favourite route. Change the route or kill it."
+affects = PackedStringArray()
+deploys_reserve_site = true

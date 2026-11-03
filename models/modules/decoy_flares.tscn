@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/decoy_flares.glb" id="1_lxgbs"]
+
+[node name="DecoyFlares" type="Node3D" unique_id=1889868173]
+
+[node name="Model" type="Node3D" parent="." unique_id=1698854823 instance=ExtResource("1_lxgbs")]

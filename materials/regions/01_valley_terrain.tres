@@ -1,0 +1,53 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/terrain_map.gdshader" id="1_k8oqy"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/forest.png" id="2_d70fp"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/height.png" id="3_hffp4"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/roads.png" id="4_w2jqv"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/towns.png" id="5_bride"]
+[ext_resource type="Texture2D" path="res://textures/regions/01_valley/water.png" id="6_c7qc0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_k8oqy")
+shader_parameter/height_map = ExtResource("3_hffp4")
+shader_parameter/water_mask = ExtResource("6_c7qc0")
+shader_parameter/road_mask = ExtResource("4_w2jqv")
+shader_parameter/town_mask = ExtResource("5_bride")
+shader_parameter/forest_mask = ExtResource("2_d70fp")
+shader_parameter/lowland_color = null
+shader_parameter/midland_color = null
+shader_parameter/highland_color = null
+shader_parameter/forest_color = null
+shader_parameter/forest_strength = null
+shader_parameter/midland_range = null
+shader_parameter/highland_range = null
+shader_parameter/albedo_gain = null
+shader_parameter/relief_exaggeration = null
+shader_parameter/light_direction = null
+shader_parameter/shadow_tint = null
+shader_parameter/shade_min = null
+shader_parameter/shade_max = null
+shader_parameter/contour_interval = null
+shader_parameter/index_every = null
+shader_parameter/contour_color = null
+shader_parameter/index_contour_color = null
+shader_parameter/contour_px = null
+shader_parameter/index_contour_px = null
+shader_parameter/road_color = null
+shader_parameter/road_casing_color = null
+shader_parameter/road_fill_threshold = null
+shader_parameter/road_casing_threshold = null
+shader_parameter/water_color = null
+shader_parameter/town_color = null
+shader_parameter/town_block_scale = null
+shader_parameter/grid_spacing = null
+shader_parameter/grid_color = null
+shader_parameter/grid_px = null
+shader_parameter/play_area_size = null
+shader_parameter/outside_darken = null
+shader_parameter/height_scale = null
+shader_parameter/texel = null
+shader_parameter/world_step = null
+shader_parameter/world_origin = null
+shader_parameter/world_size = null

@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://textures/fx/glow.png" id="1_glow"]
+[ext_resource type="Script" path="res://scripts/world/fx_sprite.gd" id="2_fx"]
+
+[node name="TapShot" type="Sprite3D"]
+cast_shadow = 0
+modulate = Color(0.55, 1, 1, 1)
+pixel_size = 0.03
+billboard = 1
+texture = ExtResource("1_glow")
+script = ExtResource("2_fx")
+life = 0.14
+size_from = 0.03
+size_to = 0.022

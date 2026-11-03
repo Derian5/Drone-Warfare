@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/tech_tile.gd" id="1_jlsf5"]
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="2_bvwo6"]
+[ext_resource type="Texture2D" path="res://ui/icons/check.svg" id="3_4s8tl"]
+
+[node name="TechTile" type="PanelContainer" unique_id=702301864]
+custom_minimum_size = Vector2(250, 0)
+theme_type_variation = &"TechTile"
+script = ExtResource("1_jlsf5")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=593701126]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Row" unique_id=1116953546]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_bvwo6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texts" type="VBoxContainer" parent="Row" unique_id=1768348149]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="Name" type="Label" parent="Row/Texts" unique_id=1319497955]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "Tech"
+
+[node name="Description" type="Label" parent="Row/Texts" unique_id=661267197]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+autowrap_mode = 3
+
+[node name="Requires" type="Label" parent="Row/Texts" unique_id=923967155]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HintText"
+
+[node name="Buy" type="Button" parent="Row" unique_id=616898484]
+tooltip_text = "Buy this technology with tech points (earned with stars)."
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"AccentButton"
+text = "1 TP"
+
+[node name="Owned" type="TextureRect" parent="Row" unique_id=672886598]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_4s8tl")
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CounterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/counter_data.gd" id="1_4pbjh"]
+
+[resource]
+script = ExtResource("1_4pbjh")
+id = "fortified_hq"
+display_name = "Fortified HQ"
+description = "The HQ gets thick armor. Use piercing warheads."
+affects = PackedStringArray()
+main_target_armor_bonus = 50.0

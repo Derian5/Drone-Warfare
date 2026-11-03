@@ -1,0 +1,117 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/region_card.gd" id="1_4wnfp"]
+[ext_resource type="Texture2D" path="res://ui/icons/star_on.svg" id="2_vqyvl"]
+[ext_resource type="Texture2D" path="res://ui/icons/star_off.svg" id="3_ia54i"]
+[ext_resource type="Texture2D" path="res://ui/icons/lock.svg" id="4_doumv"]
+
+[node name="RegionCard" type="PanelContainer" unique_id=382443365]
+custom_minimum_size = Vector2(212, 0)
+theme_type_variation = &"RegionCard"
+script = ExtResource("1_4wnfp")
+star_on = ExtResource("2_vqyvl")
+star_off = ExtResource("3_ia54i")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1618448288]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Frame" type="Control" parent="Content" unique_id=1095277380]
+custom_minimum_size = Vector2(192, 120)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Preview" type="TextureRect" parent="Content/Frame" unique_id=367127300]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(192, 120)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Lock" type="ColorRect" parent="Content/Frame" unique_id=448635780]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.05, 0.7)
+
+[node name="LockIcon" type="TextureRect" parent="Content/Frame/Lock" unique_id=337110263]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+texture = ExtResource("4_doumv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Content" unique_id=1928133842]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"CardTitle"
+text = "01 · REGION"
+
+[node name="Subtitle" type="Label" parent="Content" unique_id=911449610]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"RegionTag"
+
+[node name="Stars" type="HBoxContainer" parent="Content" unique_id=1197217274]
+layout_mode = 2
+
+[node name="Star1" type="TextureRect" parent="Content/Stars" unique_id=1095826154]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_ia54i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="Content/Stars" unique_id=676956432]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_ia54i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="Content/Stars" unique_id=1833246409]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_ia54i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Briefing" type="Label" parent="Content" unique_id=758212216]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(192, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Muted"
+autowrap_mode = 3
+
+[node name="Goals" type="Label" parent="Content" unique_id=250923138]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+theme_type_variation = &"HintText"
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="Content" unique_id=1350393622]
+tooltip_text = "Fly to this region. Replays keep your credits and techs and give 25% of the reward."
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"AccentButton"
+text = "DEPLOY"

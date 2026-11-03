@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/fast_tracking.tres" id="1_ef1os"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/boost.png" id="1_xyjrc"]
+[ext_resource type="PackedScene" path="res://models/modules/boost.tscn" id="2_ef1os"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_jjjfm"]
+
+[resource]
+script = ExtResource("3_jjjfm")
+id = "boost"
+display_name = "Booster Engine"
+short_name = "BOOSTER"
+category = 2
+description = "Speed +10, agility −8. Less time under fire."
+purpose = "Faster drones spend less time inside air-defense rings and build pressure sooner. Less agile."
+frames = PackedStringArray()
+icon = ExtResource("1_xyjrc")
+part_scene = ExtResource("2_ef1os")
+slot = "SlotBooster"
+callout = "BOOSTER"
+unlock_cost = 140
+cost_per_drone = 4
+mass = 2
+speed = 10.0
+agility = -8.0
+counter = ExtResource("1_ef1os")

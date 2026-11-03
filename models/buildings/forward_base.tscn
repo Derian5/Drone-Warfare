@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="1_p5ab3"]
+[ext_resource type="PackedScene" path="res://models/buildings/forward_base.glb" id="2_vkipx"]
+[ext_resource type="PackedScene" path="res://models/buildings/base_defense.glb" id="3_vkipx"]
+
+[node name="ForwardBase" type="Node3D" unique_id=197827057]
+script = ExtResource("1_p5ab3")
+is_player_base = true
+upgrade_node = NodePath("BaseDefense")
+outline_angle = -8.0
+outline_color = Color(0.48, 0.16, 0.14, 0.85)
+
+[node name="Model" type="Node3D" parent="." unique_id=55254845 instance=ExtResource("2_vkipx")]
+
+[node name="BaseDefense" type="Node3D" parent="." unique_id=2023864219 instance=ExtResource("3_vkipx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0.12, 3.4)
+visible = false

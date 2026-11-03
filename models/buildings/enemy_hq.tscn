@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="1_vun4f"]
+[ext_resource type="PackedScene" path="res://models/buildings/enemy_hq.glb" id="3_bbfwe"]
+
+[node name="EnemyHq" type="Node3D" unique_id=1051204756]
+script = ExtResource("1_vun4f")
+outline_angle = 10.0
+
+[node name="Model" type="Node3D" parent="." unique_id=12253633 instance=ExtResource("3_bbfwe")]

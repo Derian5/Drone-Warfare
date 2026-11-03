@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/fuel_tank.png" id="1_328gt"]
+[ext_resource type="PackedScene" path="res://models/modules/fuel_tank.tscn" id="2_ikxgq"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_bkl1u"]
+
+[resource]
+script = ExtResource("3_bkl1u")
+id = "fuel_tank"
+display_name = "Fuel Tank"
+short_name = "TANK"
+category = 2
+description = "Range +80 km, speed −1. Reach distant targets and fly long detours."
+purpose = "+80 range: reach far targets or fly wide detours around air defense."
+frames = PackedStringArray("wing")
+icon = ExtResource("1_328gt")
+part_scene = ExtResource("2_ikxgq")
+slot = "SlotPayload"
+callout = "FUEL TANK"
+unlock_cost = 120
+cost_per_drone = 2
+mass = 2
+speed = -1.0
+flight_range = 80.0

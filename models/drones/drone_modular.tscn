@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/drone_view.gd" id="1_kf0kr"]
+[ext_resource type="PackedScene" path="res://models/drones/drone_modular.glb" id="2_3bd6i"]
+
+[node name="DroneModular" type="Node3D" unique_id=1242371909]
+script = ExtResource("1_kf0kr")
+
+[node name="Model" type="Node3D" parent="." unique_id=41125549 instance=ExtResource("2_3bd6i")]
+
+[node name="SlotWarhead" type="Marker3D" parent="." unique_id=970483874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12, -0.9)
+
+[node name="SlotArmor" type="Marker3D" parent="." unique_id=316631935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="SlotBooster" type="Marker3D" parent="." unique_id=1163121226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.95)
+
+[node name="SlotPayload" type="Marker3D" parent="." unique_id=731987721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, 0.15)
+
+[node name="SlotFins" type="Marker3D" parent="." unique_id=1631379638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.55)

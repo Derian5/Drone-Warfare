@@ -1,0 +1,54 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/terrain_map.gdshader" id="1_o1iln"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/forest.png" id="2_xtg62"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/height.png" id="3_2pngf"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/roads.png" id="4_q3vd4"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/towns.png" id="5_xh1bu"]
+[ext_resource type="Texture2D" path="res://textures/regions/04_continent/water.png" id="6_fcrdp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o1iln")
+shader_parameter/height_map = ExtResource("3_2pngf")
+shader_parameter/water_mask = ExtResource("6_fcrdp")
+shader_parameter/road_mask = ExtResource("4_q3vd4")
+shader_parameter/town_mask = ExtResource("5_xh1bu")
+shader_parameter/forest_mask = ExtResource("2_xtg62")
+shader_parameter/lowland_color = null
+shader_parameter/midland_color = null
+shader_parameter/highland_color = null
+shader_parameter/forest_color = null
+shader_parameter/forest_strength = null
+shader_parameter/midland_range = Vector2(0.200, 0.900)
+shader_parameter/highland_range = Vector2(0.900, 1.900)
+shader_parameter/albedo_gain = null
+shader_parameter/relief_exaggeration = null
+shader_parameter/light_direction = null
+shader_parameter/shadow_tint = null
+shader_parameter/shade_min = null
+shader_parameter/shade_max = null
+shader_parameter/contour_interval = 0.125
+shader_parameter/index_every = null
+shader_parameter/contour_color = null
+shader_parameter/index_contour_color = null
+shader_parameter/contour_px = null
+shader_parameter/index_contour_px = null
+shader_parameter/road_color = null
+shader_parameter/road_casing_color = null
+shader_parameter/road_fill_threshold = null
+shader_parameter/road_casing_threshold = null
+shader_parameter/water_color = null
+shader_parameter/town_color = null
+shader_parameter/town_block_scale = 11.82
+shader_parameter/grid_spacing = 10.0
+shader_parameter/grid_color = null
+shader_parameter/grid_px = null
+shader_parameter/play_area_size = null
+shader_parameter/outside_darken = null
+shader_parameter/height_scale = null
+shader_parameter/texel = null
+shader_parameter/world_step = null
+shader_parameter/world_origin = null
+shader_parameter/world_size = null
+shader_parameter/captured_rect = Vector4(-15.25, 50, 25, 17)

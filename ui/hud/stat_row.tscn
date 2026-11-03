@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/stat_row.gd" id="1_d6hr4"]
+
+[node name="StatRow" type="HBoxContainer" unique_id=1174628339]
+script = ExtResource("1_d6hr4")
+
+[node name="Caption" type="Label" parent="." unique_id=109364912]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Muted"
+text = "Caption"
+
+[node name="Spacer" type="Control" parent="." unique_id=130141837]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Value" type="Label" parent="." unique_id=1945431219]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatValue"
+text = "0"

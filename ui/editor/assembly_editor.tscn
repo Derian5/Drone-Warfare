@@ -1,0 +1,385 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/assembly_editor.gd" id="1_whbqv"]
+[ext_resource type="PackedScene" path="res://ui/editor/module_tile.tscn" id="2_upy4i"]
+[ext_resource type="Texture2D" path="res://ui/icons/close_big.svg" id="3_ndv2v"]
+[ext_resource type="Environment" path="res://materials/studio_environment.tres" id="4_b37ri"]
+[ext_resource type="Script" path="res://scripts/ui/callouts.gd" id="5_5xn27"]
+[ext_resource type="PackedScene" path="res://ui/editor/stat_bar.tscn" id="6_o6lh3"]
+[ext_resource type="Script" path="res://scripts/ui/stat_bar.gd" id="7_0jk2q"]
+[ext_resource type="PackedScene" path="res://ui/editor/frame_card.tscn" id="8_fcard"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ob5hh"]
+albedo_color = Color(0.6384314, 0.6384314, 0.62682354, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_skhtv"]
+size = Vector2(80, 80)
+
+[node name="AssemblyEditor" type="Control" unique_id=412707502]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_whbqv")
+tile_scene = ExtResource("2_upy4i")
+frame_card_scene = ExtResource("8_fcard")
+
+[node name="Shade" type="ColorRect" parent="." unique_id=1948738781]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03, 0.04, 0.05, 0.45)
+
+[node name="Window" type="PanelContainer" parent="." unique_id=1019995255]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -530.0
+offset_top = 20.0
+offset_right = 530.0
+offset_bottom = -16.0
+theme_type_variation = &"ModalPanel"
+
+[node name="Layout" type="VBoxContainer" parent="Window" unique_id=212970366]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Window/Layout" unique_id=1494764597]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Window/Layout/Header" unique_id=1049095766]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ModalTitle"
+text = "NEW ASSEMBLY LINE"
+
+[node name="Spacer" type="Control" parent="Window/Layout/Header" unique_id=1005350660]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="NameCaption" type="Label" parent="Window/Layout/Header" unique_id=866411712]
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "NAME"
+
+[node name="NameEdit" type="LineEdit" parent="Window/Layout/Header" unique_id=1527123502]
+tooltip_text = "Name of the assembly line"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+max_length = 28
+
+[node name="Close" type="Button" parent="Window/Layout/Header" unique_id=1666833507]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Close (Esc)"
+focus_mode = 0
+theme_type_variation = &"GhostButton"
+icon = ExtResource("3_ndv2v")
+icon_alignment = 1
+
+[node name="FrameBar" type="HBoxContainer" parent="Window/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FrameCaption" type="Label" parent="Window/Layout/FrameBar"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+tooltip_text = "The airframe decides base HP, speed, range, slots and which modules fit. New frames come with new regions."
+mouse_filter = 1
+theme_type_variation = &"Strong"
+text = "1. FRAME"
+
+[node name="Frames" type="HBoxContainer" parent="Window/Layout/FrameBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Columns" type="HBoxContainer" parent="Window/Layout" unique_id=94878879]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="Catalog" type="VBoxContainer" parent="Window/Layout/Columns" unique_id=2101099895]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CatalogTitle" type="Label" parent="Window/Layout/Columns/Catalog" unique_id=1801523571]
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "2. MODULES"
+
+[node name="Scroll" type="ScrollContainer" parent="Window/Layout/Columns/Catalog" unique_id=1350548012]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Groups" type="VBoxContainer" parent="Window/Layout/Columns/Catalog/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Center" type="VBoxContainer" parent="Window/Layout/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PreviewFrame" type="PanelContainer" parent="Window/Layout/Columns/Center" unique_id=957296932]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PreviewFrame"
+
+[node name="Preview" type="SubViewportContainer" parent="Window/Layout/Columns/Center/PreviewFrame" unique_id=430623193]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+mouse_filter = 2
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="Window/Layout/Columns/Center/PreviewFrame/Preview" unique_id=83970823]
+unique_name_in_owner = true
+own_world_3d = true
+msaa_3d = 2
+size = Vector2i(440, 380)
+render_target_update_mode = 0
+
+[node name="Stage" type="Node3D" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport" unique_id=2041329490]
+
+[node name="Environment" type="WorldEnvironment" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport/Stage" unique_id=1110657349]
+environment = ExtResource("4_b37ri")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport/Stage" unique_id=1008481670]
+transform = Transform3D(-0.76604444, 0.4924039, -0.41317594, 0, 0.64278764, 0.76604444, 0.64278764, 0.58682406, -0.4924039, 0, 0, 0)
+light_energy = 0.6
+shadow_enabled = true
+shadow_opacity = 0.45
+
+[node name="PreviewCamera" type="Camera3D" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport/Stage" unique_id=935192419]
+unique_name_in_owner = true
+transform = Transform3D(0.7893523, -0.25340196, 0.55920523, 0, 0.9108459, 0.41274673, -0.6139406, -0.32580256, 0.7189782, 4.2, 3.1, 5.4)
+current = true
+fov = 28.0
+
+[node name="Floor" type="MeshInstance3D" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport/Stage" unique_id=226416938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = SubResource("StandardMaterial3D_ob5hh")
+mesh = SubResource("PlaneMesh_skhtv")
+
+[node name="DroneHolder" type="Node3D" parent="Window/Layout/Columns/Center/PreviewFrame/Preview/PreviewViewport/Stage" unique_id=23815194]
+unique_name_in_owner = true
+
+[node name="Callouts" type="Control" parent="Window/Layout/Columns/Center/PreviewFrame" unique_id=1937173604]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("5_5xn27")
+slots = PackedVector2Array(0.06, 0.12, 0.72, 0.12, 0.06, 0.8, 0.72, 0.8, 0.72, 0.46)
+
+[node name="InfoBox" type="PanelContainer" parent="Window/Layout/Columns/Center"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_type_variation = &"MapCard"
+
+[node name="Info" type="VBoxContainer" parent="Window/Layout/Columns/Center/InfoBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="InfoHead" type="HBoxContainer" parent="Window/Layout/Columns/Center/InfoBox/Info"]
+layout_mode = 2
+
+[node name="InfoName" type="Label" parent="Window/Layout/Columns/Center/InfoBox/Info/InfoHead"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"InfoName"
+text = "Quadcopter"
+
+[node name="InfoTag" type="Label" parent="Window/Layout/Columns/Center/InfoBox/Info/InfoHead"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ExclusiveTag"
+text = " HEXA ONLY "
+
+[node name="InfoPurpose" type="Label" parent="Window/Layout/Columns/Center/InfoBox/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SummaryText"
+text = "Why to take it"
+autowrap_mode = 3
+
+[node name="InfoEffects" type="HFlowContainer" parent="Window/Layout/Columns/Center/InfoBox/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+
+[node name="InfoAction" type="Label" parent="Window/Layout/Columns/Center/InfoBox/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HintText"
+text = "Click to install"
+autowrap_mode = 3
+
+[node name="Stats" type="VBoxContainer" parent="Window/Layout/Columns" unique_id=1733078248]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(176, 0)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="StatsTitle" type="Label" parent="Window/Layout/Columns/Stats" unique_id=727001261]
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "3. RESULT"
+
+[node name="Damage" parent="Window/Layout/Columns/Stats" unique_id=267717607 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+
+[node name="Penetration" parent="Window/Layout/Columns/Stats" unique_id=952319951 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+stat_key = "penetration"
+caption = "PENETRATION"
+max_value = 60.0
+
+[node name="Hp" parent="Window/Layout/Columns/Stats" unique_id=1502890475 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+stat_key = "hp"
+caption = "ARMOR / HP"
+max_value = 80.0
+
+[node name="Speed" parent="Window/Layout/Columns/Stats" unique_id=895401851 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+stat_key = "speed"
+caption = "SPEED"
+max_value = 32.0
+
+[node name="Agility" parent="Window/Layout/Columns/Stats" unique_id=992192818 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+stat_key = "agility"
+caption = "AGILITY"
+
+[node name="Range" type="VBoxContainer" parent="Window/Layout/Columns/Stats" unique_id=1411083568 instance=ExtResource("6_o6lh3")]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("7_0jk2q")
+stat_key = "range"
+caption = "RANGE"
+max_value = 420.0
+
+[node name="Spacer" type="Control" parent="Window/Layout/Columns/Stats" unique_id=1635396910]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MassRow" type="HBoxContainer" parent="Window/Layout/Columns/Stats" unique_id=337602401]
+layout_mode = 2
+
+[node name="MassCaption" type="Label" parent="Window/Layout/Columns/Stats/MassRow" unique_id=1442357736]
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "MASS"
+
+[node name="Spacer" type="Control" parent="Window/Layout/Columns/Stats/MassRow" unique_id=1493113052]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MassValue" type="Label" parent="Window/Layout/Columns/Stats/MassRow" unique_id=2086515029]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "5 / 8"
+
+[node name="MassBar" type="ProgressBar" parent="Window/Layout/Columns/Stats" unique_id=1342334540]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"MassBar"
+show_percentage = false
+
+[node name="Slots" type="Label" parent="Window/Layout/Columns/Stats" unique_id=1486308841]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "UTILITY SLOTS"
+
+[node name="Error" type="Label" parent="Window/Layout/Columns/Stats" unique_id=1392159461]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_type_variation = &"HintText"
+autowrap_mode = 3
+
+[node name="Footer" type="HBoxContainer" parent="Window/Layout" unique_id=1145989318]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CostChip" type="PanelContainer" parent="Window/Layout/Footer" unique_id=1926788230]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"ChipCost"
+
+[node name="Content" type="VBoxContainer" parent="Window/Layout/Footer/CostChip" unique_id=1302979011]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Caption" type="Label" parent="Window/Layout/Footer/CostChip/Content" unique_id=1042868212]
+layout_mode = 2
+theme_type_variation = &"ChipCaptionLight"
+text = "COST PER DRONE"
+horizontal_alignment = 1
+
+[node name="CostValue" type="Label" parent="Window/Layout/Footer/CostChip/Content" unique_id=850980687]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ChipValueLight"
+horizontal_alignment = 1
+
+[node name="TimeChip" type="PanelContainer" parent="Window/Layout/Footer" unique_id=1630062373]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"ChipTime"
+
+[node name="Content" type="VBoxContainer" parent="Window/Layout/Footer/TimeChip" unique_id=430847621]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Caption" type="Label" parent="Window/Layout/Footer/TimeChip/Content" unique_id=956516987]
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "BUILD TIME"
+horizontal_alignment = 1
+
+[node name="TimeValue" type="Label" parent="Window/Layout/Footer/TimeChip/Content" unique_id=1208700497]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ChipValueAmber"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Window/Layout/Footer" unique_id=1542028589]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Muted"
+text = "Assign a route after creation"
+horizontal_alignment = 2
+
+[node name="Cancel" type="Button" parent="Window/Layout/Footer" unique_id=2107474709]
+tooltip_text = "Close without changes (Esc)"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 46)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"CancelButton"
+text = "CANCEL"
+
+[node name="Create" type="Button" parent="Window/Layout/Footer" unique_id=318664152]
+tooltip_text = "Save the build. Drones already paid for keep the old build."
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 46)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"CreateButton"
+text = "CREATE LINE"

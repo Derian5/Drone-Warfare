@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/fuel_tank.glb" id="1_75fs2"]
+
+[node name="FuelTank" type="Node3D" unique_id=1525254289]
+
+[node name="Model" type="Node3D" parent="." unique_id=1441078050 instance=ExtResource("1_75fs2")]

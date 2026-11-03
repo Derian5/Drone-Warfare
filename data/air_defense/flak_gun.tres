@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AirDefenseData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/air_defense_node.png" id="1_r8lsc"]
+[ext_resource type="Script" path="res://scripts/data/air_defense_data.gd" id="2_skr7s"]
+
+[resource]
+script = ExtResource("2_skr7s")
+description = "Fast, short-range cannon. Armor plating shrugs it off."
+icon = ExtResource("1_r8lsc")
+damage = 16.0
+interval = 0.9
+projectile_speed = 90.0

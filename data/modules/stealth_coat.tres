@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/modules/stealth_coat.png" id="1_8omxh"]
+[ext_resource type="PackedScene" path="res://models/modules/stealth_coat.tscn" id="2_ms8k5"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="3_j386n"]
+
+[resource]
+script = ExtResource("3_j386n")
+id = "stealth_coat"
+display_name = "Stealth Coat"
+short_name = "STEALTH"
+category = 3
+description = "Enemy accuracy −40%."
+purpose = "Radar-absorbing coat: every air-defense site hits 40% less often."
+frames = PackedStringArray("glider")
+icon = ExtResource("1_8omxh")
+part_scene = ExtResource("2_ms8k5")
+slot = "SlotPayload"
+callout = "STEALTH"
+unlock_cost = 260
+cost_per_drone = 7
+mass = 2
+enemy_accuracy = 0.6

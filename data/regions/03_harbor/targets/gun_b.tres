@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TargetData" format=3]
+
+[ext_resource type="Resource" path="res://data/air_defense/heavy_flak.tres" id="1_etu83"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/air_defense_node.png" id="2_fdb6x"]
+[ext_resource type="Script" path="res://scripts/data/target_data.gd" id="3_3aksj"]
+
+[resource]
+script = ExtResource("3_3aksj")
+id = "gun_b"
+display_name = "Twin Flak"
+intel_text = "Destroying it silences this site for {respawn} s. Adaptations stay in place: {defense}."
+icon = ExtResource("2_fdb6x")
+max_hp = 900.0
+armor = 12.0
+payout_rate = 1.15
+respawn_time = 30.0
+air_defense = ExtResource("1_etu83")

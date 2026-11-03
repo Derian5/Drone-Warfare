@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HunterData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/hunter_data.gd" id="1_f24s8"]
+
+[resource]
+script = ExtResource("1_f24s8")
+first_wave_after = 40.0
+wave_interval = 32.0
+speed = 8.5
+drones_per_wave = 1
+hp = 54.0

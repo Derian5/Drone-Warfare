@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/piercing.glb" id="1_74syq"]
+
+[node name="Piercing" type="Node3D" unique_id=835048941]
+
+[node name="Model" type="Node3D" parent="." unique_id=198637425 instance=ExtResource("1_74syq")]

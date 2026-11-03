@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FrameData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/drones/drone_glider.tscn" id="1_weeyd"]
+[ext_resource type="Texture2D" path="res://ui/icons/frames/drone_glider.png" id="2_0yxgm"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="3_2ocq8"]
+
+[resource]
+script = ExtResource("3_2ocq8")
+id = "glider"
+display_name = "Orbital Glider"
+short_name = "GLIDER"
+role = "Planet-scale range"
+description = "A rocket glider for orbital strikes: enormous range for routes around the globe. Carries a heat shield and a stealth coat."
+icon = ExtResource("2_0yxgm")
+drone_scene = ExtResource("1_weeyd")
+map_scale = 0.9
+hp = 36.0
+speed = 30.0
+agility = 16.0
+flight_range = 600.0
+damage_bonus = 4.0
+slots = 3
+max_mass = 12
+cost = 20
+build_time = 4.5

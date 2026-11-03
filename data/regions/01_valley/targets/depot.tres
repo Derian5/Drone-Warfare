@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TargetData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/sites/supply_depot.png" id="1_21h41"]
+[ext_resource type="Script" path="res://scripts/data/target_data.gd" id="2_62da5"]
+
+[resource]
+script = ExtResource("2_62da5")
+id = "depot"
+display_name = "Supply Depot"
+intel_text = "Soft, safe income. Respawns {respawn} s after destruction."
+icon = ExtResource("1_21h41")
+payout_rate = 0.75

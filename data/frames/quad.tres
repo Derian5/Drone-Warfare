@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FrameData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/drones/drone_modular.tscn" id="1_g5xex"]
+[ext_resource type="Texture2D" path="res://ui/icons/frames/drone_modular.png" id="2_5vqaa"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="3_o0oqw"]
+
+[resource]
+script = ExtResource("3_o0oqw")
+id = "quad"
+display_name = "Quadcopter"
+short_name = "QUAD"
+role = "Cheap all-rounder"
+description = "A simple quadcopter. Cheap and quick to build — the backbone of every early attack."
+icon = ExtResource("2_5vqaa")
+drone_scene = ExtResource("1_g5xex")

@@ -1,0 +1,226 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/battlefield.gd" id="1_ypfe0"]
+[ext_resource type="PackedScene" path="res://models/drones/drone_free.tscn" id="2_4pgq6"]
+[ext_resource type="PackedScene" path="res://models/drones/drone_modular.tscn" id="3_qmr5t"]
+[ext_resource type="PackedScene" path="res://models/drones/hunter.tscn" id="4_06fmg"]
+[ext_resource type="PackedScene" path="res://fx/explosion.tscn" id="5_xu30b"]
+[ext_resource type="PackedScene" path="res://fx/small_explosion.tscn" id="6_i25q3"]
+[ext_resource type="PackedScene" path="res://fx/flak.tscn" id="7_qwuur"]
+[ext_resource type="PackedScene" path="res://fx/tracer.tscn" id="8_60sf3"]
+[ext_resource type="PackedScene" path="res://fx/missile.tscn" id="9_wmtd2"]
+[ext_resource type="PackedScene" path="res://fx/damage_smoke.tscn" id="10_tmb2w"]
+[ext_resource type="PackedScene" path="res://fx/light_puff.tscn" id="11_37ujk"]
+[ext_resource type="PackedScene" path="res://fx/deploy.tscn" id="12_jobgx"]
+[ext_resource type="Texture2D" path="res://textures/fx/drone_shadow.png" id="13_3bhc4"]
+[ext_resource type="Environment" path="res://materials/regions/05_orbit_environment.tres" id="14_2yric"]
+[ext_resource type="Material" path="res://materials/regions/05_orbit_surface.tres" id="15_u1ewy"]
+[ext_resource type="Script" path="res://scripts/world/planet_terrain.gd" id="16_qbyts"]
+[ext_resource type="Material" path="res://materials/regions/05_orbit_clouds.tres" id="17_71sw2"]
+[ext_resource type="Script" path="res://scripts/world/spinner.gd" id="18_ji0hw"]
+[ext_resource type="Material" path="res://materials/regions/05_orbit_atmosphere.tres" id="19_0s0sm"]
+[ext_resource type="Material" path="res://materials/regions/05_orbit_stars.tres" id="20_50bnv"]
+[ext_resource type="PackedScene" path="res://models/buildings/forward_base.tscn" id="21_pxp42"]
+[ext_resource type="Script" path="res://scripts/world/site.gd" id="22_1g02t"]
+[ext_resource type="PackedScene" path="res://models/buildings/enemy_hq.tscn" id="23_omn0u"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/hq.tres" id="24_2yyxt"]
+[ext_resource type="PackedScene" path="res://models/buildings/supply_depot.tscn" id="25_tlyx1"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/depot.tres" id="26_nv0bw"]
+[ext_resource type="PackedScene" path="res://models/buildings/air_defense_node.tscn" id="27_f7kc0"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/gun_a.tres" id="28_pa17p"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/gun_b.tres" id="29_ormin"]
+[ext_resource type="PackedScene" path="res://models/buildings/sam_site.tscn" id="30_wut0b"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/sam_a.tres" id="31_ji8kr"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/sam_b.tres" id="32_kc48f"]
+[ext_resource type="PackedScene" path="res://models/buildings/jammer_site.tscn" id="33_l8adn"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/jam_a.tres" id="34_ef7m1"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/gun_r1.tres" id="35_kjikq"]
+[ext_resource type="Resource" path="res://data/regions/05_orbit/targets/sam_r1.tres" id="36_0ovw7"]
+[ext_resource type="PackedScene" path="res://models/buildings/build_pad.tscn" id="37_5fti1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rp8ct"]
+radius = 61.2
+height = 122.4
+radial_segments = 96
+rings = 48
+
+[sub_resource type="SphereMesh" id="SphereMesh_ioj2f"]
+radius = 64.0
+height = 128.0
+radial_segments = 96
+rings = 48
+
+[sub_resource type="SphereMesh" id="SphereMesh_td7dg"]
+flip_faces = true
+radius = 900.0
+height = 1800.0
+
+[node name="OrbitalCommand" type="Node3D" unique_id=1195618539]
+script = ExtResource("1_ypfe0")
+orbit_camera = true
+free_drone_scene = ExtResource("2_4pgq6")
+modular_drone_scene = ExtResource("3_qmr5t")
+hunter_scene = ExtResource("4_06fmg")
+explosion_scene = ExtResource("5_xu30b")
+small_explosion_scene = ExtResource("6_i25q3")
+flak_scene = ExtResource("7_qwuur")
+tracer_scene = ExtResource("8_60sf3")
+missile_scene = ExtResource("9_wmtd2")
+smoke_scene = ExtResource("10_tmb2w")
+launch_dust_scene = ExtResource("11_37ujk")
+deploy_scene = ExtResource("12_jobgx")
+drone_shadow_texture = ExtResource("13_3bhc4")
+flight_altitude = 1.6
+free_drone_scale = 0.8
+modular_drone_scale = 0.9
+hunter_scale = 0.9
+show_shadows = false
+route_width = 0.35
+selected_route_width = 0.5
+ring_width = 0.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=256123143]
+environment = ExtResource("14_2yric")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=365582870]
+transform = Transform3D(0.49999997, 0.29619813, -0.8137977, 0, 0.9396926, 0.34202012, 0.86602545, -0.17101005, 0.46984628, 0, 0, 0)
+light_color = Color(1, 0.9529412, 0.8627451, 1)
+light_energy = 1.1
+shadow_enabled = true
+shadow_opacity = 0.55
+directional_shadow_mode = 0
+directional_shadow_max_distance = 260.0
+
+[node name="Camera" type="Camera3D" parent="." unique_id=444990411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 138)
+current = true
+fov = 42.0
+far = 2000.0
+
+[node name="Terrain" type="MeshInstance3D" parent="." unique_id=1811488691]
+material_override = ExtResource("15_u1ewy")
+script = ExtResource("16_qbyts")
+center_lat = 28.0
+
+[node name="Clouds" type="MeshInstance3D" parent="." unique_id=1155580146]
+material_override = ExtResource("17_71sw2")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_rp8ct")
+script = ExtResource("18_ji0hw")
+speed = 0.01
+
+[node name="Atmosphere" type="MeshInstance3D" parent="." unique_id=37067332]
+material_override = ExtResource("19_0s0sm")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_ioj2f")
+
+[node name="Starfield" type="MeshInstance3D" parent="." unique_id=1397868726]
+material_override = ExtResource("20_50bnv")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_td7dg")
+
+[node name="Sites" type="Node3D" parent="." unique_id=794345618]
+
+[node name="ForwardBase" type="Node3D" parent="Sites" unique_id=488865164 instance=ExtResource("21_pxp42")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+use_map_coords = true
+map_coords = Vector2(10, 40)
+outline_size = Vector2(0, 0)
+
+[node name="EnemyHQ" type="Node3D" parent="Sites" unique_id=1658299331 instance=ExtResource("23_omn0u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("24_2yyxt")
+use_map_coords = true
+map_coords = Vector2(88, 30)
+outline_size = Vector2(0, 0)
+
+[node name="SupplyDepot" type="Node3D" parent="Sites" unique_id=1135374570 instance=ExtResource("25_tlyx1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("26_nv0bw")
+use_map_coords = true
+map_coords = Vector2(28, 20)
+outline_size = Vector2(0, 0)
+
+[node name="GunA" type="Node3D" parent="Sites" unique_id=1578139307 instance=ExtResource("27_f7kc0")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("28_pa17p")
+use_map_coords = true
+map_coords = Vector2(50, 25)
+outline_size = Vector2(0, 0)
+
+[node name="GunB" type="Node3D" parent="Sites" unique_id=470844022 instance=ExtResource("27_f7kc0")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("29_ormin")
+use_map_coords = true
+map_coords = Vector2(60, 50)
+outline_size = Vector2(0, 0)
+
+[node name="SamA" type="Node3D" parent="Sites" unique_id=1241969781 instance=ExtResource("30_wut0b")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("31_ji8kr")
+use_map_coords = true
+map_coords = Vector2(64, 46)
+outline_size = Vector2(0, 0)
+
+[node name="SamB" type="Node3D" parent="Sites" unique_id=1080732489 instance=ExtResource("30_wut0b")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("32_kc48f")
+use_map_coords = true
+map_coords = Vector2(80, 20)
+outline_size = Vector2(0, 0)
+
+[node name="JamA" type="Node3D" parent="Sites" unique_id=1770267192 instance=ExtResource("33_l8adn")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("34_ef7m1")
+use_map_coords = true
+map_coords = Vector2(78, 45)
+outline_size = Vector2(0, 0)
+
+[node name="ReserveGunR1" type="Node3D" parent="Sites" unique_id=1276743112 instance=ExtResource("27_f7kc0")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("35_kjikq")
+is_reserve = true
+use_map_coords = true
+map_coords = Vector2(40, 40)
+outline_size = Vector2(0, 0)
+
+[node name="ReserveSamR1" type="Node3D" parent="Sites" unique_id=1025623339 instance=ExtResource("30_wut0b")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+data = ExtResource("36_0ovw7")
+is_reserve = true
+use_map_coords = true
+map_coords = Vector2(65, 10)
+outline_size = Vector2(0, 0)
+
+[node name="PadA" type="Node3D" parent="Sites" unique_id=888817589 instance=ExtResource("37_5fti1")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("22_1g02t")
+is_build_pad = true
+build_id = "pad_a"
+build_price = 500
+built_node = NodePath("Built")
+use_map_coords = true
+map_coords = Vector2(45, 55)
+outline_size = Vector2(0, 0)
+
+[node name="MapLabels" type="Node3D" parent="." unique_id=996736141]
+
+[node name="Layers" type="Node3D" parent="." unique_id=2070252529]
+
+[node name="Routes" type="Node3D" parent="Layers" unique_id=2111124055]
+
+[node name="Draft" type="Node3D" parent="Layers" unique_id=628944987]
+
+[node name="Drones" type="Node3D" parent="Layers" unique_id=345462739]
+
+[node name="Fx" type="Node3D" parent="Layers" unique_id=1911993694]

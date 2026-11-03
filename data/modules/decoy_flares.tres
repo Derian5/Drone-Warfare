@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/flare_discrimination.tres" id="1_o7m2m"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/decoy_flares.png" id="2_1dp0t"]
+[ext_resource type="PackedScene" path="res://models/modules/decoy_flares.tscn" id="3_adj6f"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_2s3su"]
+
+[resource]
+script = ExtResource("4_2s3su")
+id = "decoy_flares"
+display_name = "Decoy Flares"
+short_name = "FLARES"
+description = "The first air-defense hit is wasted on a decoy."
+purpose = "Missile sites (SAM) waste their first hit on a decoy. Take it when your route crosses SAM rings."
+frames = PackedStringArray()
+icon = ExtResource("2_1dp0t")
+part_scene = ExtResource("3_adj6f")
+slot = "SlotArmor"
+callout = "DECOYS"
+unlock_cost = 150
+cost_per_drone = 4
+decoys = 1
+counter = ExtResource("1_o7m2m")

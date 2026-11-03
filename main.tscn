@@ -1,3 +1,214 @@
 [gd_scene format=3]
 
-[node name="Main" type="Node2D"]
+[ext_resource type="Theme" path="res://ui/theme/game_theme.tres" id="1_gngh3"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="2_0n3wm"]
+[ext_resource type="PackedScene" path="res://ui/hud/top_bar.tscn" id="3_qnost"]
+[ext_resource type="Script" path="res://scripts/ui/map_view.gd" id="7_hrvbo"]
+[ext_resource type="PackedScene" path="res://ui/map/site_chip.tscn" id="8_uypp3"]
+[ext_resource type="PackedScene" path="res://ui/map/route_chip.tscn" id="9_blkrb"]
+[ext_resource type="PackedScene" path="res://ui/map/floater.tscn" id="10_abqjc"]
+[ext_resource type="PackedScene" path="res://ui/campaign/campaign_screen.tscn" id="14_cegan"]
+[ext_resource type="Script" path="res://scripts/ui/campaign_screen.gd" id="15_82xsv"]
+[ext_resource type="PackedScene" path="res://ui/campaign/region_card.tscn" id="16_getpj"]
+[ext_resource type="PackedScene" path="res://ui/campaign/tech_tile.tscn" id="17_ryguw"]
+[ext_resource type="PackedScene" path="res://ui/hud/lines_panel.tscn" id="25_1vm84"]
+[ext_resource type="PackedScene" path="res://ui/hud/toast.tscn" id="28_0dhbp"]
+[ext_resource type="PackedScene" path="res://ui/hud/victory_panel.tscn" id="32_c2n8d"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_panel.tscn" id="34_gx4rg"]
+[ext_resource type="PackedScene" path="res://ui/editor/assembly_editor.tscn" id="40_ovcoh"]
+[ext_resource type="Script" path="res://scripts/audio/sfx.gd" id="43_5yh34"]
+[ext_resource type="Resource" path="res://audio/sfx_library.tres" id="44_pjuso"]
+[ext_resource type="PackedScene" path="res://ui/dev/dev_panel.tscn" id="45_devp"]
+
+[node name="DroneWarfare" type="Control" unique_id=813147945]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_gngh3")
+script = ExtResource("2_0n3wm")
+
+[node name="Background" type="ColorRect" parent="." unique_id=758849797]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.07058824, 0.09019608, 0.11764706, 1)
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=1908050699]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 0
+
+[node name="TopBar" parent="Layout" unique_id=786643483 instance=ExtResource("3_qnost")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="Layout" unique_id=844721796]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="MapArea" type="Control" parent="Layout/Body" unique_id=1929496810]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MapView" type="Control" parent="Layout/Body/MapArea" unique_id=2002468536]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 340)
+clip_contents = true
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("7_hrvbo")
+site_chip_scene = ExtResource("8_uypp3")
+route_chip_scene = ExtResource("9_blkrb")
+floater_scene = ExtResource("10_abqjc")
+
+[node name="Viewport" type="SubViewport" parent="Layout/Body/MapArea/MapView" unique_id=1958217105]
+handle_input_locally = false
+msaa_3d = 1
+size = Vector2i(900, 600)
+render_target_update_mode = 4
+
+[node name="Overlay" type="Control" parent="Layout/Body/MapArea/MapView" unique_id=1756367168]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="DrawHint" type="PanelContainer" parent="Layout/Body/MapArea/MapView" unique_id=1292422871]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 12.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_type_variation = &"HintChip"
+
+[node name="DrawHintLabel" type="Label" parent="Layout/Body/MapArea/MapView/DrawHint" unique_id=1448402741]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "Release on a target"
+
+[node name="BaseTip" type="PanelContainer" parent="Layout/Body/MapArea/MapView" unique_id=928337191]
+unique_name_in_owner = true
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"BaseTip"
+
+[node name="Text" type="Label" parent="Layout/Body/MapArea/MapView/BaseTip" unique_id=1963993911]
+layout_mode = 2
+theme_type_variation = &"ChipDark"
+text = "DRAG FROM BASE TO A TARGET"
+
+[node name="Toast" parent="Layout/Body/MapArea" unique_id=1712573297 instance=ExtResource("28_0dhbp")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -74.0
+offset_right = 170.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DevPanel" parent="Layout/Body/MapArea" instance=ExtResource("45_devp")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 46.0
+grow_horizontal = 2
+
+[node name="VictoryPanel" parent="Layout/Body/MapArea" unique_id=912972928 instance=ExtResource("32_c2n8d")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Sidebar" type="VBoxContainer" parent="Layout/Body"]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LinesPanel" parent="Layout/Body/Sidebar" unique_id=1872048483 instance=ExtResource("25_1vm84")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IntelPanel" parent="Layout/Body/Sidebar" unique_id=432439795 instance=ExtResource("34_gx4rg")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AssemblyEditor" parent="." unique_id=412707502 instance=ExtResource("40_ovcoh")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CampaignScreen" type="Control" parent="." unique_id=1725810944 instance=ExtResource("14_cegan")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("15_82xsv")
+card_scene = ExtResource("16_getpj")
+tech_scene = ExtResource("17_ryguw")
+
+[node name="Sfx" type="Node" parent="." unique_id=284727165]
+unique_name_in_owner = true
+script = ExtResource("43_5yh34")
+library = ExtResource("44_pjuso")
+
+[node name="HelpDialog" type="AcceptDialog" parent="." unique_id=2128590295]
+unique_name_in_owner = true
+title = "How to play"
+ok_button_text = "Got it"
+dialog_text = "1. Free drones already fly to the supply depot and earn credits.
+
+2. Press and hold on your base (mouse or finger), draw a path
+and release it on the enemy HQ, depot or an air-defense site.
+
+3. Press + NEW ASSEMBLY LINE (top right). Pick a frame, then a warhead and
+modules (hover any of them to see why you would take it) and create the line.
+Every new region brings a new frame with its own modules. Drag the line onto a route arrow and press START.
+The coloured text under each line says what it is doing or what it needs.
+
+4. Every modular drone costs credits. The RESERVE keeps savings safe.
+
+5. Air defense: guns (beat them with Maneuver/Armor), missiles (Decoy Flares),
+jammers (EW Pod). Mountains block their view. The enemy adapts to your
+favourite build and route.
+
+On the planet, drag empty space to turn the globe; the wheel zooms.
+
+6. HUNTERS fly at your base (red pulsing rings). Click/tap them to shoot
+them down (+credits). If they arrive they knock out a line and steal 30%
+of your credits. Base air defense only cripples and slows them.
+
+Goal: destroy the Enemy HQ. It repairs 1% HP per second — attack with several lines.
+Hover any button or number for a tip. Click a target for its key facts.
+
+Space — pause · Esc — cancel drawing / close editor · Right click — cancel."
+
+[node name="ResetDialog" type="ConfirmationDialog" parent="." unique_id=1892774306]
+unique_name_in_owner = true
+title = "Start over?"
+ok_button_text = "Restart"
+dialog_text = "Your current prototype progress will be replaced."

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TechData" format=3]
+
+[ext_resource type="Texture2D" path="res://ui/icons/tech.svg" id="1_t5yvn"]
+[ext_resource type="Script" path="res://scripts/data/tech_data.gd" id="2_1ktmu"]
+[ext_resource type="Resource" path="res://data/techs/lean_assembly.tres" id="3_attwq"]
+
+[resource]
+script = ExtResource("2_1ktmu")
+id = "bulk_contracts"
+display_name = "Bulk Contracts"
+description = "Drones cost 15% less."
+icon = ExtResource("1_t5yvn")
+cost = 2
+requires = Array[ExtResource("2_1ktmu")]([ExtResource("3_attwq")])
+drone_cost = 0.85

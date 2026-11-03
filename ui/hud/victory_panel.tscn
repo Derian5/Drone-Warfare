@@ -1,0 +1,105 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/victory_panel.gd" id="1_uptdy"]
+[ext_resource type="Texture2D" path="res://ui/icons/star_on.svg" id="2_kjryx"]
+[ext_resource type="Texture2D" path="res://ui/icons/star_off.svg" id="3_rya5k"]
+
+[node name="VictoryPanel" type="CenterContainer" unique_id=1410951495]
+script = ExtResource("1_uptdy")
+star_on = ExtResource("2_kjryx")
+star_off = ExtResource("3_rya5k")
+
+[node name="Card" type="PanelContainer" parent="." unique_id=1756113762]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_type_variation = &"VictoryCard"
+
+[node name="Content" type="VBoxContainer" parent="Card" unique_id=1269683350]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Card/Content" unique_id=245887438]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ResultTitle"
+text = "REGION CAPTURED"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="Card/Content" unique_id=577544105]
+layout_mode = 2
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="Card/Content/Stars" unique_id=290366401]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rya5k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="Card/Content/Stars" unique_id=2032731446]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rya5k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="Card/Content/Stars" unique_id=479365363]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_rya5k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CriterionCapture" type="Label" parent="Card/Content" unique_id=925127092]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatValueGood"
+horizontal_alignment = 1
+
+[node name="CriterionTime" type="Label" parent="Card/Content" unique_id=1476677513]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatValueGood"
+horizontal_alignment = 1
+
+[node name="CriterionLosses" type="Label" parent="Card/Content" unique_id=603923387]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatValueGood"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Card/Content" unique_id=2134639793]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Strong"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Card/Content" unique_id=140964989]
+layout_mode = 2
+
+[node name="CampaignButton" type="Button" parent="Card/Content/Buttons" unique_id=77320452]
+tooltip_text = "Open the campaign map"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_type_variation = &"CancelButton"
+text = "CAMPAIGN MAP"
+
+[node name="NextButton" type="Button" parent="Card/Content/Buttons" unique_id=1873612036]
+tooltip_text = "Fly to the next region"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_type_variation = &"NextButton"
+text = "NEXT REGION"

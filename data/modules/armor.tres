@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ModuleData" format=3]
+
+[ext_resource type="Resource" path="res://data/counters/heavy_interceptors.tres" id="1_i1u0g"]
+[ext_resource type="Texture2D" path="res://ui/icons/modules/armor.png" id="2_336k3"]
+[ext_resource type="PackedScene" path="res://models/modules/armor.tscn" id="3_crlel"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="4_vn6av"]
+
+[resource]
+script = ExtResource("4_vn6av")
+id = "armor"
+display_name = "Armor Plating"
+short_name = "ARMOR"
+description = "HP +26, speed −3. Survives an extra flak hit."
+purpose = "More HP to survive flak. Slows the drone a little."
+frames = PackedStringArray()
+icon = ExtResource("2_336k3")
+part_scene = ExtResource("3_crlel")
+slot = "SlotArmor"
+callout = "ARMOR"
+cost_per_drone = 3
+mass = 3
+hp = 26.0
+speed = -3.0
+counter = ExtResource("1_i1u0g")

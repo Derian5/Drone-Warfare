@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/campaign_screen.gd" id="1_daivd"]
+[ext_resource type="PackedScene" path="res://ui/campaign/region_card.tscn" id="2_24xaw"]
+[ext_resource type="PackedScene" path="res://ui/campaign/tech_tile.tscn" id="3_qh1il"]
+[ext_resource type="Texture2D" path="res://ui/icons/close_big.svg" id="4_jyhn7"]
+
+[node name="CampaignScreen" type="Control" unique_id=1725810944]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_daivd")
+card_scene = ExtResource("2_24xaw")
+tech_scene = ExtResource("3_qh1il")
+
+[node name="Shade" type="ColorRect" parent="." unique_id=840076004]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.03, 0.04, 0.8)
+
+[node name="Window" type="PanelContainer" parent="." unique_id=807831396]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 24.0
+offset_right = -28.0
+offset_bottom = -24.0
+theme_type_variation = &"CampaignPanel"
+
+[node name="Layout" type="VBoxContainer" parent="Window" unique_id=1629697484]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Window/Layout" unique_id=1898729877]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Window/Layout/Header" unique_id=1416625440]
+layout_mode = 2
+theme_type_variation = &"ModalTitle"
+text = "CAMPAIGN"
+
+[node name="Spacer" type="Control" parent="Window/Layout/Header" unique_id=959033889]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalStars" type="Label" parent="Window/Layout/Header" unique_id=1308736920]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Strong"
+text = "0 / 15 stars"
+
+[node name="Close" type="Button" parent="Window/Layout/Header" unique_id=1617993020]
+tooltip_text = "Close the campaign map (Esc)"
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"GhostButton"
+icon = ExtResource("4_jyhn7")
+
+[node name="RegionsScroll" type="ScrollContainer" parent="Window/Layout" unique_id=367960523]
+custom_minimum_size = Vector2(0, 330)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="Cards" type="HBoxContainer" parent="Window/Layout/RegionsScroll" unique_id=1984852848]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TechHeader" type="HBoxContainer" parent="Window/Layout" unique_id=534279264]
+layout_mode = 2
+
+[node name="TechTitle" type="Label" parent="Window/Layout/TechHeader" unique_id=1083485959]
+layout_mode = 2
+theme_type_variation = &"SectionTitle"
+text = "TECHNOLOGIES"
+
+[node name="Spacer" type="Control" parent="Window/Layout/TechHeader" unique_id=1908912274]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TechPoints" type="Label" parent="Window/Layout/TechHeader" unique_id=975030017]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"CostValue"
+text = "0 tech points"
+
+[node name="TechScroll" type="ScrollContainer" parent="Window/Layout" unique_id=786659060]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Techs" type="GridContainer" parent="Window/Layout/TechScroll" unique_id=1711887508]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="RegionData" format=3]
+
+[ext_resource type="Resource" path="res://data/regions/05_orbit/hunters.tres" id="1_olqap"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="2_qdapq"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="2_yqrkk"]
+[ext_resource type="Resource" path="res://data/frames/glider.tres" id="3_msgk3"]
+[ext_resource type="Texture2D" path="res://textures/regions/05_orbit/preview.png" id="3_qdapq"]
+[ext_resource type="PackedScene" path="res://scenes/regions/05_orbit.tscn" id="3_qeenr"]
+[ext_resource type="Script" path="res://scripts/data/region_data.gd" id="4_ao212"]
+[ext_resource type="Resource" path="res://data/modules/heat_shield.tres" id="5_vqw2n"]
+[ext_resource type="Resource" path="res://data/modules/stealth_coat.tres" id="6_raars"]
+
+[resource]
+script = ExtResource("4_ao212")
+id = "05_orbit"
+display_name = "Orbital Command"
+subtitle = "Planet · orbital view · drag to turn the globe"
+briefing = "The final front spans the planet. Every air-defense type, maximum adaptation and relentless hunters. New frame: Orbital Glider."
+preview = ExtResource("3_qdapq")
+scene = ExtResource("3_qeenr")
+aa_damage_multiplier = 1.15
+adaptation_budget = 5
+hunters = ExtResource("1_olqap")
+capture_reward = 1200
+star_time = 900.0
+star_max_losses = 30
+new_modules = Array[ExtResource("2_qdapq")]([ExtResource("5_vqw2n"), ExtResource("6_raars")])
+new_frames = Array[ExtResource("2_yqrkk")]([ExtResource("3_msgk3")])

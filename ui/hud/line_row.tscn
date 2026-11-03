@@ -1,0 +1,89 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/line_row.gd" id="1_e7aic"]
+[ext_resource type="Texture2D" path="res://ui/icons/play.svg" id="2_1tuuf"]
+[ext_resource type="Texture2D" path="res://ui/icons/pause.svg" id="3_iyn4x"]
+
+[node name="LineRow" type="PanelContainer" unique_id=806634144]
+mouse_default_cursor_shape = 6
+theme_type_variation = &"LineRow"
+script = ExtResource("1_e7aic")
+play_icon = ExtResource("2_1tuuf")
+pause_icon = ExtResource("3_iyn4x")
+status_ok_color = Color(0.45, 0.85, 0.55, 1)
+status_warn_color = Color(1, 0.75, 0.3, 1)
+status_bad_color = Color(1, 0.42, 0.38, 1)
+
+[node name="Stack" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="Row" type="HBoxContainer" parent="Stack" unique_id=418774087]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Token" type="ColorRect" parent="Stack/Row" unique_id=1539725016]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(4, 16)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Stack/Row" unique_id=277285490]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "L1 STRIKER"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Progress" type="ProgressBar" parent="Stack/Row" unique_id=388832887]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_type_variation = &"RowBar"
+show_percentage = false
+
+[node name="Value" type="Label" parent="Stack/Row" unique_id=20855164]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 0)
+layout_mode = 2
+theme_type_variation = &"CostValue"
+text = "12"
+horizontal_alignment = 2
+
+[node name="Toggle" type="Button" parent="Stack/Row" unique_id=1956549153]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(62, 22)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Start / pause the line. A paid order is never lost."
+focus_mode = 0
+theme_type_variation = &"SmallButton"
+text = "START"
+icon = ExtResource("2_1tuuf")
+
+[node name="Edit" type="Button" parent="Stack/Row" unique_id=1944917065]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 22)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Edit this line's drone"
+focus_mode = 0
+theme_type_variation = &"SmallButton"
+text = "EDIT"
+
+[node name="Status" type="Label" parent="Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"LineStatus"
+text = "WORKING"
+clip_text = true
+text_overrun_behavior = 3

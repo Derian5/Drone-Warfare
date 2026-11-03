@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/modules/armor.glb" id="1_d8265"]
+
+[node name="Armor" type="Node3D" unique_id=517801903]
+
+[node name="Model" type="Node3D" parent="." unique_id=1523942865 instance=ExtResource("1_d8265")]

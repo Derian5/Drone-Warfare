@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="FrameData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/drones/drone_jet.tscn" id="1_y3fvs"]
+[ext_resource type="Texture2D" path="res://ui/icons/frames/drone_jet.png" id="2_m03oy"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="3_y6d1f"]
+
+[resource]
+script = ExtResource("3_y6d1f")
+id = "jet"
+display_name = "Jet Interceptor"
+short_name = "JET"
+role = "Very fast and agile"
+description = "A jet drone: crosses air-defense rings before guns can aim and covers continental distances. Carries the afterburner and a smart seeker head."
+icon = ExtResource("2_m03oy")
+drone_scene = ExtResource("1_y3fvs")
+map_scale = 0.95
+hp = 30.0
+speed = 34.0
+agility = 24.0
+flight_range = 320.0
+slots = 3
+max_mass = 10
+cost = 18
+build_time = 4.0

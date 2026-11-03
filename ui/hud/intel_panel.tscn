@@ -1,0 +1,125 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/intel_panel.gd" id="1_ml51g"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_target_page.tscn" id="2_65tsx"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_base_page.tscn" id="3_e0kmt"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_route_page.tscn" id="4_nrrwn"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_line_page.tscn" id="5_fnj20"]
+[ext_resource type="PackedScene" path="res://ui/hud/intel_pad_page.tscn" id="6_65tsx"]
+[ext_resource type="Texture2D" path="res://ui/icons/close.svg" id="6_bbghd"]
+[ext_resource type="Environment" path="res://materials/intel_preview_environment.tres" id="7_x0k7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brei8"]
+albedo_color = Color(0.4904314, 0.47882354, 0.37725493, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aiq4n"]
+size = Vector2(80, 80)
+
+[node name="IntelPanel" type="PanelContainer" unique_id=432439795]
+theme_type_variation = &"SidebarPanel"
+script = ExtResource("1_ml51g")
+target_page = ExtResource("2_65tsx")
+base_page = ExtResource("3_e0kmt")
+route_page = ExtResource("4_nrrwn")
+line_page = ExtResource("5_fnj20")
+pad_page = ExtResource("6_65tsx")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1952973073]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Content" unique_id=1731137798]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Content/Header" unique_id=1095917727]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PanelTitle"
+text = "TARGET INTELLIGENCE"
+
+[node name="Spacer" type="Control" parent="Content/Header" unique_id=831618503]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Close" type="Button" parent="Content/Header" unique_id=934397765]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Back to the main target"
+focus_mode = 0
+theme_type_variation = &"GhostButton"
+icon = ExtResource("6_bbghd")
+icon_alignment = 1
+
+[node name="Preview" type="SubViewportContainer" parent="Content" unique_id=1880131610]
+custom_minimum_size = Vector2(226, 112)
+layout_mode = 2
+mouse_filter = 2
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="Content/Preview" unique_id=96448979]
+own_world_3d = true
+msaa_3d = 1
+size = Vector2i(226, 138)
+
+[node name="Stage" type="Node3D" parent="Content/Preview/PreviewViewport" unique_id=934298156]
+
+[node name="Environment" type="WorldEnvironment" parent="Content/Preview/PreviewViewport/Stage" unique_id=879347381]
+environment = ExtResource("7_x0k7l")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=600224094]
+transform = Transform3D(-0.76604444, 0.4924039, -0.41317594, 0, 0.64278764, 0.76604444, 0.64278764, 0.58682406, -0.4924039, 0, 0, 0)
+light_energy = 0.6
+shadow_enabled = true
+shadow_opacity = 0.45
+
+[node name="PreviewCamera" type="Camera3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=1251647140]
+unique_name_in_owner = true
+transform = Transform3D(0.75568914, -0.29466718, 0.58489764, 0, 0.89306825, 0.44992128, -0.65493053, -0.34000063, 0.67488194, 13, 10, 15)
+current = true
+fov = 28.0
+
+[node name="Floor" type="MeshInstance3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=468444384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = SubResource("StandardMaterial3D_brei8")
+mesh = SubResource("PlaneMesh_aiq4n")
+
+[node name="ModelHolder" type="Node3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=882198764]
+unique_name_in_owner = true
+
+[node name="Scroll" type="ScrollContainer" parent="Content" unique_id=1446696489]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Pages" type="MarginContainer" parent="Content/Scroll" unique_id=120212777]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Divider" type="ColorRect" parent="Content" unique_id=2105066894]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.18039216, 0.21960784, 0.26666668, 1)
+
+[node name="ReserveTitle" type="Label" parent="Content" unique_id=1113705147]
+visible = false
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "RESERVE"
+
+[node name="ReserveCaption" type="Label" parent="Content" unique_id=1548902312]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="BoostButton" type="Button" parent="Content" unique_id=2083039404]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+tooltip_text = "Production boost: all lines build faster for a while. Paid drones still cost credits."
+focus_mode = 0
+theme_type_variation = &"BoostButton"
+text = "BOOST"
