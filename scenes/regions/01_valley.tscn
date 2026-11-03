@@ -26,10 +26,6 @@
 [ext_resource type="Resource" path="res://data/regions/01_valley/targets/depot.tres" id="24_68kbq"]
 [ext_resource type="PackedScene" path="res://models/buildings/air_defense_node.tscn" id="25_28yfc"]
 [ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_a.tres" id="26_7to2k"]
-[ext_resource type="PackedScene" path="res://models/buildings/sam_site.tscn" id="27_5pqd8"]
-[ext_resource type="Resource" path="res://data/regions/01_valley/targets/sam_a.tres" id="28_uo1og"]
-[ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_r1.tres" id="29_thqop"]
-[ext_resource type="Resource" path="res://data/regions/01_valley/targets/gun_r2.tres" id="30_ggesq"]
 [ext_resource type="PackedScene" path="res://models/buildings/build_pad.tscn" id="31_5o1n7"]
 
 [node name="KalvaraValley" type="Node3D" unique_id=499890377]
@@ -101,32 +97,6 @@ outline_color = Color(0.65, 0.14, 0.15, 0.85)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 34)
 script = ExtResource("20_cdvrr")
 data = ExtResource("26_7to2k")
-outline_size = Vector2(9, 9)
-outline_color = Color(0, 0, 0, 0)
-idle_rotate_node = NodePath("Model/Model/Turret")
-
-[node name="SamA" type="Node3D" parent="Sites" unique_id=331115857 instance=ExtResource("27_5pqd8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 30)
-script = ExtResource("20_cdvrr")
-data = ExtResource("28_uo1og")
-outline_size = Vector2(10, 9)
-outline_color = Color(0.85, 0.45, 0.1, 0.85)
-idle_rotate_node = NodePath("Model/Model/Turret")
-
-[node name="ReserveGunR1" type="Node3D" parent="Sites" unique_id=2053524418 instance=ExtResource("25_28yfc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 24)
-script = ExtResource("20_cdvrr")
-data = ExtResource("29_thqop")
-is_reserve = true
-outline_size = Vector2(9, 9)
-outline_color = Color(0, 0, 0, 0)
-idle_rotate_node = NodePath("Model/Model/Turret")
-
-[node name="ReserveGunR2" type="Node3D" parent="Sites" unique_id=1284533787 instance=ExtResource("25_28yfc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 52)
-script = ExtResource("20_cdvrr")
-data = ExtResource("30_ggesq")
-is_reserve = true
 outline_size = Vector2(9, 9)
 outline_color = Color(0, 0, 0, 0)
 idle_rotate_node = NodePath("Model/Model/Turret")

@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_n1mxp")
-interval = 0.8
+interval = 0.16

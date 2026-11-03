@@ -649,6 +649,10 @@ func _move_drones(delta: float) -> void:
 			else:
 				drone.position = drone.position.move_toward(destination, distance)
 				distance = 0
+		var passed = _site_under(drone)
+		if not passed.is_empty():
+			drone.target = passed
+			drone.segment = drone.path.size() - 1
 		if drone.segment >= drone.path.size() - 1:
 			var accuracy = float(drone.stats.get("accuracy", 1.0)) * (drone.get("jam_accuracy", 1.0) if drone.jammed else 1.0)
 			if target(drone.target).hp > 0 and rng.randf() > accuracy:
@@ -665,6 +669,23 @@ func _move_drones(delta: float) -> void:
 			if victory:
 				drones.clear()
 				break
+
+## Enemy site the drone is flying over (it dives on the first building on its way).
+func _site_under(drone: Dictionary) -> String:
+	var radius = balance.flyover_hit_radius
+	if radius <= 0 or drone.segment >= drone.path.size() - 1:
+		return ""
+	var start: Vector2 = drone.path[0]
+	for item in targets:
+		if not item.active or item.hp <= 0:
+			continue
+		var pos: Vector2 = item.position
+		# Ignore sites right at the launch point (e.g. a captured site next to the base).
+		if pos.distance_to(start) < radius * 2.0:
+			continue
+		if drone.position.distance_to(pos) <= radius:
+			return item.id
+	return ""
 
 func _impact(drone: Dictionary) -> void:
 	var obj = target(drone.target)
@@ -969,7 +990,6 @@ func _sync_layout() -> void:
 	var saved = {}
 	for item in targets:
 		saved[item.id] = item
-	var previous = targets
 	_setup_targets()
 	for item in targets:
 		if saved.has(item.id):
@@ -977,8 +997,18 @@ func _sync_layout() -> void:
 			item.hp = item.max_hp * clampf(old.hp / maxf(1.0, old.max_hp), 0.0, 1.0)
 			item.respawn = old.get("respawn", 0.0)
 			item.active = old.get("active", item.active)
-	if previous.is_empty():
-		pass
+	# A region's authored sites can change between saves (e.g. a removed battery).
+	# Discard references to missing objectives rather than leaving drones/UI to
+	# access an empty target. Paid orders stay on their lines awaiting a new route.
+	routes = routes.filter(func(path): return not target(path.target).is_empty())
+	drones = drones.filter(func(drone): return not target(drone.target).is_empty())
+	for item in lines:
+		if route(item.route).is_empty():
+			item.route = -1
+	if not pending_reserve.is_empty() and target(pending_reserve).is_empty():
+		pending_reserve = ""
+		pending_adaptation = ""
+		adaptation_timer = 0.0
 
 func save_game(path: String = SAVE_PATH) -> bool:
 	var file = FileAccess.open(path + ".tmp", FileAccess.WRITE)

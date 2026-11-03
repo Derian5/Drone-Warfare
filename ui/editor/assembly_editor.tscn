@@ -52,7 +52,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"ModalTitle"
-text = "NEW ASSEMBLY LINE"
+text = "NEW DRONE LINE"
 
 [node name="Spacer" type="Control" parent="Window/Layout/Header" unique_id=1005350660]
 layout_mode = 2

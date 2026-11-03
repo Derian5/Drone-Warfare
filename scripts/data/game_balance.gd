@@ -13,6 +13,9 @@ extends Resource
 @export var max_routes := 8
 @export var max_drones := 100
 @export var free_line_target := "depot"
+## A drone that flies this close (map units) over an enemy site hits it there
+## instead of flying on to the end of its route. 0 = only the route's target.
+@export var flyover_hit_radius := 3.0
 
 @export_group("Modular drones")
 ## Frames (airframes). Base stats live in each FrameData (data/frames/*.tres).

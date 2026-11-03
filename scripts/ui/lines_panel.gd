@@ -38,15 +38,16 @@ func rebuild() -> void:
 func _refresh() -> void:
 	var sim = main.sim
 	var paid = sim.paid_line_count()
-	count_label.text = "%d / %d modular" % [paid, sim.line_slots]
+	count_label.text = "%d / %d slots used" % [paid, sim.line_slots]
+	%Subtitle.visible = paid == 0 or sim.lines.all(func(l): return l.free or l.route < 0)
 	for row in rows.get_children():
 		row.refresh()
-	reserve_value.text = str(int(sim.reserve))
+	reserve_value.text = "%d cr" % int(sim.reserve)
 	reserve_bar.max_value = maxf(100.0, sim.reserve * 2.0)
 	reserve_bar.value = minf(sim.credits, reserve_bar.max_value)
 	add_button.visible = paid < sim.line_slots
 	add_button.disabled = sim.victory
 	var price = sim.next_slot_price()
 	slot_button.visible = paid >= sim.line_slots and price >= 0
-	slot_button.text = "OPEN LINE SLOT · %d cr" % price
+	slot_button.text = "+  OPEN ANOTHER LINE SLOT · %d cr" % price
 	slot_button.disabled = sim.credits < price

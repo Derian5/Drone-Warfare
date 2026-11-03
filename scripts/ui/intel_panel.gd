@@ -42,6 +42,7 @@ func show_selection(kind: String, id: Variant) -> void:
 	pages.add_child(_page)
 	_page.setup(main, id)
 	title.text = _page.panel_title
+	%Hint.text = {"target": "Enemy site. Draw a route from your base to attack it.", "base": "Your base: upgrades and statistics.", "route": "A flight path. Drag its round end to extend it, or delete it.", "line": "A drone line: what it builds and how it is doing.", "pad": "Build a forward pad here to launch closer to the enemy."}.get(kind, "Click anything on the map to see it here.")
 	_show_model(kind, id)
 	_refresh()
 
@@ -81,11 +82,15 @@ func _refresh() -> void:
 	var sim = main.sim
 	reserve_caption.text = "%d cr protected · %d cr available for drones" % [sim.reserve, maxi(0, int(sim.credits) - sim.reserve)]
 	boost_button.disabled = sim.overdrive_cooldown > 0 or sim.victory
+	var b: GameBalance = main.balance
 	if sim.overdrive > 0:
 		boost_button.text = "BOOST ACTIVE · %ds" % ceili(sim.overdrive)
+		%BoostHint.text = "All lines are building faster right now."
 	elif sim.overdrive_cooldown > 0:
-		boost_button.text = "BOOST · %ds" % ceili(sim.overdrive_cooldown)
+		boost_button.text = "RECHARGING · %ds" % ceili(sim.overdrive_cooldown)
+		%BoostHint.text = "Boost will be ready again soon."
 	else:
 		boost_button.text = "BOOST"
+		%BoostHint.text = "Ready: all lines build %d%% faster for %d s." % [roundi((1.0 - b.boost_time_multiplier) * 100), int(b.boost_duration)]
 	if _page != null and _page.has_method("refresh"):
 		_page.refresh()

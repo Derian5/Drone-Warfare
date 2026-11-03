@@ -1,7 +1,7 @@
 extends VBoxContainer
 ## Forward base page: upgrades and totals (ui/hud/intel_base_page.tscn).
 
-@export var panel_title := "FORWARD BASE"
+@export var panel_title := "YOUR BASE"
 
 var main: Node
 

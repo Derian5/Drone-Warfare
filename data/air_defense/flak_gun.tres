@@ -7,6 +7,6 @@
 script = ExtResource("2_skr7s")
 description = "Fast, short-range cannon. Armor plating shrugs it off."
 icon = ExtResource("1_r8lsc")
-damage = 16.0
-interval = 0.9
+damage = 1.6
+interval = 0.18
 projectile_speed = 90.0

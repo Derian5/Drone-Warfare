@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_m3bkk")
-first_wave_after = 38.0
-wave_interval = 30.0
+first_wave_after = 12.6666666666667
+wave_interval = 10.0
 drones_per_wave = 2
 hp = 60.0
 speed = 9.0

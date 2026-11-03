@@ -6,5 +6,5 @@
 script = ExtResource("1_8ttpg")
 price = 500
 radius = 18.0
-damage = 22.0
-interval = 0.5
+damage = 2.2
+interval = 0.1

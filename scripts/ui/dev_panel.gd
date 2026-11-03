@@ -18,6 +18,7 @@ func setup(game: Node) -> void:
 	for child in speed_row.get_children():
 		child.queue_free()
 	var group = ButtonGroup.new()
+	var buttons = []
 	for value in speeds:
 		var button = Button.new()
 		button.text = "×%s" % str(value).trim_suffix(".0")
@@ -28,6 +29,11 @@ func setup(game: Node) -> void:
 		button.tooltip_text = "Game speed ×%s (simulation runs faster, same results)" % str(value).trim_suffix(".0")
 		button.pressed.connect(func(): main.time_scale = value; main.refresh())
 		speed_row.add_child(button)
+		buttons.append([button, value])
+	main.state_changed.connect(func():
+		for pair in buttons:
+			pair[0].set_pressed_no_signal(is_equal_approx(pair[1], main.time_scale))
+	)
 	%CreditsButton.text = "+%d cr" % credits_step
 	%CreditsButton.pressed.connect(func(): main.sim.credits += credits_step; main.refresh())
 	%HuntersButton.pressed.connect(func(): main.sim.hunter_timer = 0.01)

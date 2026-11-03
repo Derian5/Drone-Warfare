@@ -87,6 +87,8 @@ var zoom := 1.0
 var zoom_target := 1.0
 var base_width := 103.0
 var selected_route := -1
+## Route under a dragged line (drawn like a selected one).
+var hover_route := -1
 var selected_target := ""
 var floaters: Array = []
 var _drones: Dictionary = {}
@@ -420,7 +422,7 @@ func refresh_routes() -> void:
 	_clear(route_layer)
 	for path in sim.routes:
 		var color = route_color(int(path.id))
-		var selected = path.id == selected_route
+		var selected = path.id == selected_route or path.id == hover_route
 		var segments = danger_segments(path.points)
 		if not segments.is_empty():
 			var danger = ImmediateMesh.new()

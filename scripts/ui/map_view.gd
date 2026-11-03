@@ -37,9 +37,20 @@ var points: Array = []
 var draw_mode := false
 ## Pressed on empty map space (planet: dragging rotates the globe).
 var pressing_empty := false
+## Route whose end handle is being dragged to extend it (-1 = none).
+var extend_route := -1
+var hover_tip := -1
+@export_group("Route handles")
+## Pixels around a route's end where a drag extends the route.
+@export var tip_grab_radius := 16.0
+@export var tip_handle_radius := 7.0
+@export var tip_handle_color := Color(1, 1, 1, 0.95)
 var replace_id := -1
 var hover_route := -1
 var drag_hover := -1
+var _drop_at := Vector2.ZERO
+## Pixels around a route arrow where a dragged line is accepted.
+@export var drop_radius := 48.0
 var _site_chips := {}
 var _route_chips := {}
 var _floaters: Array = []
@@ -85,6 +96,14 @@ func _process(_delta: float) -> void:
 	if absf(world.view_scale - float(viewport.size.x) / maxf(1.0, size.x)) > 0.01:
 		_fit()
 	sim = main.sim
+	if drag_hover >= 0:
+		var font = get_theme_default_font()
+		var text = "Release: send to route R%d" % drag_hover
+		var at = _drop_at + Vector2(18, -18)
+		var w = font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 15).x
+		draw_rect(Rect2(at - Vector2(8, 18), Vector2(w + 16, 26)), Color(0.05, 0.07, 0.09, 0.9))
+		draw_rect(Rect2(at - Vector2(8, 18), Vector2(4, 26)), world.route_color(drag_hover))
+		draw_string(font, at, text, HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
 	for ring in _tap_rings:
 		ring[1] -= _delta
 	_tap_rings = _tap_rings.filter(func(r): return r[1] > 0)
@@ -93,6 +112,21 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	draw_texture_rect(viewport.get_texture(), Rect2(Vector2.ZERO, size), false)
+	if world != null and sim != null and not drawing and not sim.victory:
+		for path in sim.routes:
+			var end: Vector2 = path.points.back()
+			if not world.is_facing(end):
+				continue
+			var at = world.map_to_screen(end)
+			var color = world.route_color(int(path.id))
+			var big = path.id == hover_tip or path.id == world.selected_route
+			var r = tip_handle_radius * (1.35 if big else 1.0)
+			draw_circle(at, r + 2.0, Color(0.05, 0.07, 0.09, 0.85))
+			draw_circle(at, r, color)
+			draw_arc(at, r + 1.0, 0, TAU, 24, tip_handle_color, 1.5, true)
+			if big:
+				draw_line(at + Vector2(-3, 0), at + Vector2(3, 0), Color(0.05, 0.07, 0.09), 2.0)
+				draw_line(at + Vector2(0, -3), at + Vector2(0, 3), Color(0.05, 0.07, 0.09), 2.0)
 	for ring in _tap_rings:
 		var k = 1.0 - ring[1] / tap_ring_time
 		draw_arc(ring[0], 8 + k * 26, 0, TAU, 32, Color(tap_ring_color, tap_ring_color.a * (1.0 - k)), 3.0, true)
@@ -137,6 +171,8 @@ func _place_labels() -> void:
 	for path in sim.routes:
 		routes_live[path.id] = true
 		var chip = _chip(_route_chips, path.id, route_chip_scene)
+		if not chip.delete_requested.is_connected(_delete_route):
+			chip.delete_requested.connect(_delete_route)
 		var tokens = []
 		for item in sim.lines:
 			if item.route == path.id:
@@ -198,6 +234,7 @@ func _route_label_point(pts: Array) -> Vector2:
 func set_draw_mode(enabled: bool, editing: int = -1) -> void:
 	draw_mode = enabled
 	replace_id = editing if enabled else -1
+	extend_route = -1
 	drawing = false
 	pressing_base = false
 	points.clear()
@@ -238,7 +275,14 @@ func _gui_input(event: InputEvent) -> void:
 					_tap_rings.append([event.position, tap_ring_time])
 				accept_event()
 				return
+			var tip = _tip_near(event.position)
 			var launch = _launch_point(event.position)
+			if tip >= 0 and not draw_mode:
+				extend_route = tip
+				press_position = event.position
+				points = sim.route(tip).points.duplicate()
+				accept_event()
+				return
 			if launch != null:
 				pressing_base = true
 				press_position = event.position
@@ -257,6 +301,14 @@ func _gui_input(event: InputEvent) -> void:
 					main.select("pad", pad)
 				elif route_id >= 0:
 					main.select("route", route_id)
+		elif extend_route >= 0 and not drawing:
+			# A click on the handle without dragging selects what is there.
+			var obj = world.target_near(event.position)
+			if not obj.is_empty():
+				main.select("target", obj)
+			else:
+				main.select("route", extend_route)
+			extend_route = -1
 		elif pressing_empty:
 			pressing_empty = false
 			mouse_default_cursor_shape = Control.CURSOR_ARROW
@@ -280,6 +332,10 @@ func _gui_input(event: InputEvent) -> void:
 			world.orbit_drag(event.relative)
 		return
 	if event is InputEventMouseMotion:
+		if extend_route >= 0 and not drawing and event.position.distance_to(press_position) > drag_threshold:
+			drawing = true
+			mouse_default_cursor_shape = Control.CURSOR_CROSS
+			main.notice("Extending route R%d: release on the new target. Right click or Esc cancels." % extend_route)
 		if pressing_base and not drawing and event.position.distance_to(press_position) > drag_threshold:
 			drawing = true
 			mouse_default_cursor_shape = Control.CURSOR_CROSS
@@ -293,20 +349,49 @@ func _gui_input(event: InputEvent) -> void:
 		else:
 			var hover_target = world.target_near(event.position)
 			hover_route = -1 if not hover_target.is_empty() else world.route_near(event.position)
-			var over_hunter = world.hunter_near(event.position) >= 0
+			hover_tip = _tip_near(event.position)
+			var over_hunter = world.hunter_near(event.position) >= 0 or hover_tip >= 0
 			mouse_default_cursor_shape = Control.CURSOR_CROSS if _on_base(event.position) or over_hunter else (Control.CURSOR_POINTING_HAND if hover_route >= 0 or not hover_target.is_empty() else Control.CURSOR_ARROW)
 	accept_event()
+
+func _delete_route(id: int) -> void:
+	main.sfx.play("click")
+	main.delete_route(id)
+
+## Route whose end handle is under the pointer, or -1.
+func _tip_near(screen: Vector2) -> int:
+	if world == null or sim == null:
+		return -1
+	var best = tip_grab_radius
+	var found = -1
+	for path in sim.routes:
+		var end: Vector2 = path.points.back()
+		if not world.is_facing(end):
+			continue
+		var d = screen.distance_to(world.map_to_screen(end))
+		if d < best:
+			best = d
+			found = int(path.id)
+	return found
 
 func _finish_drawing(at: Vector2) -> void:
 	drawing = false
 	pressing_base = false
+	var extending = extend_route
+	extend_route = -1
 	var obj = world.target_near(at)
 	if obj.is_empty():
-		main.notice("End the arrow on an enemy site. Try again.")
+		main.notice("End the arrow on an enemy site. Try again." if extending < 0 else "Route not changed: release the extended arrow on an enemy site.")
 		world.show_draft([])
 		return
 	points.append(sim.target(obj).position)
-	var id = sim.add_route(points, obj, replace_id)
+	var id = sim.add_route(points, obj, extending if extending >= 0 else replace_id)
+	if extending >= 0 and id >= 0:
+		world.show_draft([])
+		main.select("route", id)
+		main.notice("Route R%d extended to %s. Lines on it keep flying it." % [id, sim.target(obj).name])
+		main.committed()
+		return
 	if id >= 0:
 		set_draw_mode(false)
 		main.select("route", id)
@@ -316,18 +401,47 @@ func _finish_drawing(at: Vector2) -> void:
 		world.show_draft([])
 		main.notice("Could not create the route. Stay inside the map; limit is %d arrows." % sim.balance.max_routes)
 
+## Route a dragged line would be attached to: near the arrow, on its label,
+## on its round end or on the site it attacks. Generous so it is easy to hit.
+func _drop_route(at: Vector2) -> int:
+	var id = world.route_near(at, drop_radius)
+	if id >= 0:
+		return id
+	for key in _route_chips:
+		var chip: Control = _route_chips[key]
+		if chip.visible and chip.get_rect().grow(10).has_point(at):
+			return int(key)
+	var tip = _tip_near(at)
+	if tip >= 0:
+		return tip
+	var obj = world.target_near(at)
+	for path in sim.routes:
+		if not obj.is_empty() and path.target == obj:
+			return int(path.id)
+	return -1
+
+func _set_drag_hover(id: int, at: Vector2 = Vector2.ZERO) -> void:
+	_drop_at = at
+	if id != drag_hover:
+		drag_hover = id
+		world.hover_route = id
+		world.refresh_routes()
+	queue_redraw()
+
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	var ok = data is Dictionary and data.get("kind", "") == "line" and world.route_near(at_position) >= 0
-	drag_hover = world.route_near(at_position) if ok else -1
-	return ok
+	if not (data is Dictionary and data.get("kind", "") == "line"):
+		return false
+	var id = _drop_route(at_position)
+	_set_drag_hover(id, at_position)
+	return id >= 0
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	drag_hover = -1
-	var id = world.route_near(at_position)
+	var id = _drop_route(at_position)
+	_set_drag_hover(-1)
 	if sim.assign(int(data.line_id), id):
 		main.select("route", id)
 		main.committed()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_DRAG_END:
-		drag_hover = -1
+		_set_drag_hover(-1)

@@ -101,7 +101,7 @@ func open(id: int) -> void:
 		build.modules = []
 	build.frame = main.balance.build_frame(build)
 	_drop_misfits()
-	title.text = "EDIT ASSEMBLY LINE" if id >= 0 else "NEW ASSEMBLY LINE"
+	title.text = "EDIT DRONE LINE" if id >= 0 else "NEW DRONE LINE"
 	create_button.text = "SAVE CHANGES" if id >= 0 else "CREATE LINE"
 	hover = ""
 	hover_frame = ""

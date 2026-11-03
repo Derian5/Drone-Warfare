@@ -30,17 +30,64 @@ theme_override_constants/separation = 8
 
 [node name="Header" type="HBoxContainer" parent="Content" unique_id=1731137798]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Content/Header" unique_id=1095917727]
+[node name="Preview" type="SubViewportContainer" parent="Content/Header" unique_id=1880131610]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+size_flags_vertical = 4
+layout_mode = 2
+mouse_filter = 2
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="Content/Header/Preview" unique_id=96448979]
+own_world_3d = true
+msaa_3d = 1
+size = Vector2i(112, 112)
+
+[node name="Stage" type="Node3D" parent="Content/Header/Preview/PreviewViewport" unique_id=934298156]
+
+[node name="Environment" type="WorldEnvironment" parent="Content/Header/Preview/PreviewViewport/Stage" unique_id=879347381]
+environment = ExtResource("7_x0k7l")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="Content/Header/Preview/PreviewViewport/Stage" unique_id=600224094]
+transform = Transform3D(-0.76604444, 0.4924039, -0.41317594, 0, 0.64278764, 0.76604444, 0.64278764, 0.58682406, -0.4924039, 0, 0, 0)
+light_energy = 0.6
+shadow_enabled = true
+shadow_opacity = 0.45
+
+[node name="PreviewCamera" type="Camera3D" parent="Content/Header/Preview/PreviewViewport/Stage" unique_id=1251647140]
+unique_name_in_owner = true
+transform = Transform3D(0.75568914, -0.29466718, 0.58489764, 0, 0.89306825, 0.44992128, -0.65493053, -0.34000063, 0.67488194, 13, 10, 15)
+current = true
+fov = 28.0
+
+[node name="Floor" type="MeshInstance3D" parent="Content/Header/Preview/PreviewViewport/Stage" unique_id=468444384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+material_override = SubResource("StandardMaterial3D_brei8")
+mesh = SubResource("PlaneMesh_aiq4n")
+
+[node name="ModelHolder" type="Node3D" parent="Content/Header/Preview/PreviewViewport/Stage" unique_id=882198764]
+unique_name_in_owner = true
+
+[node name="TitleBox" type="VBoxContainer" parent="Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 1
+
+[node name="Title" type="Label" parent="Content/Header/TitleBox" unique_id=1095917727]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"PanelTitle"
 text = "TARGET INTELLIGENCE"
 
-[node name="Spacer" type="Control" parent="Content/Header" unique_id=831618503]
+[node name="Hint" type="Label" parent="Content/Header/TitleBox"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
+theme_type_variation = &"MutedSmall"
+text = "Click anything on the map to see it here."
+autowrap_mode = 3
 
 [node name="Close" type="Button" parent="Content/Header" unique_id=934397765]
 unique_name_in_owner = true
@@ -51,42 +98,6 @@ focus_mode = 0
 theme_type_variation = &"GhostButton"
 icon = ExtResource("6_bbghd")
 icon_alignment = 1
-
-[node name="Preview" type="SubViewportContainer" parent="Content" unique_id=1880131610]
-custom_minimum_size = Vector2(226, 112)
-layout_mode = 2
-mouse_filter = 2
-stretch = true
-
-[node name="PreviewViewport" type="SubViewport" parent="Content/Preview" unique_id=96448979]
-own_world_3d = true
-msaa_3d = 1
-size = Vector2i(226, 138)
-
-[node name="Stage" type="Node3D" parent="Content/Preview/PreviewViewport" unique_id=934298156]
-
-[node name="Environment" type="WorldEnvironment" parent="Content/Preview/PreviewViewport/Stage" unique_id=879347381]
-environment = ExtResource("7_x0k7l")
-
-[node name="KeyLight" type="DirectionalLight3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=600224094]
-transform = Transform3D(-0.76604444, 0.4924039, -0.41317594, 0, 0.64278764, 0.76604444, 0.64278764, 0.58682406, -0.4924039, 0, 0, 0)
-light_energy = 0.6
-shadow_enabled = true
-shadow_opacity = 0.45
-
-[node name="PreviewCamera" type="Camera3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=1251647140]
-unique_name_in_owner = true
-transform = Transform3D(0.75568914, -0.29466718, 0.58489764, 0, 0.89306825, 0.44992128, -0.65493053, -0.34000063, 0.67488194, 13, 10, 15)
-current = true
-fov = 28.0
-
-[node name="Floor" type="MeshInstance3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=468444384]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
-material_override = SubResource("StandardMaterial3D_brei8")
-mesh = SubResource("PlaneMesh_aiq4n")
-
-[node name="ModelHolder" type="Node3D" parent="Content/Preview/PreviewViewport/Stage" unique_id=882198764]
-unique_name_in_owner = true
 
 [node name="Scroll" type="ScrollContainer" parent="Content" unique_id=1446696489]
 layout_mode = 2
@@ -117,9 +128,18 @@ autowrap_mode = 3
 
 [node name="BoostButton" type="Button" parent="Content" unique_id=2083039404]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 tooltip_text = "Production boost: all lines build faster for a while. Paid drones still cost credits."
 focus_mode = 0
-theme_type_variation = &"BoostButton"
+theme_type_variation = &"SecondaryButton"
 text = "BOOST"
+
+[node name="BoostHint" type="Label" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "All lines build faster for a short time, then it recharges."
+horizontal_alignment = 1
+autowrap_mode = 3

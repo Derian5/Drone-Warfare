@@ -11,7 +11,7 @@ display_name = "Enemy HQ"
 intel_text = "Destroy it to capture the region (+{reward} cr). Repairs {regen}% HP every second — keep up the pressure with several lines.
 Adaptations: {defense}."
 icon = ExtResource("1_ykydy")
-max_hp = 1900.0
+max_hp = 380.0
 armor = 35.0
 payout_rate = 1.6
 respawn_time = 0.0

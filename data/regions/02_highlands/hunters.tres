@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_f24s8")
-first_wave_after = 40.0
-wave_interval = 32.0
+first_wave_after = 13.3333333333333
+wave_interval = 10.6666666666667
 hp = 54.0
 speed = 8.5

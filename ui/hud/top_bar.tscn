@@ -156,6 +156,16 @@ theme_type_variation = &"IconButton"
 icon = ExtResource("9_j8ja2")
 icon_alignment = 1
 
+[node name="SpeedButton" type="Button" parent="Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(52, 26)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Game speed: normal / double (F)"
+focus_mode = 0
+theme_type_variation = &"PillButton"
+text = "×1"
+
 [node name="PauseButton" type="Button" parent="Row" unique_id=227422324]
 tooltip_text = "Pause / resume the game (Space)"
 unique_name_in_owner = true

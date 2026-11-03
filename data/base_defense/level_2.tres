@@ -6,5 +6,5 @@
 script = ExtResource("1_t1a0s")
 price = 300
 radius = 16.0
-damage = 16.0
-interval = 0.65
+damage = 1.6
+interval = 0.13

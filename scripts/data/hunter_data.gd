@@ -4,9 +4,9 @@ extends Resource
 ## Enemy hunter drones that raid the player's base.
 
 @export var enabled := true
-@export var first_wave_after := 75.0
-@export var wave_interval := 70.0
-@export var wave_interval_jitter := 15.0
+@export var first_wave_after := 25.0
+@export var wave_interval := 23.3333333333333
+@export var wave_interval_jitter := 5.0
 @export var drones_per_wave := 1
 @export var hp := 30.0
 @export var speed := 11.0

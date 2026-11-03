@@ -11,7 +11,7 @@ display_name = "Enemy HQ"
 intel_text = "Destroy it to capture the region (+{reward} cr). Repairs {regen}% HP every second — keep up the pressure with several lines.
 Adaptations: {defense}."
 icon = ExtResource("1_lvckj")
-max_hp = 3000.0
+max_hp = 600.0
 armor = 50.0
 respawn_time = 0.0
 is_main_target = true

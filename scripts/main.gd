@@ -26,6 +26,7 @@ var world: Battlefield
 @onready var campaign_screen: CampaignScreen = %CampaignScreen
 @onready var editor: AssemblyEditor = %AssemblyEditor
 @onready var dev_panel: DevPanel = %DevPanel
+@onready var guide_card: GuideCard = %GuideCard
 @onready var sfx: Sfx = %Sfx
 @onready var help_dialog: AcceptDialog = %HelpDialog
 @onready var reset_dialog: ConfirmationDialog = %ResetDialog
@@ -44,6 +45,8 @@ var _last_pending := ""
 var _last_victory := false
 ## Simulation speed multiplier (developer panel, debug builds only).
 var time_scale := 1.0
+## The player closed the tutorial steps (alerts still show).
+var guide_dismissed := false
 
 func _ready() -> void:
 	get_window().min_size = Vector2i(1100, 640)
@@ -57,7 +60,7 @@ func _ready() -> void:
 	world.setup(sim)
 	_load_settings()
 	map_view.setup(self)
-	for part in [top_bar, lines_panel, intel, toast, victory_panel, editor, campaign_screen, dev_panel]:
+	for part in [top_bar, guide_card, lines_panel, intel, toast, victory_panel, editor, campaign_screen, dev_panel]:
 		part.setup(self)
 	reset_dialog.confirmed.connect(_reset_run)
 	select("target", main_target_id())
@@ -99,7 +102,7 @@ func start_region(index: int) -> void:
 	var region = sim.region_data
 	var text = "%s — %s" % [region.display_name, region.subtitle] if region else "New region."
 	if region and not region.new_frames.is_empty():
-		text += " New frame: %s. Open + NEW ASSEMBLY LINE to try it." % ", ".join(region.new_frames.map(func(f): return f.display_name))
+		text += " New frame: %s. Open + NEW DRONE LINE to try it." % ", ".join(region.new_frames.map(func(f): return f.display_name))
 	notice(text)
 
 # ---------------------------------------------------------------- shared actions (used by panels)
@@ -122,8 +125,15 @@ func committed() -> void:
 func delete_selected_route() -> void:
 	if selected.kind != "route":
 		return
-	sim.delete_route(int(selected.id))
-	select("target", main_target_id())
+	delete_route(int(selected.id))
+
+func delete_route(id: int) -> void:
+	if sim.route(id).is_empty():
+		return
+	map_view.set_draw_mode(false)
+	sim.delete_route(id)
+	if selected.kind == "route" and int(selected.id) == id:
+		select("target", main_target_id())
 	committed()
 
 func open_editor(line_id: int) -> void:
@@ -162,6 +172,11 @@ func upgrade(kind: String) -> void:
 
 func toggle_pause() -> void:
 	paused = not paused
+	refresh()
+
+## Normal / double speed for everyone (the developer panel also offers ×3).
+func toggle_speed() -> void:
+	time_scale = 1.0 if time_scale > 1.0 else 2.0
 	refresh()
 
 func toggle_sound() -> void:
@@ -235,6 +250,31 @@ func objective() -> String:
 	if not sim.pending_adaptation.is_empty():
 		return "Enemy air defense is adapting — rethink your build"
 	return "Destroy %s · %d%%" % [main.get("name", "target").trim_prefix("Enemy "), ceili(main.get("hp", 0.0) / maxf(1.0, main.get("max_hp", 1.0)) * 100)]
+
+## The "what to do now" card in the right panel. Empty = nothing to show.
+func guide() -> Dictionary:
+	if sim.victory:
+		return {}
+	if not sim.hunters.is_empty():
+		return {"kind": "alert", "kicker": "HUNTERS INCOMING", "title": "Click the red rings on the map", "body": "A hunter that reaches your base stops a line and steals 30% of your credits."}
+	if not sim.pending_adaptation.is_empty():
+		return {"kind": "info", "kicker": "ENEMY ADAPTING · %ds" % ceili(sim.adaptation_timer), "title": "Air defense is getting a counter", "body": "The enemy answers your most used module or route. Change a line's build (EDIT) or draw another route."}
+	var paid = sim.lines.filter(func(l): return not l.free)
+	var main_id = main_target_id()
+	if not guide_dismissed:
+		if not sim.routes.any(func(r): return r.target == main_id) and paid.is_empty():
+			return {"kind": "step", "kicker": "NEXT STEP · 1 OF 4", "title": "Draw a route to the Enemy HQ", "body": "Press on your blue base and drag to the red Enemy HQ, then let go. Curve around the red rings — they shoot drones down."}
+		if paid.is_empty():
+			return {"kind": "step", "kicker": "NEXT STEP · 2 OF 4", "title": "Build a drone line", "body": "Press + NEW DRONE LINE below. Pick a frame, a warhead and modules, then press CREATE LINE."}
+		if paid.all(func(l): return l.route < 0):
+			return {"kind": "step", "kicker": "NEXT STEP · 3 OF 4", "title": "Send line L%d along a route" % paid[0].id, "body": "Drag the L%d row below onto a route arrow on the map — or click the row and pick the route from the list." % paid[0].id}
+		if paid.all(func(l): return not l.enabled):
+			return {"kind": "step", "kicker": "NEXT STEP · 4 OF 4", "title": "Start line L%d" % paid[0].id, "body": "Press START on the line. It builds a drone every few seconds and launches it along the route."}
+	for item in paid:
+		var info = sim.status_info(item)
+		if info.level == "bad":
+			return {"kind": "alert", "kicker": "L%d NEEDS HELP" % item.id, "title": info.text, "body": info.hint}
+	return {}
 
 func notice(text: String) -> void:
 	if toast != null and sim != null:
@@ -319,6 +359,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				map_view.set_draw_mode(false)
 			else:
 				toggle_pause()
+			get_viewport().set_input_as_handled()
+		elif event.keycode in [KEY_DELETE, KEY_BACKSPACE] and selected.kind == "route" and not editor.visible:
+			delete_selected_route()
+			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_F and not editor.visible:
+			toggle_speed()
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_SPACE and not editor.visible:
 			toggle_pause()

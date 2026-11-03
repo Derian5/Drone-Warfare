@@ -1,7 +1,7 @@
 extends VBoxContainer
 ## Assembly line page (ui/hud/intel_line_page.tscn).
 
-@export var panel_title := "ASSEMBLY LINE"
+@export var panel_title := "SELECTED LINE"
 
 var main: Node
 var id := 0

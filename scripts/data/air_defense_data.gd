@@ -12,9 +12,9 @@ enum Kind { GUN, MISSILE, JAMMER }
 @export var radius := 18.0
 ## Higher = hits more often. Hit chance = accuracy / (accuracy + drone agility).
 @export var accuracy := 36.0
-@export var damage := 18.0
+@export var damage := 1.8
 ## Seconds between volleys.
-@export var interval := 0.95
+@export var interval := 0.19
 ## How many drones one volley can engage. Flooding the zone overloads the site.
 @export var targets_per_volley := 1
 ## Terrain between the site and the drone blocks the shot (radar shadow behind hills).

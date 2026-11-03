@@ -2,7 +2,7 @@ extends VBoxContainer
 ## Target intelligence page (ui/hud/intel_target_page.tscn).
 ## Top: name, HP and a short summary of what matters. Full numbers are under MORE DETAILS.
 
-@export var panel_title := "TARGET INTELLIGENCE"
+@export var panel_title := "SELECTED TARGET"
 
 ## Remembered between selections so the player chooses once.
 static var details_open := false

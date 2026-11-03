@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/route_chip.gd" id="1_8f3ys"]
+[ext_resource type="Texture2D" path="res://ui/icons/close.svg" id="2_close"]
 
 [node name="RouteChip" type="PanelContainer" unique_id=767915899]
 mouse_filter = 2
@@ -34,3 +35,15 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"ChipTitle"
 text = "FREE · L1"
+
+[node name="Delete" type="Button" parent="Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+focus_mode = 0
+theme_type_variation = &"IconButton"
+icon = ExtResource("2_close")
+icon_alignment = 1
+expand_icon = true

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_155hq")
-first_wave_after = 45.0
-wave_interval = 35.0
+first_wave_after = 15.0
+wave_interval = 11.6666666666667
 hp = 48.0
 speed = 8.0

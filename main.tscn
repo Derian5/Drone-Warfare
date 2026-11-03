@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/audio/sfx.gd" id="43_5yh34"]
 [ext_resource type="Resource" path="res://audio/sfx_library.tres" id="44_pjuso"]
 [ext_resource type="PackedScene" path="res://ui/dev/dev_panel.tscn" id="45_devp"]
+[ext_resource type="PackedScene" path="res://ui/hud/guide_card.tscn" id="46_guide"]
 
 [node name="DroneWarfare" type="Control" unique_id=813147945]
 layout_mode = 3
@@ -144,6 +145,10 @@ custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="GuideCard" parent="Layout/Body/Sidebar" instance=ExtResource("46_guide")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="LinesPanel" parent="Layout/Body/Sidebar" unique_id=1872048483 instance=ExtResource("25_1vm84")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -184,8 +189,10 @@ dialog_text = "1. Free drones already fly to the supply depot and earn credits.
 
 2. Press and hold on your base (mouse or finger), draw a path
 and release it on the enemy HQ, depot or an air-defense site.
+Drag the round end of a route to extend it to a new target;
+the × on the route label (or the Delete key) removes it.
 
-3. Press + NEW ASSEMBLY LINE (top right). Pick a frame, then a warhead and
+3. Press + NEW DRONE LINE (top right). Pick a frame, then a warhead and
 modules (hover any of them to see why you would take it) and create the line.
 Every new region brings a new frame with its own modules. Drag the line onto a route arrow and press START.
 The coloured text under each line says what it is doing or what it needs.
@@ -205,7 +212,8 @@ of your credits. Base air defense only cripples and slows them.
 Goal: destroy the Enemy HQ. It repairs 1% HP per second — attack with several lines.
 Hover any button or number for a tip. Click a target for its key facts.
 
-Space — pause · Esc — cancel drawing / close editor · Right click — cancel."
+Space — pause · F — speed ×1/×2 · Delete — remove the selected route
+Esc — cancel drawing / close editor · Right click — cancel."
 
 [node name="ResetDialog" type="ConfirmationDialog" parent="." unique_id=1892774306]
 unique_name_in_owner = true
