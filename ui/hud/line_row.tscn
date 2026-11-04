@@ -85,9 +85,19 @@ text_overrun_behavior = 3
 
 [node name="Progress" type="ProgressBar" parent="Stack/StatusRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(96, 6)
+custom_minimum_size = Vector2(44, 6)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_type_variation = &"RowBar"
 show_percentage = false
+
+[node name="Upgrade" type="Button" parent="Stack/StatusRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"SecondaryButton"
+theme_override_font_sizes/font_size = 11
+text = "UPGRADE · 200"

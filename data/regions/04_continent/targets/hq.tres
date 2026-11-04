@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TargetData" format=3 uid="uid://b4stviw1vbxl1"]
 
 [ext_resource type="Resource" path="res://data/air_defense/hq_point_defense.tres" id="1_lfiu5"]
-[ext_resource type="Texture2D" uid="uid://ccsd8vyc8424u" path="res://ui/icons/sites/enemy_hq.png" id="1_oh3wa"]
-[ext_resource type="Script" uid="uid://bnivbfsvc45kn" path="res://scripts/data/target_data.gd" id="2_lfiu5"]
+[ext_resource type="Texture2D" path="res://ui/icons/sites/enemy_hq.png" id="1_oh3wa"]
+[ext_resource type="Script" path="res://scripts/data/target_data.gd" id="2_lfiu5"]
 
 [resource]
 script = ExtResource("2_lfiu5")
@@ -12,7 +12,7 @@ intel_text = "Destroy it to capture the region (+{reward} cr). Repairs {regen}% 
 Adaptations: {defense}."
 icon = ExtResource("1_oh3wa")
 max_hp = 520.0
-armor = 45.0
+armor = 120.0
 payout_rate = 1.1
 respawn_time = 0.0
 is_main_target = true

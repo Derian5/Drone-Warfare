@@ -41,6 +41,45 @@ theme_type_variation = &"MutedSmall"
 text = "Lines build drones and launch them along a route. Drag a row onto a route arrow to assign it."
 autowrap_mode = 3
 
+[node name="AirDefense" type="PanelContainer" parent="Content"]
+layout_mode = 2
+tooltip_text = "Your base air defense shoots at hunters near the base and slows them. Each upgrade multiplies its damage (and the damage of air-defense towers on build sites)."
+theme_type_variation = &"AaCard"
+
+[node name="Row" type="HBoxContainer" parent="Content/AirDefense"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Text" type="VBoxContainer" parent="Content/AirDefense/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="AaTitle" type="Label" parent="Content/AirDefense/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StrongSmall"
+text = "BASE AIR DEFENSE"
+
+[node name="AaState" type="Label" parent="Content/AirDefense/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "Not built"
+autowrap_mode = 3
+
+[node name="AaButton" type="Button" parent="Content/AirDefense/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(118, 32)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"SecondaryButton"
+theme_override_font_sizes/font_size = 12
+text = "BUILD · 150 cr"
+
 [node name="Rows" type="VBoxContainer" parent="Content" unique_id=247859557]
 unique_name_in_owner = true
 layout_mode = 2

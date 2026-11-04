@@ -14,6 +14,7 @@ var STRATEGIES = {
 	"armor_detour": {"builds": [["fragment", ["armor"]], ["fragment", ["armor", "boost"]], ["fragment", ["payload"]], ["fragment", ["armor"]], ["fragment", ["armor", "boost"]]], "route": "detour", "tap": 0.8, "base_aa": true},
 	"adaptive": {"builds": "adaptive", "route": "detour", "tap": 2.0, "base_aa": true, "waves": true},
 	"adaptive_lazy_taps": {"builds": "adaptive", "route": "detour", "tap": 0.1, "base_aa": true, "waves": true},
+	"damage_only": {"builds": [["fragment", ["payload"]], ["fragment", ["payload"]], ["fragment", ["payload"]], ["fragment", ["payload"]], ["fragment", ["payload"]]], "route": "detour", "tap": 2.0, "base_aa": true, "waves": true, "frame": "quad"},
 	"passive": {"builds": [["fragment", ["armor"]]], "route": "direct", "tap": 0.0, "base_aa": false},
 }
 
@@ -110,6 +111,10 @@ func _builds(sim, strategy: Dictionary) -> Array:
 		c = ["fragment", ["ew_pod", "decoy_flares" if kinds.has("missile") else "armor"]]
 	if kinds.count("missile") >= 2 and not adapted.has("flare_discrimination"):
 		a = ["fragment", ["decoy_flares", "boost"]]
+	# Against armored HQs every line should carry the piercing warhead.
+	if warhead == "piercing":
+		for build in [a, c]:
+			build[0] = "piercing"
 	return [a, b, c, a, b]
 
 func _think(sim, strategy: Dictionary, world) -> void:
@@ -130,7 +135,7 @@ func _think(sim, strategy: Dictionary, world) -> void:
 		sim.buy_line_slot()
 	for i in range(builds.size()):
 		var warhead = builds[i][0].replace("payload_", "")
-		var frame_id = sim.available_frames().back()
+		var frame_id = strategy.get("frame", sim.available_frames().back())
 		var build = {"frame": frame_id, "warhead": warhead, "modules": builds[i][1].duplicate().filter(func(m): return sim.balance.fits(m, frame_id))}
 		for id in [warhead] + build.modules:
 			if not sim.unlocked.has(id) and sim.available_modules().has(id) and sim.credits > sim.balance.module(id).unlock_cost + 150:
@@ -189,6 +194,10 @@ func _think(sim, strategy: Dictionary, world) -> void:
 		item.enabled = not _saving
 	if _saving:
 		return
+	# Line upgrades (+20% stats each) when there is spare money.
+	for l in sim.lines:
+		if not l.free and sim.credits > sim.line_upgrade_price(l) + 400:
+			sim.upgrade_line(l.id)
 	if sim.credits > 700 and sim.upgrade_price("factory") >= 0:
 		sim.upgrade("factory")
 	if sim.credits > 600 and sim.upgrade_price("frame") >= 0:

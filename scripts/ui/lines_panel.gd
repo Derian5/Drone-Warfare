@@ -23,6 +23,7 @@ func setup(game: Node) -> void:
 	reserve_up.pressed.connect(func(): main.sfx.play("click"); main.change_reserve(reserve_step))
 	add_button.pressed.connect(func(): main.sfx.play("click"); main.open_editor(-1))
 	slot_button.pressed.connect(func(): main.sfx.play("click"); main.buy_line_slot())
+	%AaButton.pressed.connect(func(): main.sfx.play("click"); main.upgrade("base_defense"))
 	main.state_changed.connect(_refresh)
 
 func rebuild() -> void:
@@ -47,6 +48,14 @@ func _refresh() -> void:
 	reserve_bar.value = minf(sim.credits, reserve_bar.max_value)
 	add_button.visible = paid < sim.line_slots
 	add_button.disabled = sim.victory
+	var aa_price = sim.upgrade_price("base_defense")
+	if sim.base_defense_level <= 0:
+		%AaState.text = "Not built. Slows and cripples hunters near the base."
+		%AaButton.text = "BUILD · %d cr" % aa_price
+	else:
+		%AaState.text = "Damage ×%d · %s" % [sim.base_aa_boost + 1, "towers too" if sim.built_sites.any(func(s): return sim.building_kind(s) == SiteBuildingData.Kind.AIR_DEFENSE) else "hits hunters near the base"]
+		%AaButton.text = ("UPGRADE ×%d · %d cr" % [sim.base_aa_boost + 2, aa_price]) if aa_price >= 0 else "MAX"
+	%AaButton.disabled = aa_price < 0 or sim.credits < aa_price
 	var price = sim.next_slot_price()
 	slot_button.visible = paid >= sim.line_slots and price >= 0
 	slot_button.text = "+  OPEN ANOTHER LINE SLOT · %d cr" % price

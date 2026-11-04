@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SiteBuildingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/site_building_data.gd" id="1_gxn2e"]
+
+[resource]
+script = ExtResource("1_gxn2e")
+id = "pad"
+display_name = "Forward Launch Pad"
+short_text = "Launch drones from here"
+description = "A second launch point closer to the enemy: shorter routes, less time under fire, far targets come into range."

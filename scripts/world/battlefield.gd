@@ -458,7 +458,7 @@ func _refresh_rings() -> void:
 	for site in sim.air_defenses():
 		var profile = sim.aa_profile(site.id)
 		signature += "%s:%.2f;" % [site.id, profile.radius]
-	signature += "base:%d" % sim.base_defense_level
+	signature += "base:%d;%s" % [sim.base_defense_level, str(sim.site_buildings)]
 	if signature == _ring_signature:
 		return
 	_ring_signature = signature
@@ -472,6 +472,10 @@ func _refresh_rings() -> void:
 	if sim.base_defense_level > 0 and not balance.base_defense_levels.is_empty():
 		var level: BaseDefenseData = balance.base_defense_levels[mini(sim.base_defense_level, balance.base_defense_levels.size()) - 1]
 		_rings.append(_ground_ring(sim.base_position, level.radius, base_defense_ring_color, ring_width))
+	for id in sim.built_sites:
+		var item: SiteBuildingData = sim.site_building_of(id)
+		if item != null and item.kind == SiteBuildingData.Kind.AIR_DEFENSE:
+			_rings.append(_ground_ring(sim.build_site(id).position, item.radius, base_defense_ring_color, ring_width))
 	refresh_routes()
 
 # ---------------------------------------------------------------- drones & sites
@@ -552,7 +556,7 @@ func sync(delta: float) -> void:
 			_hunters.erase(id)
 	for site in sites():
 		if site.is_build_pad:
-			site.set_built(sim.built_sites.has(site.build_id))
+			site.set_built(sim.built_sites.has(site.build_id), sim.site_building_of(site.build_id))
 		elif site.is_player_base:
 			site.set_upgrade_level(sim.base_defense_level)
 	for obj in sim.targets:

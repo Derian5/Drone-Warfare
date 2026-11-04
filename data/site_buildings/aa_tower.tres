@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SiteBuildingData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/buildings/aa_tower.tscn" id="1_cw6kb"]
+[ext_resource type="Script" path="res://scripts/data/site_building_data.gd" id="2_4hyu7"]
+
+[resource]
+script = ExtResource("2_4hyu7")
+id = "aa_tower"
+kind = 1
+display_name = "Air-Defense Tower"
+short_text = "Shoots hunters down"
+description = "An automatic gun tower. It shoots down hunters that fly within range — place it on their way to your base. Base AA upgrades make it stronger too."
+scene = ExtResource("1_cw6kb")

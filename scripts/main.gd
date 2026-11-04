@@ -185,14 +185,20 @@ func toggle_sound() -> void:
 	_save_settings()
 	refresh()
 
+func upgrade_line(id: int) -> void:
+	if sim.upgrade_line(id):
+		sfx.play("coin")
+		checkpoint()
+	refresh()
+
 func buy_line_slot() -> void:
 	if sim.buy_line_slot():
 		sfx.play("coin")
 		checkpoint()
 	refresh()
 
-func build_pad(id: String) -> void:
-	if sim.build_pad(id):
+func build_pad(id: String, building_id: String = "pad") -> void:
+	if sim.build_pad(id, building_id):
 		sfx.play("coin")
 		checkpoint()
 	refresh()

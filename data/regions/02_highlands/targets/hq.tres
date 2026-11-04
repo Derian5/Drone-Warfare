@@ -12,7 +12,7 @@ intel_text = "Destroy it to capture the region (+{reward} cr). Repairs {regen}% 
 Adaptations: {defense}."
 icon = ExtResource("1_ykydy")
 max_hp = 380.0
-armor = 35.0
+armor = 60.0
 payout_rate = 1.6
 respawn_time = 0.0
 is_main_target = true

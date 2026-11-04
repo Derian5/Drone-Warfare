@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/building_option.gd" id="1_bo"]
+
+[node name="BuildingOption" type="PanelContainer"]
+theme_type_variation = &"LineRow"
+script = ExtResource("1_bo")
+
+[node name="Stack" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Head" type="HBoxContainer" parent="Stack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Text" type="VBoxContainer" parent="Stack/Head"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="Stack/Head/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LineName"
+text = "Forward Launch Pad"
+
+[node name="Short" type="Label" parent="Stack/Head/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LineStatus"
+text = "Launch drones from here"
+
+[node name="Build" type="Button" parent="Stack/Head"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"StartButton"
+text = "BUILD · 300 cr"
+
+[node name="Description" type="Label" parent="Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedSmall"
+text = "Description"
+autowrap_mode = 3

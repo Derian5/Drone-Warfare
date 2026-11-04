@@ -46,11 +46,30 @@ extends Resource
 @export_group("Air defense")
 @export_range(0, 1) var aa_min_hit_chance := 0.10
 @export_range(0, 1) var aa_max_hit_chance := 0.95
+## Lock-on: every second a drone spends inside air-defense rings adds this much to the
+## damage it takes (fast drones and short exposure matter). Decays when out of range.
+@export var aa_lock_on_per_second := 1.5
+@export var aa_lock_on_max := 5.0
+## Armor weight in the damage formula: damage × 100 / (100 + weight × (armor − penetration)).
+@export var armor_weight := 3.0
 ## Altitude used for radar line-of-sight checks.
 @export var flight_altitude := 3.4
 
 @export_group("Base defense")
+## First entry = the base air defense you buy. Further entries are no longer used.
 @export var base_defense_levels: Array[BaseDefenseData] = []
+## "Upgrade air defense" prices; level N multiplies base AA (and AA tower) damage by N + 1.
+@export var base_aa_upgrade_prices: PackedInt32Array = [1000, 2000, 3000]
+
+@export_group("Line upgrades")
+## Every UPGRADE level of a line adds this share to all drone stats of that line.
+@export var line_upgrade_bonus := 0.2
+## Price of level N = line_upgrade_price_step × N (200, 400, 600, 800…).
+@export var line_upgrade_price_step := 200
+
+@export_group("Build sites")
+## What can be built on an empty build site.
+@export var site_buildings: Array[SiteBuildingData] = []
 
 @export_group("Boost")
 @export var boost_duration := 10.0
@@ -113,6 +132,12 @@ func max_mass(frame_level: int, frame_id: String = "") -> int:
 func fits(module_id: String, frame_id: String) -> bool:
 	var item = module(module_id)
 	return item != null and (item.frames.is_empty() or item.frames.has(frame_id))
+
+func site_building(id: String) -> SiteBuildingData:
+	for item in site_buildings:
+		if item != null and item.id == id:
+			return item
+	return null
 
 func route_color(id: int) -> Color:
 	return route_colors[(id - 1) % route_colors.size()] if not route_colors.is_empty() else Color.CYAN

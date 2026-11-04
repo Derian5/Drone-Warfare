@@ -1,27 +1,25 @@
 [gd_resource type="Resource" script_class="GameBalance" format=3 uid="uid://b6sww78fx2v4u"]
 
-[ext_resource type="Script" uid="uid://b1w0ai5svmbtg" path="res://scripts/data/module_data.gd" id="1_2bvcb"]
-[ext_resource type="Script" uid="uid://b7u0aialuq276" path="res://scripts/data/base_defense_data.gd" id="1_mcp0g"]
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1_2bvcb"]
+[ext_resource type="Script" path="res://scripts/data/base_defense_data.gd" id="1_mcp0g"]
 [ext_resource type="Resource" path="res://data/base_defense/level_1.tres" id="2_e1y4e"]
-[ext_resource type="Resource" uid="uid://bvy21mm8eyw4l" path="res://data/modules/fragment.tres" id="2_htc7v"]
-[ext_resource type="Resource" uid="uid://cmkqh40me3f7f" path="res://data/modules/piercing.tres" id="3_4r1k0"]
-[ext_resource type="Resource" path="res://data/base_defense/level_2.tres" id="3_qm5k3"]
-[ext_resource type="Resource" uid="uid://sem3bvr44jgn" path="res://data/modules/armor.tres" id="4_h2r3a"]
-[ext_resource type="Resource" path="res://data/base_defense/level_3.tres" id="4_vucmg"]
-[ext_resource type="Script" uid="uid://bbh04c5cy4be7" path="res://scripts/data/frame_data.gd" id="5_fs3q7"]
-[ext_resource type="Resource" uid="uid://yplf52fsipgw" path="res://data/modules/maneuver.tres" id="5_nrj84"]
-[ext_resource type="Resource" uid="uid://cwkn6sgc6cqkv" path="res://data/modules/boost.tres" id="6_4d5og"]
+[ext_resource type="Resource" path="res://data/modules/fragment.tres" id="2_htc7v"]
+[ext_resource type="Resource" path="res://data/modules/piercing.tres" id="3_4r1k0"]
+[ext_resource type="Resource" path="res://data/modules/armor.tres" id="4_h2r3a"]
+[ext_resource type="Script" path="res://scripts/data/frame_data.gd" id="5_fs3q7"]
+[ext_resource type="Resource" path="res://data/modules/maneuver.tres" id="5_nrj84"]
+[ext_resource type="Resource" path="res://data/modules/boost.tres" id="6_4d5og"]
 [ext_resource type="Resource" path="res://data/frames/quad.tres" id="6_ytu0k"]
 [ext_resource type="Resource" path="res://data/frames/wing.tres" id="7_0ydja"]
-[ext_resource type="Resource" uid="uid://b0ia1gnr3vn2m" path="res://data/modules/payload.tres" id="7_wc6uy"]
+[ext_resource type="Resource" path="res://data/modules/payload.tres" id="7_wc6uy"]
 [ext_resource type="Resource" path="res://data/frames/hexa.tres" id="8_dghem"]
-[ext_resource type="Script" uid="uid://it4u3gp58rlh" path="res://scripts/data/game_balance.gd" id="8_tg4km"]
+[ext_resource type="Script" path="res://scripts/data/game_balance.gd" id="8_tg4km"]
 [ext_resource type="Resource" path="res://data/frames/jet.tres" id="9_shhw1"]
 [ext_resource type="Resource" path="res://data/frames/glider.tres" id="10_b2qhg"]
-[ext_resource type="Resource" uid="uid://e8b41gxthub3" path="res://data/modules/fuel_tank.tres" id="12_5odho"]
-[ext_resource type="Resource" uid="uid://c7hxsyt6kr56" path="res://data/modules/decoy_flares.tres" id="13_gnkvf"]
-[ext_resource type="Resource" uid="uid://bdq8hcxpwby7n" path="res://data/modules/ew_pod.tres" id="14_sft51"]
-[ext_resource type="Resource" uid="uid://xuotjknp67j0" path="res://data/modules/cluster.tres" id="15_2tlrb"]
+[ext_resource type="Resource" path="res://data/modules/fuel_tank.tres" id="12_5odho"]
+[ext_resource type="Resource" path="res://data/modules/decoy_flares.tres" id="13_gnkvf"]
+[ext_resource type="Resource" path="res://data/modules/ew_pod.tres" id="14_sft51"]
+[ext_resource type="Resource" path="res://data/modules/cluster.tres" id="15_2tlrb"]
 [ext_resource type="Resource" path="res://data/counters/forward_battery.tres" id="16_sp8i8"]
 [ext_resource type="Resource" path="res://data/modules/glide_wings.tres" id="22_qfl1m"]
 [ext_resource type="Resource" path="res://data/modules/heavy_armor.tres" id="23_63wt5"]
@@ -29,6 +27,10 @@
 [ext_resource type="Resource" path="res://data/modules/smart_seeker.tres" id="25_2nv52"]
 [ext_resource type="Resource" path="res://data/modules/heat_shield.tres" id="26_q01di"]
 [ext_resource type="Resource" path="res://data/modules/stealth_coat.tres" id="27_grays"]
+[ext_resource type="Script" path="res://scripts/data/site_building_data.gd" id="28_0ydja"]
+[ext_resource type="Resource" path="res://data/site_buildings/pad.tres" id="29_dghem"]
+[ext_resource type="Resource" path="res://data/site_buildings/aa_tower.tres" id="30_shhw1"]
+[ext_resource type="Resource" path="res://data/site_buildings/income_hub.tres" id="31_b2qhg"]
 
 [resource]
 script = ExtResource("8_tg4km")
@@ -37,7 +39,9 @@ frames = Array[ExtResource("5_fs3q7")]([ExtResource("6_ytu0k"), ExtResource("7_0
 starting_frames = PackedStringArray("quad")
 frame_upgrade_prices = PackedInt32Array(225, 450)
 factory_upgrade_prices = PackedInt32Array(275, 420, 640)
-base_defense_levels = Array[ExtResource("1_mcp0g")]([ExtResource("2_e1y4e"), ExtResource("3_qm5k3"), ExtResource("4_vucmg")])
+base_defense_levels = Array[ExtResource("1_mcp0g")]([ExtResource("2_e1y4e")])
+base_aa_upgrade_prices = PackedInt32Array(1000, 2000, 3000)
+site_buildings = Array[ExtResource("28_0ydja")]([ExtResource("29_dghem"), ExtResource("30_shhw1"), ExtResource("31_b2qhg")])
 modules = Array[ExtResource("1_2bvcb")]([ExtResource("2_htc7v"), ExtResource("3_4r1k0"), ExtResource("4_h2r3a"), ExtResource("5_nrj84"), ExtResource("6_4d5og"), ExtResource("7_wc6uy"), ExtResource("12_5odho"), ExtResource("13_gnkvf"), ExtResource("14_sft51"), ExtResource("15_2tlrb"), ExtResource("22_qfl1m"), ExtResource("23_63wt5"), ExtResource("24_pukkv"), ExtResource("25_2nv52"), ExtResource("26_q01di"), ExtResource("27_grays")])
 route_counter = ExtResource("16_sp8i8")
 starting_unlocked = PackedStringArray("fragment", "armor")

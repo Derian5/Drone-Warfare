@@ -17,7 +17,7 @@ func refresh() -> void:
 	var b: GameBalance = sim.balance
 	%FrameTile.set_value("%d SLOTS" % b.slots(sim.frame_level))
 	%FactoryTile.set_value("LVL %d" % sim.factory_level)
-	%DefenseTile.set_value("LVL %d" % sim.base_defense_level if sim.base_defense_level > 0 else "NONE")
+	%DefenseTile.set_value("×%d" % (sim.base_aa_boost + 1) if sim.base_defense_level > 0 else "NONE")
 	var frame_price = sim.upgrade_price("frame")
 	%FrameButton.text = "Frame +1 slot · %d cr" % frame_price if frame_price >= 0 else "Frame fully upgraded"
 	%FrameButton.disabled = frame_price < 0 or sim.credits < frame_price
@@ -25,7 +25,7 @@ func refresh() -> void:
 	%FactoryButton.text = "Assembly -%d%% time · %d cr" % [roundi((1.0 - b.factory_time_multiplier) * 100), factory_price] if factory_price >= 0 else "Assembly fully upgraded"
 	%FactoryButton.disabled = factory_price < 0 or sim.credits < factory_price
 	var defense_price = sim.upgrade_price("base_defense")
-	%DefenseButton.text = ("Base air defense lvl %d · %d cr" % [sim.base_defense_level + 1, defense_price]) if defense_price >= 0 else "Base air defense maxed"
+	%DefenseButton.text = ("Build base air defense · %d cr" % defense_price if sim.base_defense_level <= 0 else "Upgrade air defense ×%d · %d cr" % [sim.base_aa_boost + 2, defense_price]) if defense_price >= 0 else "Air defense maxed"
 	%DefenseButton.disabled = defense_price < 0 or sim.credits < defense_price
 	%Stolen.set_value("%d cr" % int(sim.totals.get("stolen", 0)))
 	%Launched.set_value(str(int(sim.totals.launched)))

@@ -27,6 +27,8 @@ var frame_level = 0
 var factory_level = 0
 var line_slots = 1
 var base_defense_level = 0
+## "Upgrade air defense" level: base AA damage × (base_aa_boost + 1).
+var base_aa_boost = 0
 var unlocked: Array = []
 var lines: Array = []
 var next_line = 1
@@ -42,6 +44,9 @@ var routes: Array = []
 var drones: Array = []
 var hunters: Array = []
 var built_sites: Array = []
+## Build site id -> SiteBuildingData id ("pad", "aa_tower", "income_hub").
+var site_buildings: Dictionary = {}
+var site_gun_timers: Dictionary = {}
 var next_route = 1
 var next_drone = 1
 var elapsed = 0.0
@@ -95,6 +100,8 @@ func start_region(index: int, site_layout: Dictionary) -> void:
 	drones.clear()
 	hunters.clear()
 	built_sites.clear()
+	site_buildings.clear()
+	site_gun_timers.clear()
 	adaptations.clear()
 	observations.clear()
 	pending_adaptation = ""
@@ -181,9 +188,31 @@ func route(id: int) -> Dictionary:
 func launch_points() -> Array:
 	var points = [base_position]
 	for site in layout.get("build_sites", []):
-		if built_sites.has(site.id):
+		if built_sites.has(site.id) and building_kind(site.id) == SiteBuildingData.Kind.LAUNCH_PAD:
 			points.append(site.position)
 	return points
+
+## Kind of the building on a build site (-1 = nothing built).
+func building_kind(site_id: String) -> int:
+	if not built_sites.has(site_id):
+		return -1
+	var item = balance.site_building(site_buildings.get(site_id, "pad"))
+	return item.kind if item != null else SiteBuildingData.Kind.LAUNCH_PAD
+
+func site_building_of(site_id: String) -> SiteBuildingData:
+	return balance.site_building(site_buildings.get(site_id, "pad")) if built_sites.has(site_id) else null
+
+## Product of all income buildings (×1.5 each).
+func income_multiplier() -> float:
+	var result = 1.0
+	for id in built_sites:
+		var item = site_building_of(id)
+		if item != null and item.kind == SiteBuildingData.Kind.INCOME:
+			result *= item.income_multiplier
+	return result
+
+func base_aa_multiplier() -> float:
+	return float(base_aa_boost + 1)
 
 func build_site(id: String) -> Dictionary:
 	for site in layout.get("build_sites", []):
@@ -298,7 +327,25 @@ func buy_tech(id: String) -> bool:
 # ================================================================ player actions
 
 func _line(id: int, title: String, build: Dictionary, route_id: int, free: bool = false) -> Dictionary:
-	return {"id": id, "name": title, "build": build.duplicate(true), "route": route_id, "free": free, "enabled": free, "order": {}, "disabled": 0.0, "income": 0.0, "spent": 0.0, "launched": 0, "hit": 0, "lost": 0, "miss": 0, "lost_by": {}}
+	return {"id": id, "name": title, "build": build.duplicate(true), "route": route_id, "free": free, "enabled": free, "order": {}, "disabled": 0.0, "income": 0.0, "spent": 0.0, "launched": 0, "hit": 0, "lost": 0, "miss": 0, "lost_by": {}, "level": 0}
+
+## Price of the next UPGRADE of a line (200, 400, 600…).
+func line_upgrade_price(item: Dictionary) -> int:
+	return balance.line_upgrade_price_step * (int(item.get("level", 0)) + 1)
+
+func upgrade_line(id: int) -> bool:
+	var item = line(id)
+	if item.is_empty() or item.free:
+		return false
+	var price = line_upgrade_price(item)
+	if credits < price:
+		notice.emit("Not enough credits: the upgrade costs %d cr." % price)
+		return false
+	credits -= price
+	totals.spent += price
+	item.level = int(item.get("level", 0)) + 1
+	notice.emit("%s upgraded to level %d: all drone stats +%d%%." % [item.name, item.level, roundi(balance.line_upgrade_bonus * 100 * item.level)])
+	return true
 
 func paid_line_count() -> int:
 	return lines.size() - 1
@@ -402,7 +449,9 @@ func upgrade_price(kind: String) -> int:
 	var level = frame_level if kind == "frame" else factory_level
 	if kind == "base_defense":
 		var levels = balance.base_defense_levels
-		return levels[base_defense_level].price if base_defense_level < levels.size() else -1
+		if base_defense_level <= 0:
+			return levels[0].price if not levels.is_empty() else -1
+		return balance.base_aa_upgrade_prices[base_aa_boost] if base_aa_boost < balance.base_aa_upgrade_prices.size() else -1
 	return prices[level] if level < prices.size() else -1
 
 func upgrade(kind: String) -> bool:
@@ -418,18 +467,43 @@ func upgrade(kind: String) -> bool:
 			factory_level += 1
 			notice.emit("Assembly upgraded to level %d." % factory_level)
 		"base_defense":
-			base_defense_level += 1
-			notice.emit("Base air defense level %d online." % base_defense_level)
+			if base_defense_level <= 0:
+				base_defense_level = 1
+				notice.emit("Base air defense online. It cripples and slows hunters near the base.")
+			else:
+				base_aa_boost += 1
+				notice.emit("Air defense upgraded: damage ×%d." % (base_aa_boost + 1))
 	return true
 
-func build_pad(id: String) -> bool:
+func building_price(site_id: String, building_id: String) -> int:
+	var site = build_site(site_id)
+	var item = balance.site_building(building_id)
+	if site.is_empty() or item == null:
+		return -1
+	return int(round(site.price * item.price_multiplier))
+
+## Builds one of balance.site_buildings on an empty build site.
+func build_pad(id: String, building_id: String = "pad") -> bool:
 	var site = build_site(id)
-	if site.is_empty() or built_sites.has(id) or credits < site.price:
-		notice.emit("Not enough credits to build here." if not site.is_empty() and not built_sites.has(id) else "Already built.")
+	var item = balance.site_building(building_id)
+	if site.is_empty() or built_sites.has(id) or item == null:
+		notice.emit("Already built." if built_sites.has(id) else "Cannot build here.")
 		return false
-	credits -= site.price
+	var price = building_price(id, building_id)
+	if credits < price:
+		notice.emit("Not enough credits: %s costs %d cr." % [item.display_name, price])
+		return false
+	credits -= price
+	totals.spent += price
 	built_sites.append(id)
-	notice.emit("Forward launch pad built. Draw routes starting from it.")
+	site_buildings[id] = building_id
+	match item.kind:
+		SiteBuildingData.Kind.LAUNCH_PAD:
+			notice.emit("Forward launch pad built. Draw routes starting from it.")
+		SiteBuildingData.Kind.AIR_DEFENSE:
+			notice.emit("Air-defense tower built. It shoots down hunters flying past.")
+		SiteBuildingData.Kind.INCOME:
+			notice.emit("%s built: all income ×%s." % [item.display_name, str(snappedf(income_multiplier(), 0.01))])
 	return true
 
 func activate_overdrive() -> bool:
@@ -442,7 +516,13 @@ func activate_overdrive() -> bool:
 
 func line_stats(item: Dictionary) -> Dictionary:
 	var mods = tech_mods()
-	return balance.free_stats(mods) if item.free else balance.stats(item.build, frame_level, factory_level, mods)
+	if item.free:
+		return balance.free_stats(mods)
+	var result = balance.stats(item.build, frame_level, factory_level, mods)
+	var bonus = 1.0 + balance.line_upgrade_bonus * int(item.get("level", 0))
+	for key in ["damage", "hp", "speed", "agility", "penetration", "range"]:
+		result[key] = float(result[key]) * bonus
+	return result
 
 func status(item: Dictionary) -> String:
 	if item.get("disabled", 0.0) > 0:
@@ -607,6 +687,7 @@ func _tick_air_defense(delta: float) -> void:
 			var drone = candidates[k]
 			var accuracy = profile.accuracy * float(drone.stats.get("ew_accuracy", 1.0))
 			var hit = rng.randf() < clampf(accuracy / (accuracy + drone.stats.agility), balance.aa_min_hit_chance, balance.aa_max_hit_chance)
+			var lock = 1.0 + minf(float(drone.get("exposure", 0.0)) * balance.aa_lock_on_per_second, balance.aa_lock_on_max - 1.0)
 			shot.emit(site.position, drone.position, profile.kind, hit)
 			effect.emit("shot", drone.position)
 			if not hit:
@@ -615,7 +696,7 @@ func _tick_air_defense(delta: float) -> void:
 				drone.decoys -= 1
 				floater.emit("DECOY", drone.position, "miss")
 				continue
-			drone.hp -= profile.damage
+			drone.hp -= profile.damage * lock
 			drone.last_hit = profile.kind
 			effect.emit("flak", drone.position)
 
@@ -631,6 +712,18 @@ func _jam_factor(drone: Dictionary) -> float:
 			drone.jam_accuracy = profile.jam_accuracy
 	return factor
 
+## Seconds the drone has been inside air-defense rings (lock-on builds up, decays outside).
+func _track_exposure(drone: Dictionary, delta: float) -> void:
+	if drone.free:
+		return
+	var inside = false
+	for site in air_defenses():
+		var profile = aa_profile(site.id)
+		if profile.kind != "jammer" and drone.position.distance_to(site.position) <= profile.radius:
+			inside = true
+			break
+	drone.exposure = float(drone.get("exposure", 0.0)) + delta if inside else maxf(0.0, float(drone.get("exposure", 0.0)) - delta * 2.0)
+
 func _move_drones(delta: float) -> void:
 	for i in range(drones.size() - 1, -1, -1):
 		var drone = drones[i]
@@ -639,6 +732,7 @@ func _move_drones(delta: float) -> void:
 			drones.remove_at(i)
 			continue
 		var distance = drone.stats.speed * delta * _jam_factor(drone)
+		_track_exposure(drone, delta)
 		while distance > 0 and drone.segment < drone.path.size() - 1:
 			var destination: Vector2 = drone.path[drone.segment + 1]
 			var remaining = drone.position.distance_to(destination)
@@ -694,10 +788,10 @@ func _impact(drone: Dictionary) -> void:
 	var data = target_data(obj.id)
 	var armor = target_armor(obj.id) + float(drone.stats.get("armor_penalty", 0.0))
 	var multiplier = float(drone.stats.get("anti_air", 1.0)) if data != null and (data.air_defense != null or data.counts_as_air_defense) else 1.0
-	var damage = minf(obj.hp, drone.stats.damage * multiplier * 100.0 / (100.0 + maxf(0, armor - drone.stats.penetration)))
+	var damage = minf(obj.hp, drone.stats.damage * multiplier * 100.0 / (100.0 + balance.armor_weight * maxf(0, armor - drone.stats.penetration)))
 	obj.hp -= damage
 	obj.since_hit = 0.0
-	var income = damage * obj.rate * tech_mods().income
+	var income = damage * obj.rate * tech_mods().income * income_multiplier()
 	credits += income
 	totals.income += income
 	totals.hit += 1
@@ -835,13 +929,14 @@ func _tick_hunters(delta: float) -> void:
 		if not nearest.is_empty():
 			base_gun_timer = defense.interval
 			var floor_hp = nearest.max_hp * defense.min_hp_fraction
-			nearest.hp = maxf(floor_hp, nearest.hp - defense.damage * tech_mods().base_defense_damage)
+			nearest.hp = maxf(floor_hp, nearest.hp - defense.damage * tech_mods().base_defense_damage * base_aa_multiplier())
 			shot.emit(base_position, nearest.position, "gun", true)
 			effect.emit("flak", nearest.position)
 			if nearest.hp <= 0:
 				floater.emit("SHOT DOWN", nearest.position, "income")
 			elif nearest.hp <= floor_hp + 0.01:
 				floater.emit("CRIPPLED · TAP!", nearest.position, "miss")
+	_tick_site_towers(delta)
 	for i in range(hunters.size() - 1, -1, -1):
 		var hunter = hunters[i]
 		if hunter.hp <= 0:
@@ -873,6 +968,34 @@ func _tick_hunters(delta: float) -> void:
 		if hunter.position.distance_to(base_position) < 1.0:
 			_hunter_strike(data)
 			hunters.remove_at(i)
+
+## Air-defense towers on build sites: they shoot hunters down completely.
+func _tick_site_towers(delta: float) -> void:
+	for id in built_sites:
+		var item = site_building_of(id)
+		if item == null or item.kind != SiteBuildingData.Kind.AIR_DEFENSE:
+			continue
+		var timer = float(site_gun_timers.get(id, 0.0)) - delta
+		if timer > 0:
+			site_gun_timers[id] = timer
+			continue
+		var pos: Vector2 = build_site(id).position
+		var nearest = {}
+		var best = item.radius
+		for hunter in hunters:
+			var d = hunter.position.distance_to(pos)
+			if hunter.hp > 0 and d <= best:
+				best = d
+				nearest = hunter
+		if nearest.is_empty():
+			site_gun_timers[id] = 0.0
+			continue
+		site_gun_timers[id] = item.interval
+		nearest.hp -= item.damage * tech_mods().base_defense_damage * base_aa_multiplier()
+		shot.emit(pos, nearest.position, "gun", true)
+		effect.emit("flak", nearest.position)
+		if nearest.hp <= 0:
+			floater.emit("SHOT DOWN", nearest.position, "income")
 
 func _base_defense() -> BaseDefenseData:
 	if base_defense_level <= 0 or balance.base_defense_levels.is_empty():
@@ -931,8 +1054,8 @@ func _win() -> void:
 
 # ================================================================ saving
 
-const PERSISTENT_KEYS = ["credits", "reserve", "frame_level", "factory_level", "line_slots", "base_defense_level", "unlocked", "lines", "next_line", "techs", "tech_points", "region_index", "region_states", "totals"]
-const RUN_KEYS = ["targets", "routes", "drones", "hunters", "built_sites", "next_route", "next_drone", "elapsed", "run_losses", "overdrive", "overdrive_cooldown", "victory", "result", "adaptations", "pending_adaptation", "pending_reserve", "adaptation_timer", "adaptation_lock", "observations", "hunter_timer", "base_gun_timer"]
+const PERSISTENT_KEYS = ["credits", "reserve", "frame_level", "factory_level", "line_slots", "base_defense_level", "base_aa_boost", "unlocked", "lines", "next_line", "techs", "tech_points", "region_index", "region_states", "totals"]
+const RUN_KEYS = ["targets", "routes", "drones", "hunters", "built_sites", "site_buildings", "next_route", "next_drone", "elapsed", "run_losses", "overdrive", "overdrive_cooldown", "victory", "result", "adaptations", "pending_adaptation", "pending_reserve", "adaptation_timer", "adaptation_lock", "observations", "hunter_timer", "base_gun_timer"]
 
 func snapshot() -> Dictionary:
 	var data = {"version": VERSION, "rng_state": str(rng.state)}
@@ -979,8 +1102,9 @@ func restore(data: Dictionary) -> bool:
 	for key in PERSISTENT_KEYS + RUN_KEYS:
 		if decoded.has(key):
 			set(key, decoded[key])
-	for key in ["line_slots", "frame_level", "factory_level", "base_defense_level", "next_line", "tech_points", "region_index", "next_route", "next_drone", "run_losses"]:
+	for key in ["line_slots", "frame_level", "factory_level", "base_defense_level", "base_aa_boost", "next_line", "tech_points", "region_index", "next_route", "next_drone", "run_losses"]:
 		set(key, int(get(key)))
+	base_defense_level = mini(base_defense_level, 1)
 	rng.state = int(data.rng_state)
 	_sync_layout()
 	return true

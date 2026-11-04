@@ -1459,10 +1459,10 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="SB_sec_n"]
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
 bg_color = Color(0.12, 0.15, 0.19, 1)
 border_width_left = 1
 border_width_top = 1
@@ -1475,10 +1475,10 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="SB_sec_h"]
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
 bg_color = Color(0.14, 0.22, 0.27, 1)
 border_width_left = 1
 border_width_top = 1
@@ -1500,6 +1500,19 @@ corner_radius_top_left = 9
 corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="SB_aacard"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.1, 0.14, 0.22, 1)
+border_width_left = 4
+border_color = Color(0.25, 0.5, 0.9, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [resource]
 default_font = ExtResource("3_h7gvb")
@@ -1723,6 +1736,8 @@ CountChip/base_type = &"Label"
 CountChip/colors/font_color = Color(0.72, 0.78, 0.83, 1)
 CountChip/font_sizes/font_size = 12
 CountChip/styles/normal = SubResource("SB_chip")
+AaCard/base_type = &"PanelContainer"
+AaCard/styles/panel = SubResource("SB_aacard")
 HunterTag/base_type = &"Label"
 HunterTag/colors/font_color = Color(1, 0.45, 0.38, 1)
 HunterTag/colors/font_outline_color = Color(0, 0, 0, 0.75)

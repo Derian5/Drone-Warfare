@@ -75,10 +75,26 @@ func set_upgrade_level(level: int) -> void:
 		node.visible = level > 0
 		node.scale = Vector3.ONE * (1.0 + 0.15 * maxi(0, level - 1))
 
-func set_built(built: bool) -> void:
+var _building_id := ""
+
+## Shows what was built on a build site: the pad's own built node, or the building's scene.
+func set_built(built: bool, building: SiteBuildingData = null) -> void:
+	var own_model = built and (building == null or building.scene == null)
 	var node = get_node_or_null(built_node) as Node3D if not built_node.is_empty() else null
 	if node != null:
-		node.visible = built
+		node.visible = own_model
+	var wanted = building.id if built and building != null and building.scene != null else ""
+	if wanted == _building_id:
+		return
+	_building_id = wanted
+	var old = get_node_or_null("Building")
+	if old != null:
+		old.queue_free()
+		old.name = "OldBuilding"
+	if not wanted.is_empty():
+		var model = building.scene.instantiate()
+		model.name = "Building"
+		add_child(model)
 
 func _draw_outline() -> void:
 	if not is_inside_tree():

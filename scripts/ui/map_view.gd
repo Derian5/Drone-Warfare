@@ -155,7 +155,8 @@ func _place_labels() -> void:
 	for pad in sim.layout.get("build_sites", []):
 		live[pad.id] = true
 		var pad_chip = _chip(_site_chips, pad.id, site_chip_scene)
-		pad_chip.show_pad(world.map_to_screen(pad.position) + site_chip_offset, pad, sim.built_sites.has(pad.id))
+		var building = sim.site_building_of(pad.id)
+		pad_chip.show_pad(world.map_to_screen(pad.position) + site_chip_offset, pad, sim.built_sites.has(pad.id), building.display_name if building else "")
 		pad_chip.visible = world.is_facing(pad.position)
 	for obj in sim.active_targets():
 		live[obj.id] = true

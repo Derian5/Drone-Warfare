@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SiteBuildingData" format=3]
+
+[ext_resource type="PackedScene" path="res://models/buildings/income_hub.tscn" id="1_1de0g"]
+[ext_resource type="Script" path="res://scripts/data/site_building_data.gd" id="2_137ra"]
+
+[resource]
+script = ExtResource("2_137ra")
+id = "income_hub"
+kind = 2
+display_name = "Trade Hub"
+short_text = "All income ×1.5"
+description = "Logistics and trade: every credit you earn from hits is multiplied by 1.5. Several hubs multiply together."
+price_multiplier = 2.0
+scene = ExtResource("1_1de0g")

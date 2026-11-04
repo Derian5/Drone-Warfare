@@ -42,7 +42,7 @@ func show_selection(kind: String, id: Variant) -> void:
 	pages.add_child(_page)
 	_page.setup(main, id)
 	title.text = _page.panel_title
-	%Hint.text = {"target": "Enemy site. Draw a route from your base to attack it.", "base": "Your base: upgrades and statistics.", "route": "A flight path. Drag its round end to extend it, or delete it.", "line": "A drone line: what it builds and how it is doing.", "pad": "Build a forward pad here to launch closer to the enemy."}.get(kind, "Click anything on the map to see it here.")
+	%Hint.text = {"target": "Enemy site. Draw a route from your base to attack it.", "base": "Your base: upgrades and statistics.", "route": "A flight path. Drag its round end to extend it, or delete it.", "line": "A drone line: what it builds and how it is doing.", "pad": "Empty site: choose ONE building for it."}.get(kind, "Click anything on the map to see it here.")
 	_show_model(kind, id)
 	_refresh()
 

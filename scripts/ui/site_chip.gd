@@ -21,8 +21,8 @@ func show_base(at: Vector2) -> void:
 	theme_type_variation = &"SiteChipFriendly"
 	_place(at)
 
-func show_pad(at: Vector2, pad: Dictionary, built: bool) -> void:
-	title.text = "FORWARD PAD" if built else "BUILD SITE · %d cr" % pad.price
+func show_pad(at: Vector2, pad: Dictionary, built: bool, building_name: String = "") -> void:
+	title.text = (building_name.to_upper() if not building_name.is_empty() else "FORWARD PAD") if built else "BUILD SITE · click to build"
 	bar.visible = false
 	status.visible = false
 	theme_type_variation = &"SiteChipFriendly" if built else &"SiteChipNeutral"

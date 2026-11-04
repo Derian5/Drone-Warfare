@@ -38,6 +38,8 @@ func setup(game: Node, id: int) -> void:
 			main.open_editor(line_id)
 	)
 	edit.text = "INFO" if item.free else "EDIT"
+	%Upgrade.visible = not item.free
+	%Upgrade.pressed.connect(func(): main.sfx.play("click"); main.upgrade_line(line_id))
 	edit.tooltip_text = "Show the free line's details" if item.free else "Change this line's drone: warhead and modules"
 	gui_input.connect(func(event):
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -53,6 +55,13 @@ func refresh() -> void:
 	var stats = sim.line_stats(item)
 	progress.value = 0.0 if item.order.is_empty() else 100.0 * (1.0 - item.order.remaining / maxf(item.order.duration, 0.001))
 	value.visible = not item.free
+	if not item.free:
+		var level = int(item.get("level", 0))
+		var price = sim.line_upgrade_price(item)
+		%Upgrade.text = "UPGRADE · %d cr" % price
+		%Upgrade.disabled = sim.credits < price
+		%Upgrade.tooltip_text = "Level %d → %d: all drone stats of this line +%d%% (now +%d%%)." % [level, level + 1, roundi(sim.balance.line_upgrade_bonus * 100), roundi(sim.balance.line_upgrade_bonus * 100 * level)]
+		title.text = item.name + ("  Lv%d" % level if level > 0 else "")
 	value.text = "%d cr" % stats.cost
 	value.theme_type_variation = &"MutedValue" if item.free else &"CostValue"
 	toggle.icon = pause_icon if item.enabled else play_icon

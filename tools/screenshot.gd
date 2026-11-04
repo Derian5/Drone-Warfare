@@ -54,6 +54,8 @@ func _run() -> void:
 			main.editor._choose_frame(OS.get_environment("FRAME") if OS.has_environment("FRAME") else "glider")
 			main.editor.hover = OS.get_environment("HOVER") if OS.has_environment("HOVER") else "heat_shield"
 			main.editor._refresh()
+		"pad":
+			main.select("pad", sim.layout.build_sites[0].id)
 		"orbit":
 			main.world.orbit_drag(Vector2(-180, 40))
 		"hunters":

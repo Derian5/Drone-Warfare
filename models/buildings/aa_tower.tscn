@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/buildings/base_defense.glb" id="1_glb"]
+
+[node name="AaTower" type="Node3D"]
+
+[node name="Model" type="Node3D" parent="." instance=ExtResource("1_glb")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
